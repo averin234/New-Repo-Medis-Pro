@@ -1,4 +1,13 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get_state_manager/src/simple/get_view.dart';
+
+import '../../../../generated/assets.dart';
+import '../../../widgets/chart/pie_cart.dart';
+import '../../../widgets/color/appcolor.dart';
+import '../../konfirmasi/views/konfirmasi_view.dart';
+import '../controllers/home_controller.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -9,7 +18,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   int current_index = 0;
-  // final List<Widget> pages = [Home(), SearchPage(), SettingsPage()];
+  final List<Widget> pages = [Home(), KonfirmasiView(), ];
 
   void OnTapped(int index) {
     setState(() {
@@ -19,55 +28,87 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.white,
-          iconSize: 26,
-          selectedItemColor: Color(0xff4babe7),
-          unselectedItemColor: Colors.grey,
-          currentIndex: current_index,
-          selectedFontSize: 12,
-          unselectedFontSize: 14,
-          onTap: OnTapped,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home), label: "Home", tooltip: "Home"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.search), label: "Search", tooltip: "Search"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.settings),
-                label: "Settings",
-                tooltip: "Settings"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.settings),
-                label: "Settings",
-                tooltip: "Settings"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.settings),
-                label: "Settings",
-                tooltip: "Settings"),
-          ]),
-      body: SafeArea(
-        child: CustomScrollView(
-          slivers: <Widget>[
-            SliverPersistentHeader(
-              pinned: true,
-              floating: true,
-              delegate: CustomSliverDelegate(
-                expandedHeight: 120,
-              ),
-            ),
-            SliverFillRemaining(
-              child: Center(
-                child: Text("data"),
-              ),
-            ),
-          ],
+      body: pages[current_index],
+      bottomNavigationBar: Container(
+        height: 80,
+        padding: EdgeInsets.all(8),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(50),
+          child: CurvedNavigationBar(
+              height: 50,
+              backgroundColor: AppColors.contentColorWhite,
+              color: AppColors.contentColorWhite,
+              buttonBackgroundColor: Colors.grey.shade300,
+              onTap: OnTapped,
+              items: <Widget>[
+                Icon(Icons.home),
+                Icon(Icons.search),
+                Icon(Icons.settings),
+                Icon(Icons.person)
+              ]),
+
         ),
       ),
     );
   }
 }
 
+class Home extends GetView<HomeController> {
+  const Home({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: AppColors.contentColorWhite,
+      statusBarIconBrightness: Brightness.dark,
+    ));
+    return SafeArea(
+      child: CustomScrollView(
+        slivers: <Widget>[
+          SliverPersistentHeader(
+            pinned: true,
+            floating: true,
+            delegate: CustomSliverDelegate(
+              expandedHeight: 120,
+            ),
+          ),
+          SliverFillRemaining(
+            child: Column(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(right: 10, left: 10, top: 10),
+                  decoration: BoxDecoration(
+                    color: AppColors.contentColorWhite,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10)
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.15),
+                        spreadRadius: 5,
+                        blurRadius: 70,
+                        offset: Offset(0, 3), // changes position of shadow
+                      ),
+                    ],
+                  ),
+                  child : Column(
+                    children: [
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text('Data Hutang Bulan Januari', style: TextStyle(fontWeight: FontWeight.bold)),
+                      PieChartSample2(),
+                    ],),
+                ),
+              ],),
+          ),
+        ],
+      ),
+    );
+  }
+}
 class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
   final double expandedHeight;
   final bool hideTitleWhenExpanded;
@@ -91,7 +132,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
           SizedBox(
             height: appBarSize < kToolbarHeight ? kToolbarHeight : appBarSize,
             child: AppBar(
-              backgroundColor: Colors.white,
+              backgroundColor: AppColors.contentColorWhite,
               elevation: 0.0,
               title:  Image.asset(
                 'assets/images/logo_medis_pro.png',
@@ -111,7 +152,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
                 padding: EdgeInsets.symmetric(horizontal: 10 * percent),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: AppColors.contentColorWhite,
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
@@ -134,7 +175,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
                         width: 10,
                       ),
                       CircleAvatar(
-                        backgroundImage: AssetImage('assets/images/download.jpeg'),
+                        backgroundImage: AssetImage(Assets.imagesDownload),
                         radius: 30,
                       ),
                     SizedBox(
