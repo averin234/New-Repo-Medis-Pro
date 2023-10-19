@@ -42,8 +42,8 @@ class PieChart2State extends State {
                   borderData: FlBorderData(
                     show: false,
                   ),
-                  sectionsSpace: 0,
-                  centerSpaceRadius: 40,
+                  sectionsSpace: 5,
+                  centerSpaceRadius: 30,
                   sections: showingSections(),
                 ),
               ),
@@ -54,7 +54,7 @@ class PieChart2State extends State {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SizedBox(
-                height: 70,
+                height: 50,
               ),
               Indicator(
                 color: AppColors.contentColorBlue,

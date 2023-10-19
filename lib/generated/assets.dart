@@ -4,5 +4,6 @@ class Assets {
 
   static const String imagesDownload = 'assets/images/download.jpeg';
   static const String imagesLogoMedisPro = 'assets/images/logo_medis_pro.png';
+  static const String imagesBackground = 'assets/images/footer.png';
 
 }

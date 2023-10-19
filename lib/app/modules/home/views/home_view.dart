@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 
 import '../../../../generated/assets.dart';
+import '../../../widgets/chart/fl_chart.dart';
 import '../../../widgets/chart/pie_cart.dart';
 import '../../../widgets/color/appcolor.dart';
 import '../../konfirmasi/views/konfirmasi_view.dart';
@@ -68,7 +69,7 @@ class Home extends GetView<HomeController> {
             pinned: true,
             floating: true,
             delegate: CustomSliverDelegate(
-              expandedHeight: 120,
+              expandedHeight: 175,
             ),
           ),
           SliverFillRemaining(
@@ -98,8 +99,6 @@ class Home extends GetView<HomeController> {
                       SizedBox(
                         height: 10,
                       ),
-                      Text('Data Hutang Bulan Januari', style: TextStyle(fontWeight: FontWeight.bold)),
-                      PieChartSample2(),
                     ],),
                 ),
               ],),
@@ -112,6 +111,8 @@ class Home extends GetView<HomeController> {
 class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
   final double expandedHeight;
   final bool hideTitleWhenExpanded;
+  late bool isShowingMainData;
+
 
   CustomSliverDelegate({
     required this.expandedHeight,
@@ -168,48 +169,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
                       ),
                     ],
                   ),
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    child:Row(children: [
-                      SizedBox(
-                        width: 10,
-                      ),
-                      CircleAvatar(
-                        backgroundImage: AssetImage(Assets.imagesDownload),
-                        radius: 30,
-                      ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Center(
-                      child:
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 20,
-                        ),
-                    Container(
-                      height: 20,
-                      decoration: BoxDecoration(
-                      ),
-                      child: Text('PT Averin Informatika', style: TextStyle(fontSize: 18)),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    SizedBox(
-                        width: 210,
-                        child: Text('Gedung Graha Pulo, Ground Floor, Jl. Warung Buncit Raya No.89, RT.6/RW.3, Kalibata, Pancoran, Kota Jakarta Selatan. 12740', textAlign: TextAlign.justify,
-                            style: TextStyle(fontSize: 10)),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                  child: LineChartSample1(),
                   ),
                 ),
               ),

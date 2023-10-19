@@ -10,10 +10,6 @@ class KonfirmasiList extends GetView<KonfirmasiController> {
   const KonfirmasiList({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.light,
-    ));
     return Container(
       padding: EdgeInsets.all(10),
       margin: EdgeInsets.only(right: 10, left: 10, top: 10),
