@@ -3,7 +3,13 @@ class Assets {
   Assets._();
 
   static const String imagesDownload = 'assets/images/download.jpeg';
+  static const String imagesDrug = 'assets/images/drug.png';
+  static const String imagesFooter = 'assets/images/footer.png';
   static const String imagesLogoMedisPro = 'assets/images/logo_medis_pro.png';
-  static const String imagesBackground = 'assets/images/footer.png';
+  static const String imagesPharmacy = 'assets/images/pharmacy.png';
+  static const String imagesPills = 'assets/images/pills.png';
+  static const String imagesShop = 'assets/images/shop.png';
+  static const String imagesVerified = 'assets/images/verified.png';
+  static const String imagesWriting = 'assets/images/writing.png';
 
 }

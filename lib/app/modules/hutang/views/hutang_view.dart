@@ -3,22 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import '../../../widgets/card/card_list_view_konfirmasi.dart';
 import '../../../widgets/color/appcolor.dart';
 import '../../../widgets/widgets_hutang/card_hutang.dart';
-import '../../../widgets/widgets_hutang/card_search_konfirmasi.dart';
+import '../../../widgets/widgets_hutang/card_list_view_utang.dart';
 import '../../../widgets/widgets_hutang/card_search_utang.dart';
-import '../../../widgets/widgets_konfirmasi/card_konfirmasi.dart';
-import '../../../widgets/widgets_konfirmasi/card_list_view_konfirmasi.dart';
-import '../controllers/konfirmasi_controller.dart';
+import '../../konfirmasi/views/konfirmasi_view.dart';
+import '../controllers/hutang_controller.dart';
 
-class KonfirmasiView extends StatefulWidget {
-  const KonfirmasiView({Key? key}) : super(key: key);
+class HutangView extends StatefulWidget {
+  const HutangView({Key? key}) : super(key: key);
 
   @override
-  State<KonfirmasiView> createState() => _KonfirmasiViewState();
+  State<HutangView> createState() => _HutangViewState();
 }
 
-class _KonfirmasiViewState extends State<KonfirmasiView> {
+class _HutangViewState extends State<HutangView> {
   int current_index = 0;
   final List<Widget> pages = [Home(), KonfirmasiView(), ];
 
@@ -35,7 +35,7 @@ class _KonfirmasiViewState extends State<KonfirmasiView> {
   }
 }
 
-class Home extends GetView<KonfirmasiController> {
+class Home extends GetView<HutangController> {
   const Home({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -67,12 +67,12 @@ class Home extends GetView<KonfirmasiController> {
                       ),
                     ),
                     children: <Widget>[
-                    SearchCardKonfirmasi(),
-                    KonfirmasiList(),
-                    KonfirmasiList(),
-                    KonfirmasiList(),
-                    KonfirmasiList(),
-                    KonfirmasiList(),
+                    SearchCardUtang(),
+                    UtangList(),
+                    UtangList(),
+                    UtangList(),
+                    UtangList(),
+                    UtangList(),
                     SizedBox(
                       height: 10,
                     ),
@@ -112,7 +112,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
             height: appBarSize < kToolbarHeight ? kToolbarHeight : appBarSize,
             child: AppBar(
               elevation: 0.0,
-              title: Text('Konfirmasi', style: TextStyle(color: Colors.black)),
+              title: Text('Utang', style: TextStyle(color: Colors.black)),
               actions: [
                 Container(
                   margin: EdgeInsets.only(right: 20, left: 10, top: 10, bottom: 7),
@@ -141,7 +141,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
               opacity: percent,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 0 * percent),
-                child: CardKonfirmasi(),
+                child: CardHutang(),
               ),
             ),
           ),

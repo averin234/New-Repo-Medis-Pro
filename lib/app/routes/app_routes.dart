@@ -6,6 +6,9 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const SPLASH = _Paths.SPLASH;
   static const KONFIRMASI = _Paths.KONFIRMASI;
+  static const HUTANG = _Paths.HUTANG;
+  static const PEMBAYARAN = _Paths.PEMBAYARAN;
+  static const PROFILE = _Paths.PROFILE;
 }
 
 abstract class _Paths {
@@ -13,4 +16,7 @@ abstract class _Paths {
   static const HOME = '/home';
   static const SPLASH = '/splash';
   static const KONFIRMASI = '/konfirmasi';
+  static const HUTANG = '/hutang';
+  static const PEMBAYARAN = '/pembayaran';
+  static const PROFILE = '/profile';
 }

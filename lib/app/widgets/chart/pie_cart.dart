@@ -16,90 +16,112 @@ class PieChart2State extends State {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1.5,
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: AspectRatio(
-              aspectRatio: 1,
-              child: PieChart(
-                PieChartData(
-                  pieTouchData: PieTouchData(
-                    touchCallback: (FlTouchEvent event, pieTouchResponse) {
-                      setState(() {
-                        if (!event.isInterestedForInteractions ||
-                            pieTouchResponse == null ||
-                            pieTouchResponse.touchedSection == null) {
-                          touchedIndex = -1;
-                          return;
-                        }
-                        touchedIndex = pieTouchResponse
-                            .touchedSection!.touchedSectionIndex;
-                      });
-                    },
-                  ),
-                  borderData: FlBorderData(
-                    show: false,
-                  ),
-                  sectionsSpace: 5,
-                  centerSpaceRadius: 30,
-                  sections: showingSections(),
-                ),
-              ),
-            ),
-          ),
-          Column(
-            // mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(
-                height: 50,
-              ),
-              Indicator(
-                color: AppColors.contentColorBlue,
-                text: 'First',
-                isSquare: true,
-              ),
-              SizedBox(
-                height: 4,
-              ),
-              Indicator(
-                color: AppColors.contentColorYellow,
-                text: 'Second',
-                isSquare: true,
-              ),
-              SizedBox(
-                height: 4,
-              ),
-              Indicator(
-                color: AppColors.contentColorPurple,
-                text: 'Third',
-                isSquare: true,
-              ),
-              SizedBox(
-                height: 4,
-              ),
-              Indicator(
-                color: AppColors.contentColorGreen,
-                text: 'Fourth',
-                isSquare: true,
-              ),
-              SizedBox(
-                height: 18,
-              ),
-            ],
-          ),
-          const SizedBox(
-            width: 28,
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+      padding: EdgeInsets.all(10),
+      height: 320,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(10),
+            topRight: Radius.circular(10),
+            bottomLeft: Radius.circular(10),
+            bottomRight: Radius.circular(10)
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.15),
+            spreadRadius: 5,
+            blurRadius: 70,
+            offset: Offset(0, 3), // changes position of shadow
           ),
         ],
+      ),
+        child: AspectRatio(
+      aspectRatio: 1.5,
+      child: Column(
+          children: [
+            SizedBox(
+              height: 10,
+            ),
+            Text('Data Hutang 3 Bulan Terakhir'),
+      Expanded(
+      child: AspectRatio(
+      aspectRatio: 1,
+        child: PieChart(
+          PieChartData(
+            pieTouchData: PieTouchData(
+              touchCallback: (FlTouchEvent event, pieTouchResponse) {
+                setState(() {
+                  if (!event.isInterestedForInteractions ||
+                      pieTouchResponse == null ||
+                      pieTouchResponse.touchedSection == null) {
+                    touchedIndex = -1;
+                    return;
+                  }
+                  touchedIndex = pieTouchResponse
+                      .touchedSection!.touchedSectionIndex;
+                });
+              },
+            ),
+            borderData: FlBorderData(
+              show: false,
+            ),
+            sectionsSpace: 5,
+            centerSpaceRadius: 20,
+            sections: showingSections(),
+          ),
+        ),
+      ),
+        ),
+            SizedBox(
+              height: 18,
+            ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Indicator(
+              color: AppColors.contentColorBlue,
+              text: 'Jumlah Hutang',
+              isSquare: true,
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            Indicator(
+              color: AppColors.contentColorYellow,
+              text: 'Jumlah Sudah Dibayar',
+              isSquare: true,
+            ),
+            SizedBox(
+              height: 40,
+                ),
+              ],
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('0'),
+                SizedBox(
+                  width: 130,
+                ),
+                Text('0'),
+                SizedBox(
+                  height: 40,
+                ),
+              ],
+            ),
+          ]
+        ),
       ),
     );
   }
 
   List<PieChartSectionData> showingSections() {
-    return List.generate(4, (i) {
+    return List.generate(2, (i) {
       final isTouched = i == touchedIndex;
       final fontSize = isTouched ? 25.0 : 16.0;
       final radius = isTouched ? 60.0 : 50.0;
@@ -123,32 +145,6 @@ class PieChart2State extends State {
             color: AppColors.contentColorYellow,
             value: 30,
             title: '30%',
-            radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-              color: AppColors.mainTextColor1,
-              shadows: shadows,
-            ),
-          );
-        case 2:
-          return PieChartSectionData(
-            color: AppColors.contentColorPurple,
-            value: 15,
-            title: '15%',
-            radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-              color: AppColors.mainTextColor1,
-              shadows: shadows,
-            ),
-          );
-        case 3:
-          return PieChartSectionData(
-            color: AppColors.contentColorGreen,
-            value: 15,
-            title: '15%',
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
