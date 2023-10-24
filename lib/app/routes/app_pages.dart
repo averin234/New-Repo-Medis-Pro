@@ -6,6 +6,8 @@ import '../modules/hutang/bindings/hutang_binding.dart';
 import '../modules/hutang/views/hutang_view.dart';
 import '../modules/konfirmasi/bindings/konfirmasi_binding.dart';
 import '../modules/konfirmasi/views/konfirmasi_view.dart';
+import '../modules/login/bindings/login_binding.dart';
+import '../modules/login/views/login_view.dart';
 import '../modules/pembayaran/bindings/pembayaran_binding.dart';
 import '../modules/pembayaran/views/pembayaran_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
@@ -18,7 +20,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.HOME;
+  static const INITIAL = Routes.LOGIN;
 
   static final routes = [
     GetPage(
@@ -50,6 +52,11 @@ class AppPages {
       name: _Paths.PROFILE,
       page: () => const ProfileView(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.LOGIN,
+      page: () => const LoginView(),
+      binding: LoginBinding(),
     ),
   ];
 }
