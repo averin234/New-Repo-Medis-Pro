@@ -3,18 +3,18 @@ import 'package:flutter/services.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 
 import '../../../generated/assets.dart';
-import '../../endpoint/data/data_respons/data_acc.dart';
-import '../../endpoint/data/data_respons/json_hutang.dart';
+import '../../endpoint/data/data_respons/acc_detail.dart';
 import '../../endpoint/data/fetch_data.dart';
 import '../../modules/konfirmasi/controllers/konfirmasi_controller.dart';
+import '../../modules/konfirmasi_detail/controllers/konfirmasi_detail_controller.dart';
 import '../color/appcolor.dart';
 
-class KonfirList extends GetView<KonfirmasiController> {
-  const KonfirList({Key? key}) : super(key: key);
+class ListKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
+  const ListKonfirmasiDetail({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return  FutureBuilder<data_acc>(
-      future: API.acc(),
+    return FutureBuilder<acc_detail>(
+      future: API.accdetail(kode_perusahaan_pbf: controller.pbf),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return CircularProgressIndicator();
@@ -22,14 +22,14 @@ class KonfirList extends GetView<KonfirmasiController> {
           return Text('Error: ${snapshot.error}');
         } else {
           if (snapshot.data != null) {
-            final namaPerusahaan = snapshot.data!..dataAcc; // Ambil data hutang dari objek respons.
-            return Column(children: snapshot.data!.dataAcc!.map((e) {
-              final namapersu = e!.namaPerusahaan; // Ambil data hutang dari objek respons.
-              final fotopt = e!.foto; // Ambil data hutang dari objek respons.
+            final namaPerusahaan = snapshot.data!..dataAccDetail; // Ambil data hutang dari objek respons.
+            return Column(children: snapshot.data!.dataAccDetail!.map((e) {
               final totalHarga = e!.totalHarga; // Ambil data hutang dari objek respons.
               final totalBayar = e!.totalBayar; // Ambil data bayar dari objek respons.
-              final jumPesan = e!.jumPesan; // Ambil data bayar dari objek respons.
-              return Container(
+              final noInvoice = e!.noInvoice; // Ambil data bayar dari objek respons.
+              final tglInvoice = e!.tglInvoice; // Ambil data bayar dari objek respons.
+              final tglJt = e!.tglJt; // Ambil data bayar dari objek respons.
+              return  Container(
                 padding: EdgeInsets.all(10),
                 margin: EdgeInsets.only(right: 10, left: 10, top: 10),
                 decoration: BoxDecoration(
@@ -50,55 +50,55 @@ class KonfirList extends GetView<KonfirmasiController> {
                   ],
                 ),
                 child : Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('$namapersu', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
-                        Container(
-                          padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            color: AppColors.contentColorBlue1,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Text('Detail', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        CircleAvatar(
-                          backgroundImage: NetworkImage('$fotopt'
-                          ),
-                          radius: 40,
-                        ),
                         SizedBox(
                           width: 10,),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text('No. Invoice', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                                Text(' : ', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                                Text('$noInvoice ', style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SizedBox(
-                                    width: 90,
-                                    child : Text('Hutang')
+                                    width: 110,
+                                    child : Text('Tanggal Invoice')
                                 ),
-                                Text(': Rp.'),
-                                Text('$totalHarga', style: TextStyle(color: Colors.green),)
+                                Text(': '),
+                                Text('$tglInvoice')
                               ],),
                             SizedBox(
                               height: 10,
                             ),
                             Row(children: [
                               SizedBox(
-                                  width: 90,
-                                  child : Text('Sudah Bayar ')
+                                  width: 110,
+                                  child : Text('Jatuh Tempo ')
+                              ),
+                              Text(': '),
+                              Text('$tglJt')
+                            ],),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(children: [
+                              SizedBox(
+                                  width: 110,
+                                  child : Text('Jumlah Hutang')
                               ),
                               Text(': Rp.'),
                               Text('$totalBayar')
@@ -108,14 +108,29 @@ class KonfirList extends GetView<KonfirmasiController> {
                             ),
                             Row(children: [
                               SizedBox(
-                                  width: 90,
-                                  child : Text('Jumlah PO')
+                                  width: 110,
+                                  child : Text('Jumalah Bayar')
                               ),
-                              Text(': '),
-                              Text('$jumPesan')
+                              Text(': Rp.'),
+                              Text('$totalHarga')
                             ],),
+                            SizedBox(
+                              height: 10,
+                            ),
+
                           ],),
-                      ],)
+                      ],),
+                    Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.green.shade500,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(children: [
+                        Text('Konfirmasi', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                      ],),
+                    ),
                   ],),
               );},
             ).toList(),);

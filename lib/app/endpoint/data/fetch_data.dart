@@ -12,10 +12,10 @@ import '../../routes/app_pages.dart';
 import 'data_respons/acc_detail.dart';
 import 'data_respons/act_login.dart';
 import 'data_respons/act_profile.dart';
+import 'data_respons/bayar_detail.dart';
 import 'data_respons/data_acc.dart';
 import 'data_respons/data_hutang_chart.dart';
 import 'data_respons/data_pembayaran.dart';
-import 'data_respons/get_hutang_umur.dart';
 import 'data_respons/json_hutang.dart';
 import 'data_respons/statusProfile.dart';
 
@@ -252,6 +252,33 @@ class API {
       data: data,
     );
     final obj = acc_detail.fromJson(jsonDecode(response.data));
+    if (obj.msg == 'Invalid token: Expired') {
+      Get.offAllNamed(Routes.LOGIN);
+      Get.snackbar(
+        obj.code.toString(),
+        obj.msg.toString(),
+      );
+    }
+    return obj;
+  }
+  //beda
+  static Future<bayar_detail> bayardetail ({required String kode_perusahaan_pbf}) async {
+    final kodeperusahaan = Publics.controller.getToken.value;
+    var data = {
+      "kode_perusahaan": kodeperusahaan,
+      "kode_perusahaan_pbf": kode_perusahaan_pbf,
+    };
+    var response = await Dio().get(
+      _bayar_detail,
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+          // 'Cookie': 'PHPSESSID=4p7dvd8adhtocikl945vpcb991'
+        },
+      ),
+      data: data,
+    );
+    final obj = bayar_detail.fromJson(jsonDecode(response.data));
     if (obj.msg == 'Invalid token: Expired') {
       Get.offAllNamed(Routes.LOGIN);
       Get.snackbar(

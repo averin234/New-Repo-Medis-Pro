@@ -1,30 +1,32 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
+
+import '../../../widgets/widgets_pembayaran_detail/card_list_view_pembayaran_detail.dart';
+import '../../../widgets/widgets_pembayaran_detail/card_search_pembayaran_detail.dart';
+import '../controllers/pembayaran_detail_controller.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
-import '../../../endpoint/data/data_respons/data_acc.dart';
-import '../../../endpoint/data/fetch_data.dart';
-import '../../../widgets/color/appcolor.dart';
-import '../../../widgets/widgets_hutang/card_hutang.dart';
-import '../../../widgets/widgets_konfirmasi/card_search_konfirmasi.dart';
-import '../../../widgets/widgets_hutang/card_search_utang.dart';
-import '../../../widgets/widgets_konfirmasi/card_konfirmasi.dart';
-import '../../../widgets/widgets_konfirmasi/card_list_view_konfirmasi.dart';
-import '../controllers/konfirmasi_controller.dart';
 
-class KonfirmasiView extends StatefulWidget {
-  const KonfirmasiView({Key? key}) : super(key: key);
+import 'package:get/get.dart';
+
+import '../../../widgets/color/appcolor.dart';
+import '../../../widgets/widgets_konfirmasi_detail/card_konfirmasi.dart';
+import '../../../widgets/widgets_konfirmasi_detail/card_list_view_konfirmasi_detail.dart';
+import '../../../widgets/widgets_konfirmasi_detail/card_search_konfirmasi_detail.dart';
+
+class PembayaranDetailView extends StatefulWidget {
+  const PembayaranDetailView({Key? key}) : super(key: key);
 
   @override
-  State<KonfirmasiView> createState() => _KonfirmasiViewState();
+  State<PembayaranDetailView> createState() => _PembayaranDetailViewState();
 }
 
-class _KonfirmasiViewState extends State<KonfirmasiView> {
+class _PembayaranDetailViewState extends State<PembayaranDetailView> {
   int current_index = 0;
-  final List<Widget> pages = [Home(), KonfirmasiView(), ];
+  final List<Widget> pages = [Konfirmasi(), ];
 
   void OnTapped(int index) {
     setState(() {
@@ -39,8 +41,8 @@ class _KonfirmasiViewState extends State<KonfirmasiView> {
   }
 }
 
-class Home extends GetView<KonfirmasiController> {
-  const Home({Key? key}) : super(key: key);
+class Konfirmasi extends GetView<PembayaranDetailController> {
+  const Konfirmasi({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -54,7 +56,7 @@ class Home extends GetView<KonfirmasiController> {
             pinned: true,
             floating: true,
             delegate: CustomSliverDelegate(
-              expandedHeight: 130,
+              expandedHeight: 150,
             ),
           ),
           SliverFillRemaining(
@@ -71,53 +73,12 @@ class Home extends GetView<KonfirmasiController> {
                       ),
                     ),
                     children: <Widget>[
-                    SearchCardKonfirmasi(),
-                      Obx(() {
-                        return FutureBuilder(
-                          future: API.acc(),
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData &&
-                                snapshot.connectionState !=
-                                    ConnectionState.waiting &&
-                                snapshot.data != null) {
-                              data_acc  getDataAcc =
-                                  snapshot.data ?? data_acc();
-                              return Column(
-                                children: AnimationConfiguration
-                                    .toStaggeredList(
-                                  duration:
-                                  const Duration(milliseconds: 475),
-                                  childAnimationBuilder: (widget) =>
-                                      SlideAnimation(
-                                        child: FadeInAnimation(
-                                          child: widget,
-                                        ),
-                                      ),
-                                  children: getDataAcc.dataAcc !=
-                                      null
-                                      ? getDataAcc.dataAcc!
-                                      .map((e) {
-                                    return ListKonfirmasi(
-                                        items: e
-                                    );
-                                  }).toList()
-                                      : [Container()],
-                                ),
-                              );
-                            } else {
-                              return SizedBox(
-                                height: Get.height - 250,
-                                child: Center(
-                                    child: Container()),
-                              );
-                            }
-                          },
-                        );
-                      }),
-                    SizedBox(
-                      height: 10,
-                    ),
-                  ]
+                      SearchCardPembayaranDetail(),
+                      ListPembayaranDetail(),
+                      SizedBox(
+                        height: 10,
+                      ),
+                    ]
                 ),
               ),
             ),
@@ -142,7 +103,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     final appBarSize = expandedHeight - shrinkOffset;
-    final cardTopPosition = expandedHeight / 3 - shrinkOffset;
+    final cardTopPosition = expandedHeight / 8 - shrinkOffset;
     final proportion = 2 - (expandedHeight / appBarSize);
     final percent = proportion < 0 || proportion > 1 ? 0.0 : proportion;
     return SizedBox(
@@ -182,7 +143,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
               opacity: percent,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 0 * percent),
-                child: CardKonfirmasi(),
+                child: CardKonfirmasiDetail(),
               ),
             ),
           ),

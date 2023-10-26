@@ -29,12 +29,12 @@ class PieChart2State extends State {
       padding: EdgeInsets.all(10),
       height: 320,
       decoration: BoxDecoration(
-        image: DecorationImage(
+        image: const DecorationImage(
           image: AssetImage(Assets.imagesGroup),
           fit: BoxFit.cover,
         ),
         color: Colors.grey.shade200,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(10),
             topRight: Radius.circular(10),
             bottomLeft: Radius.circular(10),
@@ -53,11 +53,11 @@ class PieChart2State extends State {
       aspectRatio: 1.5,
       child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Text('Data Hutang 3 Bulan Terakhir', style: TextStyle(fontWeight: FontWeight.bold)),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
       Expanded(
@@ -89,7 +89,7 @@ class PieChart2State extends State {
         ),
       ),
         ),
-            SizedBox(
+            const SizedBox(
               height: 18,
             ),
         Container(
@@ -99,7 +99,7 @@ class PieChart2State extends State {
           ),
             child: Column(
               children: [
-        Row(
+        const Row(
           crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -137,7 +137,7 @@ class PieChart2State extends State {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text('Rp. $hutang', style: TextStyle(color: Colors.green),),
-                        SizedBox(
+                        const SizedBox(
                           width: 40,
                         ),
                         Text('Rp. $bayar', style: TextStyle(color: Colors.green),),
@@ -149,7 +149,7 @@ class PieChart2State extends State {
                      }
                     },
                   ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 ]

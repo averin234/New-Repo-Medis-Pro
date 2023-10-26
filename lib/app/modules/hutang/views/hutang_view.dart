@@ -6,14 +6,11 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import '../../../endpoint/data/data_respons/data_acc.dart';
-import '../../../endpoint/data/data_respons/data_acc.dart';
 import '../../../endpoint/data/fetch_data.dart';
-import '../../../widgets/card/card_list_view_konfirmasi.dart';
 import '../../../widgets/color/appcolor.dart';
 import '../../../widgets/widgets_hutang/card_hutang.dart';
 import '../../../widgets/widgets_hutang/card_list_view_utang.dart';
 import '../../../widgets/widgets_hutang/card_search_utang.dart';
-import '../../konfirmasi/views/konfirmasi_view.dart';
 import '../controllers/hutang_controller.dart';
 
 class HutangView extends GetView<HutangController> {

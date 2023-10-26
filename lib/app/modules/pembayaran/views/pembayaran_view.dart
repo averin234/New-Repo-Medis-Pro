@@ -2,9 +2,13 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import '../../../endpoint/data/data_respons/data_pembayaran.dart';
+import '../../../endpoint/data/fetch_data.dart';
 import '../../../widgets/color/appcolor.dart';
-import '../../../widgets/widgets_hutang/card_search_konfirmasi.dart';
+import '../../../widgets/widgets_konfirmasi/card_search_konfirmasi.dart';
 import '../../../widgets/widgets_konfirmasi/card_konfirmasi.dart';
 import '../../../widgets/widgets_konfirmasi/card_list_view_konfirmasi.dart';
 import '../../../widgets/widgets_pembayaran/card_list_view_pembayaran.dart';
@@ -68,7 +72,48 @@ class Home extends GetView<PembayaranController> {
                     ),
                     children: <Widget>[
                     SearchCardKonfirmasi(),
-                    PembayaranList(),
+                      Obx(() {
+                        return FutureBuilder(
+                          future: API.pembayaran(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData &&
+                                snapshot.connectionState !=
+                                    ConnectionState.waiting &&
+                                snapshot.data != null) {
+                              data_pembayaran  getDataAcc =
+                                  snapshot.data ?? data_pembayaran();
+                              return Column(
+                                children: AnimationConfiguration
+                                    .toStaggeredList(
+                                  duration:
+                                  const Duration(milliseconds: 475),
+                                  childAnimationBuilder: (widget) =>
+                                      SlideAnimation(
+                                        child: FadeInAnimation(
+                                          child: widget,
+                                        ),
+                                      ),
+                                  children: getDataAcc.dataPembayaran !=
+                                      null
+                                      ? getDataAcc.dataPembayaran!
+                                      .map((e) {
+                                    return PembayaranList(
+                                        items: e
+                                    );
+                                  }).toList()
+                                      : [Container()],
+                                ),
+                              );
+                            } else {
+                              return SizedBox(
+                                height: Get.height - 250,
+                                child: Center(
+                                    child: Container()),
+                              );
+                            }
+                          },
+                        );
+                      }),
                     SizedBox(
                       height: 10,
                     ),

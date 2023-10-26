@@ -1,16 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 
 import '../../../generated/assets.dart';
+import '../../endpoint/data/data_respons/acc_detail.dart';
+import '../../endpoint/data/data_respons/data_acc.dart';
+import '../../endpoint/data/fetch_data.dart';
+import '../../modules/hutang/controllers/hutang_controller.dart';
 import '../../modules/konfirmasi/controllers/konfirmasi_controller.dart';
+import '../../modules/konfirmasi_detail/controllers/konfirmasi_detail_controller.dart';
+import '../../routes/app_pages.dart';
 import '../color/appcolor.dart';
 
-class ListKonfirmasiDetail extends GetView<KonfirmasiController> {
-  const ListKonfirmasiDetail({Key? key}) : super(key: key);
+  class ListKonfirmasi extends StatelessWidget {
+  final DataAcc items;
+
+  const ListKonfirmasi(
+      {super.key,required this.items});
   @override
   Widget build(BuildContext context) {
-    return Container(
+    final controller = Get.put(HutangController());
+    return  Container(
       padding: EdgeInsets.all(10),
       margin: EdgeInsets.only(right: 10, left: 10, top: 10),
       decoration: BoxDecoration(
@@ -38,77 +50,70 @@ class ListKonfirmasiDetail extends GetView<KonfirmasiController> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                Text('No. Invoice', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
-                Text(' : ', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
-                Text('009/9876/2022 ', style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
-                ],
-              ),
-          Container(
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: Colors.green.shade500,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Text('Konfirmasi', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+              Text(items.namaPerusahaan!, style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+              InkWell(
+                onTap: () async {
+                  Get.toNamed(Routes.KONFIRMASI_DETAIL,parameters: { "pbf" : items.kodePerusahaanPbf ?? ''}, arguments: items);
+
+                },
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: AppColors.contentColorBlue1,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Text('Detail', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                ),
               ),
             ],
           ),
           Row(
             children: [
-            SizedBox(
-              width: 10,),
-             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                  SizedBox(
-                    width: 110,
-                  child : Text('Tanggal Invoice')
-                  ),
-                  Text(': '),
-                  Text('23/08/2023')
-                ],),
-                SizedBox(
-                  height: 10,
+              CircleAvatar(
+                backgroundImage: NetworkImage(items.foto!,
                 ),
-                Row(children: [
+                radius: 40,
+              ),
+              SizedBox(
+                width: 10,),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                          width: 90,
+                          child : Text('Hutang')
+                      ),
+                      Text(': Rp.'),
+                      Text(items.totalHarga!, style: TextStyle(color: Colors.green),)
+                    ],),
                   SizedBox(
-                      width: 110,
-                      child : Text('Jatuh Tempo ')
+                    height: 10,
                   ),
-                  Text(': '),
-                  Text('23/09/2023')
-                ],),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(children: [
+                  Row(children: [
+                    SizedBox(
+                        width: 90,
+                        child : Text('Sudah Bayar ')
+                    ),
+                    Text(': Rp.'),
+                    Text(items.totalBayar!, style: TextStyle(color: Colors.green),)
+                  ],),
                   SizedBox(
-                      width: 110,
-                      child : Text('Jumlah Hutang')
+                    height: 10,
                   ),
-                  Text(': Rp.'),
-                  Text('1.000.000')
+                  Row(children: [
+                    SizedBox(
+                        width: 90,
+                        child : Text('Jumlah PO')
+                    ),
+                    Text(': '),
+                    Text(items.jumPesan!.toString(),)
+                  ],),
                 ],),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(children: [
-                  SizedBox(
-                      width: 110,
-                      child : Text('Jumalah Bayar')
-                  ),
-                  Text(': Rp.'),
-                  Text('1.000.000')
-                ],),
-            ],),
-          ],)
+            ],)
         ],),
     );
   }

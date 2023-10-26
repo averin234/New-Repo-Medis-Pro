@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
 
-class PembayaranController extends GetxController {
-  //TODO: Implement PembayaranController
-  final namaBagian = ''.obs;
+import '../../../endpoint/data/data_respons/bayar_detail.dart';
+
+class PembayaranDetailController extends GetxController {
+  //TODO: Implement PembayaranDetailController
+  final pbf = Get.parameters['pbf'] as String;
   final count = 0.obs;
   @override
   void onInit() {

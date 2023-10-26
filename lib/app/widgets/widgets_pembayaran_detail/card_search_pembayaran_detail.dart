@@ -2,11 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 
+import '../../modules/hutang_detail/controllers/hutang_detail_controller.dart';
 import '../../modules/konfirmasi/controllers/konfirmasi_controller.dart';
+import '../../modules/pembayaran_detail/controllers/pembayaran_detail_controller.dart';
 import '../color/appcolor.dart';
 
-class SearchCard extends GetView<KonfirmasiController> {
-  const SearchCard({Key? key}) : super(key: key);
+class SearchCardPembayaranDetail extends GetView<PembayaranDetailController> {
+  const SearchCardPembayaranDetail({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,8 +31,8 @@ class SearchCard extends GetView<KonfirmasiController> {
       child: Container(
         decoration: BoxDecoration(
         ),
-        margin: EdgeInsets.only(top: 10, left: 25, right: 25, bottom: 30),
-        height: 50,
+        margin: EdgeInsets.only(top: 10, left: 25, right: 25, bottom: 10),
+        height: 60,
         child: Column(
           children: [
             TextField(
