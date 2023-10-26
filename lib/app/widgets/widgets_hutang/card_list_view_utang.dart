@@ -62,6 +62,7 @@ class UtangList extends GetView<HutangController> {
                         Text('$namapersu', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
                         InkWell(
                           onTap: () async {
+                            Get.toNamed(Routes.HUTANG_DETAIL);
                           },
                           child: Container(
                           padding: EdgeInsets.all(10),
