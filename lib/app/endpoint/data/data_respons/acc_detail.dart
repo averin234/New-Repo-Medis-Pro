@@ -25,6 +25,8 @@ class acc_detail {
     data['Response'] = this.response;
     return data;
   }
+
+  static empty() {}
 }
 
 class DataAccDetail {

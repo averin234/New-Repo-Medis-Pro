@@ -235,9 +235,8 @@ class API {
     return obj;
   }
 //beda
-  static Future<acc_detail> get accdetail async {
+  static Future<acc_detail> accdetail ({required String kode_perusahaan_pbf}) async {
     final kodeperusahaan = Publics.controller.getToken.value;
-    final kode_perusahaan_pbf = Publics.controller.getToken.value;
     var data = {
       "kode_perusahaan": kodeperusahaan,
       "kode_perusahaan_pbf": kode_perusahaan_pbf,

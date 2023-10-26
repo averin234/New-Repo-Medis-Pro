@@ -7,7 +7,6 @@ import '../../modules/hutang/views/hutang_view.dart';
 
 class CardHutang extends GetView<HutangView> {
   const CardHutang({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return  FutureBuilder<json_hutang>(

@@ -2,7 +2,12 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import '../../../endpoint/data/data_respons/data_acc.dart';
+import '../../../endpoint/data/data_respons/data_acc.dart';
+import '../../../endpoint/data/fetch_data.dart';
 import '../../../widgets/card/card_list_view_konfirmasi.dart';
 import '../../../widgets/color/appcolor.dart';
 import '../../../widgets/widgets_hutang/card_hutang.dart';
@@ -11,32 +16,8 @@ import '../../../widgets/widgets_hutang/card_search_utang.dart';
 import '../../konfirmasi/views/konfirmasi_view.dart';
 import '../controllers/hutang_controller.dart';
 
-class HutangView extends StatefulWidget {
+class HutangView extends GetView<HutangController> {
   const HutangView({Key? key}) : super(key: key);
-
-  @override
-  State<HutangView> createState() => _HutangViewState();
-}
-
-class _HutangViewState extends State<HutangView> {
-  int current_index = 0;
-  final List<Widget> pages = [Home(), KonfirmasiView(), ];
-
-  void OnTapped(int index) {
-    setState(() {
-      current_index = index;
-    });
-  }
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: pages[current_index],
-    );
-  }
-}
-
-class Home extends GetView<HutangController> {
-  const Home({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -57,18 +38,51 @@ class Home extends GetView<HutangController> {
             hasScrollBody: false,
             child: Scrollbar(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: AnimationConfiguration.toStaggeredList(
-                    duration: Duration(milliseconds: 295),
-                    childAnimationBuilder: (widget) => ScaleAnimation(
-                      child: FadeInAnimation(
-                        child: widget,
-                      ),
-                    ),
                     children: <Widget>[
                     SearchCardUtang(),
-                    UtangList(),
+                      Obx(() {
+                        return FutureBuilder(
+                          future: API.acc(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData &&
+                                snapshot.connectionState !=
+                                    ConnectionState.waiting &&
+                                snapshot.data != null) {
+                              data_acc  getDataAcc =
+                                  snapshot.data ?? data_acc();
+                              return Column(
+                                children: AnimationConfiguration
+                                    .toStaggeredList(
+                                  duration:
+                                  const Duration(milliseconds: 475),
+                                  childAnimationBuilder: (widget) =>
+                                      SlideAnimation(
+                                        child: FadeInAnimation(
+                                          child: widget,
+                                        ),
+                                      ),
+                                  children: getDataAcc.dataAcc !=
+                                      null
+                                      ? getDataAcc.dataAcc!
+                                      .map((e) {
+                                    return CardListViewUtang(
+                                      items: e
+                                    );
+                                  }).toList()
+                                      : [Container()],
+                                ),
+                              );
+                            } else {
+                              return SizedBox(
+                                height: Get.height - 250,
+                                child: Center(
+                                    child: Container()),
+                              );
+                            }
+                          },
+                        );
+                      }),
+                    // UtangList(),
                     SizedBox(
                       height: 10,
                     ),
@@ -76,7 +90,6 @@ class Home extends GetView<HutangController> {
                 ),
               ),
             ),
-          ),
         ],
       ),
     );

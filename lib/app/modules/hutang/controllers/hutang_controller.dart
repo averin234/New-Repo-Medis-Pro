@@ -1,8 +1,11 @@
 import 'package:get/get.dart';
 
-class HutangController extends GetxController {
+import '../../../endpoint/data/data_respons/acc_detail.dart';
+import '../../../endpoint/data/data_respons/data_acc.dart';
 
-  final count = 0.obs;
+class HutangController extends GetxController {
+  final namaBagian = ''.obs;
+  // data_acc items = Get.arguments['items'] as data_acc;
   @override
   void onInit() {
     super.onInit();
@@ -18,5 +21,4 @@ class HutangController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
 }

@@ -1,7 +1,7 @@
 class json_hutang {
   List<DataHutang>? dataHutang;
-  int? totalHutang;
-  int? totalTagihan;
+  String? totalHutang;
+  String? totalTagihan;
   int? response;
   int? code;
   String? msg;
@@ -36,8 +36,8 @@ class json_hutang {
 class DataHutang {
   String? foto;
   String? namaPerusahaan;
-  int? totalHarga;
-  int? totalBayar;
+  String? totalHarga;
+  String? totalBayar;
   int? code;
   String? msg;
   int? jumPesan;

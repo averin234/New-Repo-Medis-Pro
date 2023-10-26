@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import '../../../endpoint/data/data_respons/data_acc.dart';
 import '../../../widgets/color/appcolor.dart';
 import '../../../widgets/widgets_hutang_detail/card_hutang_detail.dart';
 import '../../../widgets/widgets_hutang_detail/card_list_view_hutang_detail.dart';
@@ -49,6 +50,7 @@ class Home extends GetView<HutangDetailController> {
             pinned: true,
             floating: true,
             delegate: CustomSliverDelegate(
+
               expandedHeight: 146,
             ),
           ),
@@ -85,9 +87,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
   final double expandedHeight;
   final bool hideTitleWhenExpanded;
   late bool isShowingMainData;
-
-
-  CustomSliverDelegate({
+  CustomSliverDelegate( {
     required this.expandedHeight,
     this.hideTitleWhenExpanded = true,
   });

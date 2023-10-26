@@ -20,6 +20,7 @@ class data_acc {
     response = json['Response'];
   }
 
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.dataAcc != null) {
@@ -30,6 +31,8 @@ class data_acc {
     data['Response'] = this.response;
     return data;
   }
+
+  static empty() {}
 }
 
 class DataAcc {

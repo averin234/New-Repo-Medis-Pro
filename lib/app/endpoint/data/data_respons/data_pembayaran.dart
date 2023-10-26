@@ -1,6 +1,6 @@
 class data_pembayaran {
   List<DataPembayaran>? dataPembayaran;
-  int? totalHutang;
+  String? totalHutang;
   int? response;
   int? code;
   String? msg;
@@ -32,7 +32,7 @@ class data_pembayaran {
 
 class DataPembayaran {
   int? jumPesan;
-  int? totalHarga;
+  String? totalHarga;
   String? kodePerusahaanPbf;
   String? namaPerusahaan;
   String? foto;
