@@ -1,64 +1,84 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 
+import '../../endpoint/data/data_respons/data_pembayaran.dart';
+import '../../endpoint/data/fetch_data.dart';
 import '../../modules/hutang/views/hutang_view.dart';
+import '../../modules/pembayaran/controllers/pembayaran_controller.dart';
 
-class CardPembayaran extends GetView<HutangView> {
+class CardPembayaran extends GetView<PembayaranController> {
   const CardPembayaran({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(10),
-      width: double.infinity,
-      margin: EdgeInsets.only(top: 10, left: 10, right: 10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.15),
-            spreadRadius: 5,
-            blurRadius: 70,
-            offset: Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          Text('Data Hutang Bedasarkan Distributor'),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+    return FutureBuilder<data_pembayaran>(
+      future: API.pembayaran(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator();
+        } else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        } else {
+          if (snapshot.data != null) {
+            final totalHutang = snapshot.data!.totalHutang;// Ambil data bayar dari objek respons.
+            return  Container(
+              padding: EdgeInsets.all(10),
+              width: double.infinity,
+              margin: EdgeInsets.only(top: 10, left: 10, right: 10),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.15),
+                    spreadRadius: 5,
+                    blurRadius: 70,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
+              child: Column(
                 children: [
-                    Text('Per Bulan '),
-                  Text('Desember 2019', style: TextStyle(fontWeight: FontWeight.bold)),
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Jumlah Sudah Dibayar', style: TextStyle(fontWeight: FontWeight.bold)),
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Container(
-            margin: EdgeInsets.only(right: 30, left: 30),
-            child:
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('0'),
-              ],
-            ),
-          ),
-        ],
-      ),
+                  Text('Data Hutang Bedasarkan Distributor'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text('Per Bulan '),
+                      Text('Desember 2019', style: TextStyle(fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Jumlah Sudah Dibayar', style: TextStyle(fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(right: 30, left: 30),
+                    child:
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('Rp. '),
+                        Text('$totalHutang', style: TextStyle(color: Colors.green),),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
+          } else {
+            return Text('Tidak ada data');
+          }
+        }
+      },
     );
   }
 }

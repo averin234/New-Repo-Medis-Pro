@@ -4,23 +4,22 @@ import 'package:flutter/services.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import '../../../widgets/color/appcolor.dart';
-import '../../../widgets/widgets_hutang/card_search_konfirmasi.dart';
-import '../../../widgets/widgets_konfirmasi/card_konfirmasi.dart';
-import '../../../widgets/widgets_konfirmasi/card_list_view_konfirmasi.dart';
-import '../../../widgets/widgets_pembayaran/card_list_view_pembayaran.dart';
-import '../../../widgets/widgets_pembayaran/card_pembayaran.dart';
-import '../controllers/pembayaran_controller.dart';
+import '../../../widgets/widgets_hutang_detail/card_hutang_detail.dart';
+import '../../../widgets/widgets_hutang_detail/card_list_view_hutang_detail.dart';
+import '../../../widgets/widgets_hutang_detail/card_search_utang_detail.dart';
+import '../../konfirmasi/views/konfirmasi_view.dart';
+import '../controllers/hutang_detail_controller.dart';
 
-class PembayaranView extends StatefulWidget {
-  const PembayaranView({Key? key}) : super(key: key);
+class HutangDetailView extends StatefulWidget {
+  const HutangDetailView({Key? key}) : super(key: key);
 
   @override
-  State<PembayaranView> createState() => _PembayaranViewState();
+  State<HutangDetailView> createState() => _HutangDetailViewState();
 }
 
-class _PembayaranViewState extends State<PembayaranView> {
+class _HutangDetailViewState extends State<HutangDetailView> {
   int current_index = 0;
-  final List<Widget> pages = [Home(), ];
+  final List<Widget> pages = [Home(), KonfirmasiView(), ];
 
   void OnTapped(int index) {
     setState(() {
@@ -35,7 +34,7 @@ class _PembayaranViewState extends State<PembayaranView> {
   }
 }
 
-class Home extends GetView<PembayaranController> {
+class Home extends GetView<HutangDetailController> {
   const Home({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -50,7 +49,7 @@ class Home extends GetView<PembayaranController> {
             pinned: true,
             floating: true,
             delegate: CustomSliverDelegate(
-              expandedHeight: 130,
+              expandedHeight: 146,
             ),
           ),
           SliverFillRemaining(
@@ -67,15 +66,15 @@ class Home extends GetView<PembayaranController> {
                       ),
                     ),
                     children: <Widget>[
-                    SearchCardKonfirmasi(),
-                    PembayaranList(),
-                    SizedBox(
-                      height: 10,
-                    ),
-                  ]
+                      SearchCardUtangDetail(),
+                      ListUtangDetail(),
+                      SizedBox(
+                        height: 10,
+                      ),
+                    ]
+                ),
               ),
             ),
-          ),
           ),
         ],
       ),
@@ -97,9 +96,9 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     final appBarSize = expandedHeight - shrinkOffset;
-    final cardTopPosition = expandedHeight / 3 - shrinkOffset;
+    final cardTopPosition = expandedHeight / 8 - shrinkOffset;
     final proportion = 2 - (expandedHeight / appBarSize);
-    final percent = proportion < 0 || proportion > 1 ? 0.0 : proportion;
+    final percent = proportion < 0 || proportion > 2 ? 0.0 : proportion;
     return SizedBox(
       height: expandedHeight + expandedHeight / 0,
       child: Stack(
@@ -108,7 +107,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
             height: appBarSize < kToolbarHeight ? kToolbarHeight : appBarSize,
             child: AppBar(
               elevation: 0.0,
-              title: Text('Pembayaran', style: TextStyle(color: Colors.black)),
+              title: Text('Utang', style: TextStyle(color: Colors.black)),
               actions: [
                 Container(
                   margin: EdgeInsets.only(right: 20, left: 10, top: 10, bottom: 7),
@@ -137,7 +136,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
               opacity: percent,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 0 * percent),
-                child: CardPembayaran(),
+                child: CardHutangDetail(),
               ),
             ),
           ),

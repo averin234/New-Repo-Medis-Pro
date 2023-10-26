@@ -13,11 +13,14 @@ class LoginView extends GetView<LoginController> {
       appBar: AppBar(
         title: const Text('LoginView'),
         centerTitle: true,
+        elevation: 0,
       ),
-      body: Column(
+      body: SingleChildScrollView( child:
+      Column(
         children: [
           LoginForm(),
         ],
+        ),
       ),
     );
   }

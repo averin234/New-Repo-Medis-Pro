@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:medispro/app/endpoint/data/publics.dart';
 
 import 'app/routes/app_pages.dart';
 import 'app/widgets/color/appcolor.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init('token-medispro');
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
     statusBarIconBrightness: Brightness.dark,
@@ -28,7 +31,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Application",
-      initialRoute: AppPages.INITIAL,
+      initialRoute: Publics.controller.getToken.value.isEmpty
+          ? AppPages.INITIAL
+          : Routes.HOME,
       getPages: AppPages.routes,
       theme: ThemeData(
         appBarTheme: const AppBarTheme(

@@ -3,10 +3,10 @@ import 'package:get/get_state_manager/src/simple/get_view.dart';
 
 import '../../endpoint/data/data_respons/json_hutang.dart';
 import '../../endpoint/data/fetch_data.dart';
-import '../../modules/hutang/views/hutang_view.dart';
+import '../../modules/hutang_detail/controllers/hutang_detail_controller.dart';
 
-class CardHutang extends GetView<HutangView> {
-  const CardHutang({Key? key}) : super(key: key);
+class CardHutangDetail extends GetView<HutangDetailController> {
+  const CardHutangDetail({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class CardHutang extends GetView<HutangView> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('Periode'),
-                        Text('Total Hutang'),
+                        Text('PBF'),
                       ],
                     ),
                     SizedBox(
@@ -84,7 +84,7 @@ class CardHutang extends GetView<HutangView> {
                           Row(children: [
                             Text('Rp. ', textAlign: TextAlign.center),
                             Text('$totalTagihan', textAlign: TextAlign.center, style: TextStyle(color: Colors.green),),
-                            ],
+                          ],
                           ),
                         ],
                       ),

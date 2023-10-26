@@ -2,6 +2,8 @@ class data_pembayaran {
   List<DataPembayaran>? dataPembayaran;
   int? totalHutang;
   int? response;
+  int? code;
+  String? msg;
 
   data_pembayaran({this.dataPembayaran, this.totalHutang, this.response});
 

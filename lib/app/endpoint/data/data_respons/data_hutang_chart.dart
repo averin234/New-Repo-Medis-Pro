@@ -1,6 +1,8 @@
 class data_hutang_chart {
   String? bayar;
   String? hutang;
+  int? code;
+  String? msg;
   int? response;
 
   data_hutang_chart({this.bayar, this.hutang, this.response});

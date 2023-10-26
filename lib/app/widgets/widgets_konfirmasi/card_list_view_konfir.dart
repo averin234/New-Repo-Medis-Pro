@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
-import 'package:medispro/app/routes/app_pages.dart';
 
 import '../../../generated/assets.dart';
+import '../../endpoint/data/data_respons/data_acc.dart';
 import '../../endpoint/data/data_respons/json_hutang.dart';
 import '../../endpoint/data/fetch_data.dart';
-import '../../modules/hutang/controllers/hutang_controller.dart';
 import '../../modules/konfirmasi/controllers/konfirmasi_controller.dart';
 import '../color/appcolor.dart';
 
-class UtangList extends GetView<HutangController> {
-  const UtangList({Key? key}) : super(key: key);
+class KonfirList extends GetView<KonfirmasiController> {
+  const KonfirList({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return  FutureBuilder<json_hutang>(
-      future: API.listviewutang(),
+    return  FutureBuilder<data_acc>(
+      future: API.acc(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return CircularProgressIndicator();
@@ -24,13 +22,13 @@ class UtangList extends GetView<HutangController> {
           return Text('Error: ${snapshot.error}');
         } else {
           if (snapshot.data != null) {
-            final namaPerusahaan = snapshot.data!..dataHutang; // Ambil data hutang dari objek respons.
-            return Column(children: snapshot.data!.dataHutang!.map((e) {
+            final namaPerusahaan = snapshot.data!..dataAcc; // Ambil data hutang dari objek respons.
+            return Column(children: snapshot.data!.dataAcc!.map((e) {
               final namapersu = e!.namaPerusahaan; // Ambil data hutang dari objek respons.
               final fotopt = e!.foto; // Ambil data hutang dari objek respons.
-        final totalHarga = e!.totalHarga; // Ambil data hutang dari objek respons.
-        final totalBayar = e!.totalBayar; // Ambil data bayar dari objek respons.
-        final jumPesan = e!.jumPesan; // Ambil data bayar dari objek respons.
+              final totalHarga = e!.totalHarga; // Ambil data hutang dari objek respons.
+              final totalBayar = e!.totalBayar; // Ambil data bayar dari objek respons.
+              final jumPesan = e!.jumPesan; // Ambil data bayar dari objek respons.
               return Container(
                 padding: EdgeInsets.all(10),
                 margin: EdgeInsets.only(right: 10, left: 10, top: 10),
@@ -60,17 +58,13 @@ class UtangList extends GetView<HutangController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('$namapersu', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
-                        InkWell(
-                          onTap: () async {
-                          },
-                          child: Container(
+                        Container(
                           padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
                             color: AppColors.contentColorBlue1,
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Text('Detail', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-                        ),
                         ),
                       ],
                     ),
@@ -107,7 +101,7 @@ class UtangList extends GetView<HutangController> {
                                   child : Text('Sudah Bayar ')
                               ),
                               Text(': Rp.'),
-                              Text('$totalBayar', style: TextStyle(color: Colors.green),)
+                              Text('$totalBayar')
                             ],),
                             SizedBox(
                               height: 10,
@@ -124,7 +118,7 @@ class UtangList extends GetView<HutangController> {
                       ],)
                   ],),
               );},
-        ).toList(),);
+            ).toList(),);
 
           } else {
             return Text('Tidak ada data');

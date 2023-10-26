@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:medispro/app/endpoint/data/fetch_data.dart';
 
+import '../../endpoint/data/data_respons/act_login.dart';
+import '../../endpoint/data/fetch_data.dart';
+import '../../endpoint/data/fetch_data.dart';
+import '../../endpoint/data/fetch_data.dart';
+import '../../endpoint/data/fetch_data.dart';
+import '../../endpoint/data/local_storage.dart';
 import '../../modules/login/controllers/login_controller.dart';
+import '../../routes/app_pages.dart';
 
 class LoginForm extends GetView<LoginController> {
   LoginForm({Key? key}) : super(key: key);
@@ -60,6 +68,7 @@ class LoginForm extends GetView<LoginController> {
                 children: [
                   TextField(
                     cursorColor: Colors.grey,
+                    controller: controller.kodeUserController,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(8),
                       fillColor: Colors.white,
@@ -67,7 +76,47 @@ class LoginForm extends GetView<LoginController> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: BorderSide.none),
-                      hintText: 'Email',
+                      hintText: 'Kode Perusahaan',
+                      hintStyle: TextStyle(color: Colors.grey, fontSize: 18),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10),
+                  bottomLeft: Radius.circular(10),
+                  bottomRight: Radius.circular(10)),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.15),
+                  spreadRadius: 5,
+                  blurRadius: 70,
+                  offset: Offset(0, 3), // changes position of shadow
+                ),
+              ],
+            ),
+            child: Container(
+              decoration: BoxDecoration(),
+              margin: EdgeInsets.only(top: 10, left: 25, right: 25, bottom: 0),
+              height: 60,
+              child: Column(
+                children: [
+                  TextField(
+                    cursorColor: Colors.grey,
+                    controller: controller.usernameController,
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.all(8),
+                      fillColor: Colors.white,
+                      filled: true,
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide.none),
+                      hintText: 'User Name',
                       hintStyle: TextStyle(color: Colors.grey, fontSize: 18),
                     ),
                   ),
@@ -102,6 +151,7 @@ class LoginForm extends GetView<LoginController> {
                     enableSuggestions: false,
                     autocorrect: false,
                     cursorColor: Colors.grey,
+                    controller: controller.passwordController,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(8),
                       fillColor: Colors.white,
@@ -124,61 +174,27 @@ class LoginForm extends GetView<LoginController> {
               size: 20.0,
             ),
             label: Text('Login'),
-            onPressed: () {
-              print('Button Pressed');
+            onPressed: () async {
+              if (controller.passwordController.text.isNotEmpty && controller.passwordController.text.isNotEmpty) {
+                act_login aksesPX = await API.login(
+                  kodeUser: controller.kodeUserController.text,
+                  username: controller.usernameController.text,
+                  password: controller.passwordController.text,
+                );
+
+                if (aksesPX.code == 200) {
+                  if (aksesPX.kodePerusahaan != null) {
+                    // Jika kode_perusahaan ada dalam respons dan bukan null, navigasi ke HOME
+                    Get.offAllNamed(Routes.HOME);
+                  }
+                }
+              } else {
+                Get.snackbar('404', 'Username dan Password harus diisi');
+              }
             },
             style: ElevatedButton.styleFrom(
               shape: new RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(20.0),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Text('Or'),
-          SizedBox(
-            height: 10,
-          ),
-          InkWell(
-            onTap: () {
-            },
-            child: Container(
-              height: 30,
-              padding: EdgeInsets.all(2),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10),
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey,
-                    blurRadius: 3,
-                    offset: Offset(1, 0), // Shadow position
-                  ),
-                ],
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Container(
-                    // decoration: BoxDecoration(color: Colors.blue),
-                    child: Image.network(
-                      'http://pngimg.com/uploads/google/google_PNG19635.png',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 5.0,
-                  ),
-                  Text(
-                    'Sign-in with Google',
-                  )
-                ],
               ),
             ),
           ),

@@ -11,6 +11,8 @@ class act_profile {
   String? telpon2;
   String? fax;
   String? foto;
+  int? code;
+  String? msg;
   int? response;
 
   act_profile(

@@ -5,6 +5,8 @@ class statusProfile {
   String? soBelumKonfirm;
   String? blmTerkirim;
   String? baBulanIni;
+  int? code;
+  String? msg;
   int? response;
 
   statusProfile(

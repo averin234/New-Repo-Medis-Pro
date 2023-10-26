@@ -1,7 +1,10 @@
 import 'package:get/get.dart';
 
-class HutangController extends GetxController {
+import '../../../endpoint/data/publics.dart';
 
+class HutangDetailController extends GetxController {
+  //TODO: Implement HutangDetailController
+  final data_acc = Publics.controller.getToken;
   final count = 0.obs;
   @override
   void onInit() {

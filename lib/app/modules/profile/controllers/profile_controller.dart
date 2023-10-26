@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:medispro/app/endpoint/data/local_storage.dart';
 
 class ProfileController extends GetxController {
   //TODO: Implement ProfileController
@@ -19,5 +20,5 @@ class ProfileController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  Future<void> get logout async => await LocalStorages.deleteToken;
 }

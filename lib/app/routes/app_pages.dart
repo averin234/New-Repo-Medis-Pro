@@ -4,6 +4,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/hutang/bindings/hutang_binding.dart';
 import '../modules/hutang/views/hutang_view.dart';
+import '../modules/hutang_detail/bindings/hutang_detail_binding.dart';
+import '../modules/hutang_detail/views/hutang_detail_view.dart';
 import '../modules/konfirmasi/bindings/konfirmasi_binding.dart';
 import '../modules/konfirmasi/views/konfirmasi_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -57,6 +59,11 @@ class AppPages {
       name: _Paths.LOGIN,
       page: () => const LoginView(),
       binding: LoginBinding(),
+    ),
+    GetPage(
+      name: _Paths.HUTANG_DETAIL,
+      page: () => const HutangDetailView(),
+      binding: HutangDetailBinding(),
     ),
   ];
 }

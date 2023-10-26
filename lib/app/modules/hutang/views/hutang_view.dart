@@ -50,7 +50,7 @@ class Home extends GetView<HutangController> {
             pinned: true,
             floating: true,
             delegate: CustomSliverDelegate(
-              expandedHeight: 130,
+              expandedHeight: 146,
             ),
           ),
           SliverFillRemaining(
@@ -68,10 +68,6 @@ class Home extends GetView<HutangController> {
                     ),
                     children: <Widget>[
                     SearchCardUtang(),
-                    UtangList(),
-                    UtangList(),
-                    UtangList(),
-                    UtangList(),
                     UtangList(),
                     SizedBox(
                       height: 10,
@@ -101,9 +97,9 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     final appBarSize = expandedHeight - shrinkOffset;
-    final cardTopPosition = expandedHeight / 3 - shrinkOffset;
+    final cardTopPosition = expandedHeight / 8 - shrinkOffset;
     final proportion = 2 - (expandedHeight / appBarSize);
-    final percent = proportion < 0 || proportion > 1 ? 0.0 : proportion;
+    final percent = proportion < 0 || proportion > 2 ? 0.0 : proportion;
     return SizedBox(
       height: expandedHeight + expandedHeight / 0,
       child: Stack(

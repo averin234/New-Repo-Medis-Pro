@@ -1,5 +1,7 @@
 class data_acc {
   List<DataAcc>? dataAcc;
+  int? code;
+  String? msg;
   int? totalBayar;
   int? totalHutang;
   int? response;
@@ -36,6 +38,8 @@ class DataAcc {
   String? totalHarga;
   String? totalBayar;
   int? jumPesan;
+  int? code;
+  String? msg;
   String? kodePerusahaanPbf;
 
   DataAcc(

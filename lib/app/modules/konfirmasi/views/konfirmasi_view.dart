@@ -8,6 +8,7 @@ import '../../../widgets/widgets_hutang/card_hutang.dart';
 import '../../../widgets/widgets_hutang/card_search_konfirmasi.dart';
 import '../../../widgets/widgets_hutang/card_search_utang.dart';
 import '../../../widgets/widgets_konfirmasi/card_konfirmasi.dart';
+import '../../../widgets/widgets_konfirmasi/card_list_view_konfir.dart';
 import '../../../widgets/widgets_konfirmasi/card_list_view_konfirmasi.dart';
 import '../controllers/konfirmasi_controller.dart';
 
@@ -68,11 +69,7 @@ class Home extends GetView<KonfirmasiController> {
                     ),
                     children: <Widget>[
                     SearchCardKonfirmasi(),
-                    KonfirmasiList(),
-                    KonfirmasiList(),
-                    KonfirmasiList(),
-                    KonfirmasiList(),
-                    KonfirmasiList(),
+                      KonfirList(),
                     SizedBox(
                       height: 10,
                     ),

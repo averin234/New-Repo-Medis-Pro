@@ -3,6 +3,8 @@ class json_hutang {
   int? totalHutang;
   int? totalTagihan;
   int? response;
+  int? code;
+  String? msg;
 
   json_hutang(
       {this.dataHutang, this.totalHutang, this.totalTagihan, this.response});
@@ -36,6 +38,8 @@ class DataHutang {
   String? namaPerusahaan;
   int? totalHarga;
   int? totalBayar;
+  int? code;
+  String? msg;
   int? jumPesan;
   String? kodePerusahaanPbf;
 

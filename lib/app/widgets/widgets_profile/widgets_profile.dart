@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../generated/assets.dart';
+import '../../endpoint/data/data_respons/act_profile.dart';
+import '../../endpoint/data/fetch_data.dart';
 import '../../modules/profile/controllers/profile_controller.dart';
 
 class CardProfile extends GetView<ProfileController> {
@@ -13,7 +15,6 @@ class CardProfile extends GetView<ProfileController> {
         width: double.infinity,
         margin: EdgeInsets.only(left: 20, right: 20, top: 20),
         padding: EdgeInsets.all(10),
-        height: 320,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -33,38 +34,120 @@ class CardProfile extends GetView<ProfileController> {
         ),
         child: Column(
         children: [
-          CircleAvatar(
-            backgroundImage: AssetImage(Assets.imagesDownload),
-            radius: 40,
+          FutureBuilder<act_profile>(
+            future: API.profile,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return CircularProgressIndicator();
+              } else if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              } else {
+                if (snapshot.data != null) {
+                  final foto = snapshot.data!.foto; // Ambil data bayar dari objek respons.
+                  final namaPerusahaan = snapshot.data!.namaPerusahaan; // Ambil data bayar dari objek respons.
+                  final email = snapshot.data!.email; // Ambil data bayar dari objek respons.
+                  final alamat = snapshot.data!.alamat; // Ambil data bayar dari objek respons.
+                  final kelurahan = snapshot.data!.kelurahan; // Ambil data bayar dari objek respons.
+                  final kecamatan = snapshot.data!.kecamatan; // Ambil data bayar dari objek respons.
+                  final telpon1 = snapshot.data!.telpon1; // Ambil data bayar dari objek respons.
+                  final telpon2 = snapshot.data!.telpon2; // Ambil data bayar dari objek respons.
+                  final fax = snapshot.data!.fax; // Ambil data bayar dari objek respons.
+                  final kota = snapshot.data!.kota; // Ambil data bayar dari objek respons.
+                  final propinsi = snapshot.data!.propinsi; // Ambil data bayar dari objek respons.
+                  final kodepos = snapshot.data!.kodepos; // Ambil data bayar dari objek respons.
+                  return  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircleAvatar(
+                        backgroundImage: NetworkImage('$foto'
+                        ),
+                        radius: 40,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text('$namaPerusahaan', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text('$email'),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text('$alamat', textAlign: TextAlign.center),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                        Text('$kelurahan'),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Text('$kecamatan'),
+                      ],),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text('$kota, ' + '$propinsi, ' + '$kodepos'),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Divider(
+                        height: 5,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                         Text('No. Telp :'),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text('$telpon1'),
+                        ],),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text('No. Telp :'),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text('$telpon2'),
+                        ],),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text('No. Telp :'),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text('$fax'),
+                        ],),
+                      SizedBox(
+                        height: 10,
+                      ),
+                    ],
+                  );
+                } else {
+                  return Text('Tidak ada data');
+                }
+              }
+            },
           ),
-          SizedBox(
-            height: 10,
-          ),
-          Text('Nama Apotik'),
-          SizedBox(
-            height: 10,
-          ),
-          Text('Email'),
-          SizedBox(
-            height: 10,
-          ),
-          Text('Alamat'),
-          SizedBox(
-            height: 10,
-          ),
-          Text('Kelurahan Kecamatan'),
-          SizedBox(
-            height: 10,
-          ),
-          Text('Kota provinsi Kode Pos'),
-          SizedBox(
-            height: 10,
-          ),
-          Text('No. Telp'),
-          SizedBox(
-            height: 10,
-          ),
-          Text('No.Fax'),
       ],
     ),
     );

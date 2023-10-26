@@ -2,10 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 
+import '../../modules/hutang/controllers/hutang_controller.dart';
 import '../../modules/konfirmasi/controllers/konfirmasi_controller.dart';
 import '../color/appcolor.dart';
 
-class SearchCardUtang extends GetView<KonfirmasiController> {
+class SearchCardUtang extends GetView<HutangController> {
   const SearchCardUtang({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {

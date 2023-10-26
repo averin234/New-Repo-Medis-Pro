@@ -1,6 +1,13 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:medispro/app/endpoint/data/publics.dart';
 
+import '../../../generated/assets.dart';
+import '../../endpoint/data/data_respons/data_hutang_chart.dart';
+import '../../endpoint/data/fetch_data.dart';
+import '../../modules/home/controllers/home_controller.dart';
 import '../color/appcolor.dart';
 import 'indikator.dart';
 
@@ -22,7 +29,11 @@ class PieChart2State extends State {
       padding: EdgeInsets.all(10),
       height: 320,
       decoration: BoxDecoration(
-        color: Colors.white,
+        image: DecorationImage(
+          image: AssetImage(Assets.imagesGroup),
+          fit: BoxFit.cover,
+        ),
+        color: Colors.grey.shade200,
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(10),
             topRight: Radius.circular(10),
@@ -45,7 +56,10 @@ class PieChart2State extends State {
             SizedBox(
               height: 10,
             ),
-            Text('Data Hutang 3 Bulan Terakhir'),
+            Text('Data Hutang 3 Bulan Terakhir', style: TextStyle(fontWeight: FontWeight.bold)),
+            SizedBox(
+              height: 10,
+            ),
       Expanded(
       child: AspectRatio(
       aspectRatio: 1,
@@ -69,7 +83,7 @@ class PieChart2State extends State {
               show: false,
             ),
             sectionsSpace: 5,
-            centerSpaceRadius: 20,
+            centerSpaceRadius: 40,
             sections: showingSections(),
           ),
         ),
@@ -78,6 +92,13 @@ class PieChart2State extends State {
             SizedBox(
               height: 18,
             ),
+        Container(
+          decoration: BoxDecoration(
+            color:  Colors.white,
+            borderRadius: BorderRadius.circular(10),
+          ),
+            child: Column(
+              children: [
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -100,19 +121,39 @@ class PieChart2State extends State {
                 ),
               ],
             ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('0'),
+            FutureBuilder<data_hutang_chart>(
+              future: API.data_chart,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                } else {
+                  if (snapshot.data != null) {
+                    final hutang = snapshot.data!.hutang; // Ambil data hutang dari objek respons.
+                    final bayar = snapshot.data!.bayar; // Ambil data bayar dari objek respons.
+                    return Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('Rp. $hutang', style: TextStyle(color: Colors.green),),
+                        SizedBox(
+                          width: 40,
+                        ),
+                        Text('Rp. $bayar', style: TextStyle(color: Colors.green),),
+                      ],
+                    );
+                  } else {
+                    return Text('Tidak ada data');
+                       }
+                     }
+                    },
+                  ),
                 SizedBox(
-                  width: 130,
+                  height: 10,
                 ),
-                Text('0'),
-                SizedBox(
-                  height: 40,
-                ),
-              ],
+                ]
+              )
             ),
           ]
         ),
