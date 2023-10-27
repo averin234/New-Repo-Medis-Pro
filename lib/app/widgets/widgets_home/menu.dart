@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:medispro/app/widgets/widgets_home/shammer_menu.dart';
 import 'package:medispro/generated/assets.dart';
 
 import '../../endpoint/data/data_respons/statusProfile.dart';
@@ -15,7 +16,7 @@ class Menu extends GetView<HomeController> {
       future: API.status,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return shimmerMenu();
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {
@@ -352,7 +353,7 @@ class Menu extends GetView<HomeController> {
                   SizedBox(
                     height: 20,
                   ),
-                ],
+            ],
               ),
             );
           } else {

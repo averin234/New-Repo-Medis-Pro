@@ -14,7 +14,7 @@ class LocalStorages {
 
   static String get getToken => boxToken.listenable.value['token'] ?? '';
 
-  static Future<void> get deleteToken async {await boxToken.remove('token');
+  static Future<void> get deleteToken async {
+    await boxToken.remove('token');
   Publics.controller.getToken.value = LocalStorages.getToken;}
-
 }

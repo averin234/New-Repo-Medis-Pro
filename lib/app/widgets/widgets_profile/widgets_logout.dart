@@ -4,12 +4,16 @@ import 'package:get/get.dart';
 
 import '../../../generated/assets.dart';
 import '../../modules/profile/controllers/profile_controller.dart';
+import '../../routes/app_pages.dart';
 
-class Logout extends GetView<ProfileController> {
+class Logout extends StatelessWidget {
   const Logout({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
+    final controller = Get.put(ProfileController());
+    return InkWell(
+      onTap: controller.logout,
+      child : Container(
         width: double.infinity,
         margin: EdgeInsets.only(left: 20, right: 20, top: 20),
         padding: EdgeInsets.all(10),
@@ -32,11 +36,12 @@ class Logout extends GetView<ProfileController> {
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-         mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text('Logout', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),)
-      ],
-    ),
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text('Logout', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),)
+          ],
+        ),
+      ),
     );
   }
 }

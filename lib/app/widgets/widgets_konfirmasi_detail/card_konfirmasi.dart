@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:intl/intl.dart';
 
 import '../../endpoint/data/data_respons/data_acc.dart';
 import '../../endpoint/data/data_respons/json_hutang.dart';
@@ -13,6 +14,9 @@ class CardKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
   @override
   Widget build(BuildContext context) {
     final items = controller.items;
+    var now = DateTime.now();
+    var formattedMonth = DateFormat.MMMM().format(DateTime.now());
+    int currentYear = DateTime.now().year;
     return  Container(
       padding: EdgeInsets.all(10),
       width: double.infinity,
@@ -34,8 +38,8 @@ class CardKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Periode'),
-              Text('PBF'),
+              Text('Periode', style: TextStyle(fontWeight: FontWeight.bold),),
+              Text('PBF', style: TextStyle(fontWeight: FontWeight.bold),),
             ],
           ),
           SizedBox(
@@ -44,7 +48,7 @@ class CardKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Desember 2023'),
+              Text('$formattedMonth' + ' $currentYear'),
               Row(children: [
                 Text('', textAlign: TextAlign.center),
                 Text(items.namaPerusahaan!, textAlign: TextAlign.center, style: TextStyle(color: Colors.green),),

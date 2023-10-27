@@ -22,7 +22,12 @@ import '../color/appcolor.dart';
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(HutangController());
-    return  Container(
+    return InkWell(
+        onTap: () async {
+      Get.toNamed(Routes.KONFIRMASI_DETAIL,parameters: { "pbf" : items.kodePerusahaanPbf ?? ''}, arguments: items);
+
+    },
+    child: Container(
       padding: EdgeInsets.all(10),
       margin: EdgeInsets.only(right: 10, left: 10, top: 10),
       decoration: BoxDecoration(
@@ -88,7 +93,7 @@ import '../color/appcolor.dart';
                           child : Text('Hutang')
                       ),
                       Text(': Rp.'),
-                      Text(items.totalHarga!, style: TextStyle(color: Colors.green),)
+                      Text(items.totalHarga!+',00', style: TextStyle(color: Colors.green),)
                     ],),
                   SizedBox(
                     height: 10,
@@ -99,7 +104,7 @@ import '../color/appcolor.dart';
                         child : Text('Sudah Bayar ')
                     ),
                     Text(': Rp.'),
-                    Text(items.totalBayar!, style: TextStyle(color: Colors.green),)
+                    Text(items.totalBayar!+',00', style: TextStyle(color: Colors.green),)
                   ],),
                   SizedBox(
                     height: 10,
@@ -110,11 +115,11 @@ import '../color/appcolor.dart';
                         child : Text('Jumlah PO')
                     ),
                     Text(': '),
-                    Text(items.jumPesan!.toString(),)
+                    Text(items.jumPesan!.toString()+',00',)
                   ],),
                 ],),
             ],)
-        ],),
+        ],),),
     );
   }
 }

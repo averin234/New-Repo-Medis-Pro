@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../widgets/widgets_pembayaran_detail/card_list_view_pembayaran_detail.dart';
+import '../../../widgets/widgets_pembayaran_detail/card_pembayaran_detail.dart';
 import '../../../widgets/widgets_pembayaran_detail/card_search_pembayaran_detail.dart';
+import '../../../widgets/widgets_pembayaran_detail/list_shammer_pembayaran_detail.dart';
 import '../controllers/pembayaran_detail_controller.dart';
 
 import 'package:flutter/material.dart';
@@ -26,7 +29,7 @@ class PembayaranDetailView extends StatefulWidget {
 
 class _PembayaranDetailViewState extends State<PembayaranDetailView> {
   int current_index = 0;
-  final List<Widget> pages = [Konfirmasi(), ];
+  final List<Widget> pages = [Pembayaran(), ];
 
   void OnTapped(int index) {
     setState(() {
@@ -41,8 +44,19 @@ class _PembayaranDetailViewState extends State<PembayaranDetailView> {
   }
 }
 
-class Konfirmasi extends GetView<PembayaranDetailController> {
-  const Konfirmasi({Key? key}) : super(key: key);
+class Pembayaran extends StatefulWidget {
+  const Pembayaran({Key? key}) : super(key: key);
+  @override
+  State<Pembayaran> createState() => _PembayaranState();
+}
+class _PembayaranState extends State<Pembayaran> {
+  late RefreshController _refreshController;
+  @override
+  void initState() {
+    _refreshController =
+        RefreshController(); // we have to use initState because this part of the app have to restart
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -50,7 +64,13 @@ class Konfirmasi extends GetView<PembayaranDetailController> {
       statusBarIconBrightness: Brightness.dark,
     ));
     return SafeArea(
-      child: CustomScrollView(
+      child: SmartRefresher(
+        controller: _refreshController,
+        enablePullDown: true,
+        header: WaterDropHeader(),
+    onLoading: _onLoading,
+    onRefresh: _onRefresh,
+    child: CustomScrollView(
         slivers: <Widget>[
           SliverPersistentHeader(
             pinned: true,
@@ -85,7 +105,22 @@ class Konfirmasi extends GetView<PembayaranDetailController> {
           ),
         ],
       ),
+      ),
     );
+  }
+  _onLoading() {
+    _refreshController
+        .loadComplete(); // after data returned,set the //footer state to idle
+  }
+
+  _onRefresh() {
+    setState(() {
+// so whatever you want to refresh it must be inside the setState
+      Pembayaran(); // if you only want to refresh the list you can place this, so the two can be inside setState
+      _refreshController
+          .refreshCompleted(); // request complete,the header will enter complete state,
+// resetFooterState : it will set the footer state from noData to idle
+    });
   }
 }
 class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
@@ -114,7 +149,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
             height: appBarSize < kToolbarHeight ? kToolbarHeight : appBarSize,
             child: AppBar(
               elevation: 0.0,
-              title: Text('Konfirmasi', style: TextStyle(color: Colors.black)),
+              title: Text('Pembayaran', style: TextStyle(color: Colors.black)),
               actions: [
                 Container(
                   margin: EdgeInsets.only(right: 20, left: 10, top: 10, bottom: 7),
@@ -143,7 +178,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
               opacity: percent,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 0 * percent),
-                child: CardKonfirmasiDetail(),
+                child: CardPembayaranDetail(),
               ),
             ),
           ),

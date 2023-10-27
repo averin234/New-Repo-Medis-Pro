@@ -3,11 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../widgets/color/appcolor.dart';
 import '../../../widgets/widgets_konfirmasi_detail/card_konfirmasi.dart';
 import '../../../widgets/widgets_konfirmasi_detail/card_list_view_konfirmasi_detail.dart';
 import '../../../widgets/widgets_konfirmasi_detail/card_search_konfirmasi_detail.dart';
+import '../../../widgets/widgets_konfirmasi_detail/list_shammer_konfirmasi_detail.dart';
 import '../controllers/konfirmasi_detail_controller.dart';
 
 class KonfirmasiDetailView extends StatefulWidget {
@@ -34,8 +36,19 @@ class _KonfirmasiDetailViewState extends State<KonfirmasiDetailView> {
   }
 }
 
-class Konfirmasi extends GetView<KonfirmasiDetailController> {
+class Konfirmasi extends StatefulWidget {
   const Konfirmasi({Key? key}) : super(key: key);
+  @override
+  State<Konfirmasi> createState() => _KonfirmasiState();
+}
+class _KonfirmasiState extends State<Konfirmasi> {
+  late RefreshController _refreshController;
+  @override
+  void initState() {
+    _refreshController =
+        RefreshController(); // we have to use initState because this part of the app have to restart
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -43,7 +56,13 @@ class Konfirmasi extends GetView<KonfirmasiDetailController> {
       statusBarIconBrightness: Brightness.dark,
     ));
     return SafeArea(
-      child: CustomScrollView(
+      child: SmartRefresher(
+        controller: _refreshController,
+        enablePullDown: true,
+        header: WaterDropHeader(),
+    onLoading: _onLoading,
+    onRefresh: _onRefresh,
+    child: CustomScrollView(
         slivers: <Widget>[
           SliverPersistentHeader(
             pinned: true,
@@ -78,7 +97,22 @@ class Konfirmasi extends GetView<KonfirmasiDetailController> {
           ),
         ],
       ),
+      ),
     );
+  }
+  _onLoading() {
+    _refreshController
+        .loadComplete(); // after data returned,set the //footer state to idle
+  }
+
+  _onRefresh() {
+    setState(() {
+// so whatever you want to refresh it must be inside the setState
+      Konfirmasi(); // if you only want to refresh the list you can place this, so the two can be inside setState
+      _refreshController
+          .refreshCompleted(); // request complete,the header will enter complete state,
+// resetFooterState : it will set the footer state from noData to idle
+    });
   }
 }
 class CustomSliverDelegate extends SliverPersistentHeaderDelegate {

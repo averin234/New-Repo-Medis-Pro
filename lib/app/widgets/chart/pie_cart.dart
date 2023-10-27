@@ -125,7 +125,45 @@ class PieChart2State extends State {
               future: API.data_chart,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator();
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child:
+                        Container(
+                          margin : EdgeInsets.only(left: 10),
+                          padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: AppColors.shammerColor,
+                          ),
+                          child: Center(
+                            child:
+                            Text('', style: TextStyle(color: Colors.white)),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 40,
+                      ),
+                      Expanded(
+                        child:
+                        Container(
+                          margin : EdgeInsets.only(right: 10),
+                          padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: AppColors.shammerColor,
+                          ),
+                          child: Center(
+                            child:
+                            Text('', style: TextStyle(color: Colors.white)),
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
                 } else if (snapshot.hasError) {
                   return Text('Error: ${snapshot.error}');
                 } else {
@@ -136,11 +174,11 @@ class PieChart2State extends State {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Rp. $hutang', style: TextStyle(color: Colors.green),),
+                        Text('Rp. $hutang'+',00', style: TextStyle(color: Colors.green),),
                         const SizedBox(
                           width: 40,
                         ),
-                        Text('Rp. $bayar', style: TextStyle(color: Colors.green),),
+                        Text('Rp. $bayar'+',00', style: TextStyle(color: Colors.green),),
                       ],
                     );
                   } else {

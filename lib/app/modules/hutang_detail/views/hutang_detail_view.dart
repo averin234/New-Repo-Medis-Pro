@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../endpoint/data/data_respons/data_acc.dart';
 import '../../../widgets/color/appcolor.dart';
+import '../../../widgets/widgets_hutang/list_shammer_hutang.dart';
 import '../../../widgets/widgets_hutang_detail/card_hutang_detail.dart';
 import '../../../widgets/widgets_hutang_detail/card_list_view_hutang_detail.dart';
 import '../../../widgets/widgets_hutang_detail/card_search_utang_detail.dart';
+import '../../../widgets/widgets_hutang_detail/list_shammer_hutang_detail.dart';
 import '../../konfirmasi/views/konfirmasi_view.dart';
 import '../controllers/hutang_detail_controller.dart';
 
@@ -35,8 +38,19 @@ class _HutangDetailViewState extends State<HutangDetailView> {
   }
 }
 
-class Home extends GetView<HutangDetailController> {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
+  @override
+  State<Home> createState() => _HomeState();
+}
+class _HomeState extends State<Home> {
+  late RefreshController _refreshController;
+  @override
+  void initState() {
+    _refreshController =
+        RefreshController(); // we have to use initState because this part of the app have to restart
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -44,7 +58,13 @@ class Home extends GetView<HutangDetailController> {
       statusBarIconBrightness: Brightness.dark,
     ));
     return SafeArea(
-      child: CustomScrollView(
+      child: SmartRefresher(
+        controller: _refreshController,
+        enablePullDown: true,
+        header: WaterDropHeader(),
+    onLoading: _onLoading,
+    onRefresh: _onRefresh,
+    child: CustomScrollView(
         slivers: <Widget>[
           SliverPersistentHeader(
             pinned: true,
@@ -80,7 +100,22 @@ class Home extends GetView<HutangDetailController> {
           ),
         ],
       ),
+      ),
     );
+  }
+  _onLoading() {
+    _refreshController
+        .loadComplete(); // after data returned,set the //footer state to idle
+  }
+
+  _onRefresh() {
+    setState(() {
+// so whatever you want to refresh it must be inside the setState
+      Home(); // if you only want to refresh the list you can place this, so the two can be inside setState
+      _refreshController
+          .refreshCompleted(); // request complete,the header will enter complete state,
+// resetFooterState : it will set the footer state from noData to idle
+    });
   }
 }
 class CustomSliverDelegate extends SliverPersistentHeaderDelegate {

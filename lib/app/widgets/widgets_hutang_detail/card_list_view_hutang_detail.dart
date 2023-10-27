@@ -11,6 +11,8 @@ import '../../modules/hutang/controllers/hutang_controller.dart';
 import '../../modules/hutang_detail/controllers/hutang_detail_controller.dart';
 import '../../modules/konfirmasi/controllers/konfirmasi_controller.dart';
 import '../color/appcolor.dart';
+import '../widgets_hutang/list_shammer_hutang.dart';
+import 'list_shammer_hutang_detail.dart';
 
 class ListUtangDetail extends GetView<HutangDetailController> {
   ListUtangDetail({Key? key}) : super(key: key);
@@ -20,7 +22,13 @@ class ListUtangDetail extends GetView<HutangDetailController> {
       future: API.accdetail(kode_perusahaan_pbf: controller.pbf),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return SingleChildScrollView(child:
+            Column(children: [
+                ListshimmerHutangDetail(),
+                ListshimmerHutangDetail(),
+                ListshimmerHutangDetail(),
+                ListshimmerHutangDetail(),
+            ]),);
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {
@@ -104,7 +112,7 @@ class ListUtangDetail extends GetView<HutangDetailController> {
                                     child : Text('Tanggal PO')
                                 ),
                                 Text(': '),
-                                Text('23/08/2023')
+                                Text('$tglJt'),
                               ],),
                             SizedBox(
                               height: 10,
@@ -126,7 +134,7 @@ class ListUtangDetail extends GetView<HutangDetailController> {
                                   child : Text('Tagihan')
                               ),
                               Text(': Rp.'),
-                              Text('$totalHarga')
+                              Text('$totalHarga'+',00')
                             ],),
                             SizedBox(
                               height: 10,
@@ -137,7 +145,7 @@ class ListUtangDetail extends GetView<HutangDetailController> {
                                   child : Text('Terbayar')
                               ),
                               Text(': Rp.'),
-                              Text('$totalBayar')
+                              Text('$totalBayar'+',00')
                             ],),
                           ],),
                       ],)

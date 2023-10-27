@@ -6,6 +6,7 @@ import '../../../generated/assets.dart';
 import '../../endpoint/data/data_respons/act_profile.dart';
 import '../../endpoint/data/fetch_data.dart';
 import '../../modules/profile/controllers/profile_controller.dart';
+import 'list_shammer_profile.dart';
 
 class CardProfile extends GetView<ProfileController> {
   const CardProfile({Key? key}) : super(key: key);
@@ -38,7 +39,7 @@ class CardProfile extends GetView<ProfileController> {
             future: API.profile,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return CircularProgressIndicator();
+                return ListshimmerProfile();
               } else if (snapshot.hasError) {
                 return Text('Error: ${snapshot.error}');
               } else {

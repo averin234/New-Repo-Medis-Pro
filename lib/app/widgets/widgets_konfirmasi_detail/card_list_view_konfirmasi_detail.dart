@@ -8,6 +8,7 @@ import '../../endpoint/data/fetch_data.dart';
 import '../../modules/konfirmasi/controllers/konfirmasi_controller.dart';
 import '../../modules/konfirmasi_detail/controllers/konfirmasi_detail_controller.dart';
 import '../color/appcolor.dart';
+import 'list_shammer_konfirmasi_detail.dart';
 
 class ListKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
   const ListKonfirmasiDetail({Key? key}) : super(key: key);
@@ -17,7 +18,15 @@ class ListKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
       future: API.accdetail(kode_perusahaan_pbf: controller.pbf),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return SingleChildScrollView(
+            child: Column(children: [
+              ListshimmerKonfirmasiDetail(),
+              ListshimmerKonfirmasiDetail(),
+              ListshimmerKonfirmasiDetail(),
+              ListshimmerKonfirmasiDetail(),
+              ListshimmerKonfirmasiDetail(),
+            ]),
+          );
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {
@@ -101,7 +110,7 @@ class ListKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
                                   child : Text('Jumlah Hutang')
                               ),
                               Text(': Rp.'),
-                              Text('$totalBayar')
+                              Text('$totalBayar'+',00')
                             ],),
                             SizedBox(
                               height: 10,
@@ -112,7 +121,7 @@ class ListKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
                                   child : Text('Jumalah Bayar')
                               ),
                               Text(': Rp.'),
-                              Text('$totalHarga')
+                              Text('$totalHarga'+',00')
                             ],),
                             SizedBox(
                               height: 10,
@@ -124,7 +133,7 @@ class ListKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
                       width: double.infinity,
                       padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                        color: Colors.green.shade500,
+                        color: Colors.blue.shade500,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Column(children: [

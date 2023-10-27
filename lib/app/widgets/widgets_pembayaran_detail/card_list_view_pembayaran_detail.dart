@@ -13,6 +13,7 @@ import '../../modules/hutang_detail/controllers/hutang_detail_controller.dart';
 import '../../modules/konfirmasi/controllers/konfirmasi_controller.dart';
 import '../../modules/pembayaran_detail/controllers/pembayaran_detail_controller.dart';
 import '../color/appcolor.dart';
+import 'list_shammer_pembayaran_detail.dart';
 
 class ListPembayaranDetail extends GetView<PembayaranDetailController> {
   ListPembayaranDetail({Key? key}) : super(key: key);
@@ -22,7 +23,15 @@ class ListPembayaranDetail extends GetView<PembayaranDetailController> {
       future: API.bayardetail(kode_perusahaan_pbf: controller.pbf),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return SingleChildScrollView(
+            child: Column(children: [
+              ListshimmerPembayaranDetail(),
+              ListshimmerPembayaranDetail(),
+              ListshimmerPembayaranDetail(),
+              ListshimmerPembayaranDetail(),
+              ListshimmerPembayaranDetail(),
+            ]),
+          );
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {
@@ -85,7 +94,11 @@ class ListPembayaranDetail extends GetView<PembayaranDetailController> {
                       children: [
                         Text('No. Invoice', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 12)),
                         Text(' : ', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                        SizedBox(
+                          width: 260,
+                          child :
                         Text('$noInvoice ', style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
+                        ),
                       ],
                     ),
                     Row(

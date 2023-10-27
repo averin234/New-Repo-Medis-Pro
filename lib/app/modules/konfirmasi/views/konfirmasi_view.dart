@@ -5,6 +5,8 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+import '../../../../generated/assets.dart';
 import '../../../endpoint/data/data_respons/data_acc.dart';
 import '../../../endpoint/data/fetch_data.dart';
 import '../../../widgets/color/appcolor.dart';
@@ -13,6 +15,7 @@ import '../../../widgets/widgets_konfirmasi/card_search_konfirmasi.dart';
 import '../../../widgets/widgets_hutang/card_search_utang.dart';
 import '../../../widgets/widgets_konfirmasi/card_konfirmasi.dart';
 import '../../../widgets/widgets_konfirmasi/card_list_view_konfirmasi.dart';
+import '../../../widgets/widgets_konfirmasi/list_shammer_konfirmasi.dart';
 import '../controllers/konfirmasi_controller.dart';
 
 class KonfirmasiView extends StatefulWidget {
@@ -39,16 +42,69 @@ class _KonfirmasiViewState extends State<KonfirmasiView> {
   }
 }
 
-class Home extends GetView<KonfirmasiController> {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
+  @override
+  State<Home> createState() => _HomeState();
+}
+class _HomeState extends State<Home> {
+  late RefreshController _refreshController;
+  @override
+  void initState() {
+    _refreshController =
+        RefreshController(); // we have to use initState because this part of the app have to restart
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: AppColors.contentColorWhite,
       statusBarIconBrightness: Brightness.dark,
     ));
-    return SafeArea(
-      child: CustomScrollView(
+    return WillPopScope(
+        onWillPop: () async {
+      Get.defaultDialog(
+        title: 'Keluar dari Aplikasi',
+        content: Column(
+          children: [
+            Image.asset(
+              Assets.imagesShop,
+              gaplessPlayback: true,
+              fit: BoxFit.fitHeight,
+              height: 100,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+          ],
+        ),
+        confirm: InkWell(
+          onTap: () async{
+            SystemNavigator.pop();
+          },
+          child: Container(
+            width: double.infinity,
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.blue
+            ),
+            child : Center(
+              child : Text('Keluar', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+            ),
+          ),
+        ),
+      );
+      return true;
+    },
+    child: SafeArea(
+      child: SmartRefresher(
+        controller: _refreshController,
+        enablePullDown: true,
+        header: WaterDropHeader(),
+    onLoading: _onLoading,
+    onRefresh: _onRefresh,
+    child:  CustomScrollView(
         slivers: <Widget>[
           SliverPersistentHeader(
             pinned: true,
@@ -107,8 +163,14 @@ class Home extends GetView<KonfirmasiController> {
                             } else {
                               return SizedBox(
                                 height: Get.height - 250,
-                                child: Center(
-                                    child: Container()),
+                                child: SingleChildScrollView(
+                                  child: Column(children: [
+                                    ListshimmerKonfirmasi(),
+                                    ListshimmerKonfirmasi(),
+                                    ListshimmerKonfirmasi(),
+                                    ListshimmerKonfirmasi(),
+                                    ListshimmerKonfirmasi(),
+                                  ]),)
                               );
                             }
                           },
@@ -124,7 +186,23 @@ class Home extends GetView<KonfirmasiController> {
           ),
         ],
       ),
+      ),
+      ),
     );
+  }
+  _onLoading() {
+    _refreshController
+        .loadComplete(); // after data returned,set the //footer state to idle
+  }
+
+  _onRefresh() {
+    setState(() {
+// so whatever you want to refresh it must be inside the setState
+      Home(); // if you only want to refresh the list you can place this, so the two can be inside setState
+      _refreshController
+          .refreshCompleted(); // request complete,the header will enter complete state,
+// resetFooterState : it will set the footer state from noData to idle
+    });
   }
 }
 class CustomSliverDelegate extends SliverPersistentHeaderDelegate {

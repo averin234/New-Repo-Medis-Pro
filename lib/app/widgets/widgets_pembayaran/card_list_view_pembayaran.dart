@@ -20,7 +20,11 @@ import '../color/appcolor.dart';
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(PembayaranController());
-    return Container(
+    return  InkWell(
+        onTap: () async {
+      Get.toNamed(Routes.PEMBAYARAN_DETAIL,parameters: { "pbf" : items.kodePerusahaanPbf ?? ''}, arguments: items);
+    },
+    child: Container(
       padding: EdgeInsets.all(10),
       margin: EdgeInsets.only(right: 10, left: 10, top: 10),
       decoration: BoxDecoration(
@@ -53,7 +57,7 @@ import '../color/appcolor.dart';
                 onTap: () async {
                   Get.toNamed(Routes.PEMBAYARAN_DETAIL,parameters: { "pbf" : items.kodePerusahaanPbf ?? ''}, arguments: items);
                 },
-                child:Container(
+                child: Container(
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   color: AppColors.contentColorBlue1,
@@ -85,7 +89,7 @@ import '../color/appcolor.dart';
                           child : Text('Terbayar')
                       ),
                       Text(': Rp.'),
-                      Text(items.totalHarga!, style: TextStyle(color: Colors.green),)
+                      Text(items.totalHarga!+',00', style: TextStyle(color: Colors.green),)
                     ],),
                   SizedBox(
                     height: 10,
@@ -100,7 +104,7 @@ import '../color/appcolor.dart';
                   ],),
                 ],),
             ],)
-        ],),
+        ],),),
     );
   }
 }
