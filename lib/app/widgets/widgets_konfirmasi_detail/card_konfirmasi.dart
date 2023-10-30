@@ -8,6 +8,7 @@ import '../../endpoint/data/data_respons/json_hutang.dart';
 import '../../endpoint/data/fetch_data.dart';
 import '../../modules/konfirmasi/controllers/konfirmasi_controller.dart';
 import '../../modules/konfirmasi_detail/controllers/konfirmasi_detail_controller.dart';
+import '../color/appcolor.dart';
 
 class CardKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
   const CardKonfirmasiDetail({Key? key}) : super(key: key);
@@ -81,7 +82,40 @@ class CardKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
             future: API.accdetail(kode_perusahaan_pbf: controller.pbf),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return CircularProgressIndicator();
+                return Container(
+                  margin: EdgeInsets.only(right: 10, left: 10),
+                  child:
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        width: 90,
+                        height: 20,
+                        padding: EdgeInsets.only(left: 10, right: 20, top: 0, bottom: 5),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: AppColors.shammerColor,
+                        ),
+                        child: Center(
+                        ),
+                      ),
+                      SizedBox(
+                        width: 30,
+                      ),
+                      Container(
+                        width: 90,
+                        height: 20,
+                        padding: EdgeInsets.only(left: 20, right: 10, top: 0, bottom: 5),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: AppColors.shammerColor,
+                        ),
+                        child: Center(
+                        ),
+                      ),
+                    ],
+                  ),
+                );
               } else if (snapshot.hasError) {
                 return Text('Error: ${snapshot.error}');
               } else {
