@@ -137,6 +137,7 @@ class CardHutang extends GetView<HutangView> {
           if (snapshot.data != null) {
             final totalHutang = snapshot.data!.totalHutang; // Ambil data hutang dari objek respons.
             final totalTagihan = snapshot.data!.totalTagihan; // Ambil data bayar dari objek respons.
+            final totalTerbayar = snapshot.data!.totalTerbayar; // Ambil data bayar dari objek respons.
             return
               Container(
                 padding: EdgeInsets.all(10),
@@ -196,7 +197,11 @@ class CardHutang extends GetView<HutangView> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('0', style: TextStyle(color: Colors.green),),
+                          Row(children: [
+                            Text('Rp. ', textAlign: TextAlign.center),
+                            Text('$totalTerbayar'+',00', textAlign: TextAlign.center, style: TextStyle(color: Colors.green),),
+                          ],
+                          ),
                           Row(children: [
                             Text('Rp. ', textAlign: TextAlign.center),
                             Text('$totalTagihan'+',00', textAlign: TextAlign.center, style: TextStyle(color: Colors.green),),

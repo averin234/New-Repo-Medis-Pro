@@ -35,7 +35,7 @@ class InfoVersion extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
          mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Text('Versi Aplikasi' + controller.packageName)
+          Text('Versi Aplikasi ' + controller.packageName)
       ],
     ),
     );

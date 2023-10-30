@@ -10,6 +10,7 @@ import 'package:medispro/app/endpoint/data/local_storage.dart';
 import 'package:medispro/app/endpoint/data/publics.dart';
 import '../../routes/app_pages.dart';
 import 'data_respons/acc_detail.dart';
+import 'data_respons/act_acc_detail.dart';
 import 'data_respons/act_login.dart';
 import 'data_respons/act_profile.dart';
 import 'data_respons/bayar_detail.dart';
@@ -279,6 +280,30 @@ class API {
       data: data,
     );
     final obj = bayar_detail.fromJson(jsonDecode(response.data));
+    if (obj.msg == 'Invalid token: Expired') {
+      Get.offAllNamed(Routes.LOGIN);
+      Get.snackbar(
+        obj.code.toString(),
+        obj.msg.toString(),
+      );
+    }
+    return obj;
+  }
+//beda
+  static Future<act_acc_detail>actaccdetail() async {
+    final tchutangsupplier = Publics.controller.getToken.value;
+    var data = {"id_tc_hutang_supplier_inv": tchutangsupplier,};
+    var response = await Dio().get(
+      _acc_detail,
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+          // 'Cookie': 'PHPSESSID=4p7dvd8adhtocikl945vpcb991'
+        },
+      ),
+      data: data,
+    );
+    final obj = act_acc_detail.fromJson(jsonDecode(response.data));
     if (obj.msg == 'Invalid token: Expired') {
       Get.offAllNamed(Routes.LOGIN);
       Get.snackbar(

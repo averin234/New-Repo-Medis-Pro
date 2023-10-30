@@ -38,6 +38,7 @@ class ListKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
               final noInvoice = e!.noInvoice; // Ambil data bayar dari objek respons.
               final tglInvoice = e!.tglInvoice; // Ambil data bayar dari objek respons.
               final tglJt = e!.tglJt; // Ambil data bayar dari objek respons.
+              final status = e!.status; // Ambil data bayar dari objek respons.
               return  Container(
                 padding: EdgeInsets.all(10),
                 margin: EdgeInsets.only(right: 10, left: 10, top: 10),
@@ -129,16 +130,26 @@ class ListKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
 
                           ],),
                       ],),
-                    Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: Colors.blue.shade500,
-                        borderRadius: BorderRadius.circular(10),
+                    InkWell(
+                      onTap: (status == null) ? () async {
+
+                      } : null,
+                      child: Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: (status == "1") ? Colors.green.shade500 : Colors.blue.shade500,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Column(
+                          children: [
+                            Text(
+                              (status == "1") ? 'Sudah Terkonfirmasi' : 'Konfirmasi',
+                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
                       ),
-                      child: Column(children: [
-                        Text('Konfirmasi', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-                      ],),
                     ),
                   ],),
               );},

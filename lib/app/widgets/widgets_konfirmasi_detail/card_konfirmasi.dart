@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:intl/intl.dart';
 
+import '../../endpoint/data/data_respons/acc_detail.dart';
 import '../../endpoint/data/data_respons/data_acc.dart';
 import '../../endpoint/data/data_respons/json_hutang.dart';
 import '../../endpoint/data/fetch_data.dart';
@@ -13,6 +14,8 @@ class CardKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
 
   @override
   Widget build(BuildContext context) {
+    int countOne = 0;
+    int countNull = 0;
     final items = controller.items;
     var now = DateTime.now();
     var formattedMonth = DateFormat.MMMM().format(DateTime.now());
@@ -74,16 +77,41 @@ class CardKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
           SizedBox(
             height: 10,
           ),
-          Container(
-            margin: EdgeInsets.only(right: 30, left: 30),
-            child:
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // Text('$totalHutang', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),),
-                // Text('$totalBayar', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),),
-              ],
-            ),
+          FutureBuilder<acc_detail>(
+            future: API.accdetail(kode_perusahaan_pbf: controller.pbf),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return CircularProgressIndicator();
+              } else if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              } else {
+                if (snapshot.data != null) {
+                  final dataAccDetail = snapshot.data!.dataAccDetail;
+
+                  // Iterasi melalui dataAccDetail dan hitung jumlah "1" dan "null"
+                  dataAccDetail?.forEach((e) {
+                    final status = e.status;
+                    if (status == "1") {
+                      countOne++;
+                    } else if (status == null) {
+                      countNull++;
+                    }
+                  });
+                  return Container(
+                    margin: EdgeInsets.only(right: 30, left: 30),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('$countNull', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold)),
+                        Text('$countOne', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold)),
+                      ],
+                    ),
+                  );
+                } else {
+                  return Text('Tidak ada data');
+                }
+              }
+            },
           ),
           Divider(
           ),

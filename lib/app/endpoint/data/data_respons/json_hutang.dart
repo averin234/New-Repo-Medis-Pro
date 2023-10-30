@@ -2,12 +2,17 @@ class json_hutang {
   List<DataHutang>? dataHutang;
   String? totalHutang;
   String? totalTagihan;
-  int? response;
+  String? totalTerbayar;
   int? code;
   String? msg;
+  int? response;
 
   json_hutang(
-      {this.dataHutang, this.totalHutang, this.totalTagihan, this.response});
+      {this.dataHutang,
+        this.totalHutang,
+        this.totalTagihan,
+        this.totalTerbayar,
+        this.response});
 
   json_hutang.fromJson(Map<String, dynamic> json) {
     if (json['data_hutang'] != null) {
@@ -18,6 +23,7 @@ class json_hutang {
     }
     totalHutang = json['total_hutang'];
     totalTagihan = json['total_tagihan'];
+    totalTerbayar = json['total_terbayar'];
     response = json['Response'];
   }
 
@@ -28,6 +34,7 @@ class json_hutang {
     }
     data['total_hutang'] = this.totalHutang;
     data['total_tagihan'] = this.totalTagihan;
+    data['total_terbayar'] = this.totalTerbayar;
     data['Response'] = this.response;
     return data;
   }
@@ -38,8 +45,6 @@ class DataHutang {
   String? namaPerusahaan;
   String? totalHarga;
   String? totalBayar;
-  int? code;
-  String? msg;
   int? jumPesan;
   String? kodePerusahaanPbf;
 
