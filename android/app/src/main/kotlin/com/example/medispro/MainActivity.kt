@@ -1,4 +1,4 @@
-package com.example.medispro
+package com.medispro
 
 import io.flutter.embedding.android.FlutterActivity
 

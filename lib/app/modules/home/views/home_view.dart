@@ -76,8 +76,10 @@ class _HomeState extends State<Home> {
         RefreshController(); // we have to use initState because this part of the app have to restart
     super.initState();
   }
+  final updateController = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
+    updateController.checkForUpdate();
     return WillPopScope(
       onWillPop: () async {
         Get.defaultDialog(

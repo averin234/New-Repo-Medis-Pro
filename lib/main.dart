@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Application",
+      title: "MedisPro",
       initialRoute: Publics.controller.getToken.value.isEmpty
           ? AppPages.INITIAL
           : Routes.HOME,

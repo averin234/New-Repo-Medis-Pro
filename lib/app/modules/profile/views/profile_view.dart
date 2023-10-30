@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../../generated/assets.dart';
 import '../../../widgets/widgets_profile/widgets_infoapps.dart';
+import '../../../widgets/widgets_profile/widgets_infoversi.dart';
 import '../../../widgets/widgets_profile/widgets_logout.dart';
 import '../../../widgets/widgets_profile/widgets_profile.dart';
 import '../controllers/profile_controller.dart';
@@ -61,6 +62,7 @@ class ProfileView extends GetView<ProfileController> {
         children: [
           CardProfile(),
           Disclaimer(),
+          InfoVersion(),
           Logout(),
           ],
         ),

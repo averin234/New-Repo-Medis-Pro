@@ -1,9 +1,3 @@
-plugins {
-    id "com.android.application"
-    id "kotlin-android"
-    id "dev.flutter.flutter-gradle-plugin"
-}
-
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
@@ -12,6 +6,11 @@ if (localPropertiesFile.exists()) {
     }
 }
 
+def flutterRoot = localProperties.getProperty('flutter.sdk')
+// if (flutterRoot == null) {
+//     throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+// }
+
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
     flutterVersionCode = '1'
@@ -19,11 +18,17 @@ if (flutterVersionCode == null) {
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '1.0'
+    flutterVersionName = '1.0.0'
 }
+def(major, minor, patch) = flutterVersionName.tokenize( '.' )
+def versionCodeGlobal = major.toInteger()*10000 + minor.toInteger()*100 + patch.toInteger()
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    namespace "com.example.medispro"
+    namespace "com.medispro"
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
@@ -42,20 +47,40 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.medispro"
+        applicationId "com.medispro"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion flutter.minSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
-        versionCode flutterVersionCode.toInteger()
+        minSdkVersion 24
+        targetSdkVersion 33
+        versionCode versionCodeGlobal
         versionName flutterVersionName
+        multiDexEnabled true
     }
-
+    signingConfigs {
+        release {
+            storeFile file('C:/Users/irwan/Averin_dev.jks')
+            storePassword '48family'
+            keyAlias = 'Averin2023'
+            keyPassword '48family'
+            applicationVariants.all { variant ->
+                variant.outputs.all {
+                    def appName = "MedisPro"
+                    def buildType = variant.buildType.name
+                    def newName
+                    if (buildType == 'debug'){
+                        newName = "app-${flutterVersionName}-debug.apk"
+                    } else {
+                        newName = "${appName}${flutterVersionName}_${variant.getFlavorName()}.apk"
+                    }
+                    outputFileName = newName
+                }
+            }
+        }
+    }
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }
@@ -64,4 +89,14 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+
+android.applicationVariants.all { variant ->
+    variant.outputs.all { output ->
+        def builtType = variant.buildType.name
+        def flavor = variant.flavorName
+        outputFileName = "medispro-${flavor}-${builtType}-${flutterVersionName}.apk"
+    }
+}
