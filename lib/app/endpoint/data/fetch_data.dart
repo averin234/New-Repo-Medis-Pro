@@ -290,8 +290,7 @@ class API {
     return obj;
   }
 //beda
-  static Future<act_acc_detail>actaccdetail() async {
-    final tchutangsupplier = Publics.controller.getToken.value;
+  static Future<act_acc_detail>actaccdetail(String tchutangsupplier) async {
     var data = {"id_tc_hutang_supplier_inv": tchutangsupplier,};
     var response = await Dio().get(
       _acc_detail,

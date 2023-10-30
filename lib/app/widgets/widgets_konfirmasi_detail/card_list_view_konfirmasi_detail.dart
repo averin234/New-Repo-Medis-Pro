@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 
 import '../../../generated/assets.dart';
@@ -10,10 +11,17 @@ import '../../modules/konfirmasi_detail/controllers/konfirmasi_detail_controller
 import '../color/appcolor.dart';
 import 'list_shammer_konfirmasi_detail.dart';
 
-class ListKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
-  const ListKonfirmasiDetail({Key? key}) : super(key: key);
+
+  class ListKonfirmasiDetail extends StatefulWidget {
+  @override
+  _ListKonfirmasiDetailState createState() => _ListKonfirmasiDetailState();
+  }
+
+  class _ListKonfirmasiDetailState extends State<ListKonfirmasiDetail> {
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(KonfirmasiDetailController());
+    bool isLoading = false;
     return FutureBuilder<acc_detail>(
       future: API.accdetail(kode_perusahaan_pbf: controller.pbf),
       builder: (context, snapshot) {
@@ -131,9 +139,23 @@ class ListKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
                           ],),
                       ],),
                     InkWell(
-                      onTap: (status == null) ? () async {
+                      onTap: () async {
+                        if (!isLoading) {
+                          setState(() {
+                            isLoading = true;
+                          });
 
-                      } : null,
+                          // Panggil API.actaccdetail
+                          await API.actaccdetail(e.idTcHutangSupplierInv ?? '');
+
+                          setState(() {
+                            isLoading = false;
+                          });
+
+                          // Refresh halaman atau lakukan sesuatu setelah pemanggilan selesai
+                          // Misalnya, bisa dengan mengganti halaman, atau menampilkan pesan sukses, dll.
+                        }
+                      },
                       child: Container(
                         width: double.infinity,
                         padding: EdgeInsets.all(10),
