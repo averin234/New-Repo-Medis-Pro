@@ -131,7 +131,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     final appBarSize = expandedHeight - shrinkOffset;
-    final cardTopPosition = expandedHeight / 8 - shrinkOffset;
+    final cardTopPosition = expandedHeight / 5 - shrinkOffset;
     final proportion = 2 - (expandedHeight / appBarSize);
     final percent = proportion < 0 || proportion > 2 ? 0.0 : proportion;
     return SizedBox(
@@ -143,6 +143,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
             child: AppBar(
               elevation: 0.0,
               title: Text('Utang', style: TextStyle(color: Colors.black)),
+              centerTitle: false,
               actions: [
                 Container(
                   margin: EdgeInsets.only(right: 20, left: 10, top: 10, bottom: 7),
@@ -181,7 +182,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  double get maxExtent => expandedHeight + expandedHeight / 3;
+  double get maxExtent => expandedHeight + expandedHeight / 2;
 
   @override
   double get minExtent => kToolbarHeight;

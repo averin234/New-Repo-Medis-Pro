@@ -142,6 +142,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
             child: AppBar(
               elevation: 0.0,
               title: Text('Konfirmasi', style: TextStyle(color: Colors.black)),
+              centerTitle: false,
               actions: [
                 Container(
                   margin: EdgeInsets.only(right: 20, left: 10, top: 10, bottom: 7),

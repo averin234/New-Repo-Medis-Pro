@@ -41,7 +41,6 @@ class Menu extends GetView<HomeController> {
                       Expanded(
                         child: Container(
                           padding: EdgeInsets.all(10),
-                          height: 100,
                           margin: EdgeInsets.only(top: 10),
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -91,7 +90,6 @@ class Menu extends GetView<HomeController> {
                       Expanded(
                         child: Container(
                           padding: EdgeInsets.all(10),
-                          height: 100,
                           width: 160,
                           margin: EdgeInsets.only(top: 10),
                           decoration: BoxDecoration(
@@ -145,7 +143,6 @@ class Menu extends GetView<HomeController> {
                       Expanded(
                         child: Container(
                           padding: EdgeInsets.all(10),
-                          height: 100,
                           width: 160,
                           margin: EdgeInsets.only(top: 10),
                           decoration: BoxDecoration(
@@ -196,7 +193,6 @@ class Menu extends GetView<HomeController> {
                       Expanded(
                         child: Container(
                           padding: EdgeInsets.all(10),
-                          height: 100,
                           width: 160,
                           margin: EdgeInsets.only(top: 10),
                           decoration: BoxDecoration(
@@ -250,7 +246,6 @@ class Menu extends GetView<HomeController> {
                       Expanded(
                         child: Container(
                           padding: EdgeInsets.all(10),
-                          height: 100,
                           width: 160,
                           margin: EdgeInsets.only(top: 10),
                           decoration: BoxDecoration(
@@ -302,7 +297,6 @@ class Menu extends GetView<HomeController> {
                       Expanded(
                         child: Container(
                           padding: EdgeInsets.all(10),
-                          height: 100,
                           width: 160,
                           margin: EdgeInsets.only(top: 10),
                           decoration: BoxDecoration(
