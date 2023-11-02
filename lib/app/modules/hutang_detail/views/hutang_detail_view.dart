@@ -70,7 +70,6 @@ class _HomeState extends State<Home> {
             pinned: true,
             floating: true,
             delegate: CustomSliverDelegate(
-
               expandedHeight: 146,
             ),
           ),
@@ -142,6 +141,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
             height: appBarSize < kToolbarHeight ? kToolbarHeight : appBarSize,
             child: AppBar(
               elevation: 0.0,
+              backgroundColor: Colors.white,
               title: Text('Utang', style: TextStyle(color: Colors.black)),
               centerTitle: false,
               actions: [

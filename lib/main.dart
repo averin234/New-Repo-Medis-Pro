@@ -40,31 +40,9 @@ class MyApp extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           color: AppColors.contentColorWhite,
           foregroundColor: AppColors.contentColorBlack,
-          iconTheme: IconThemeData(color: AppColors.contentColorWhite),
+          iconTheme: IconThemeData(color: AppColors.contentColorBlack),
         ),
       ),
     );
   }
-}
-
-class AppTheme {
-  static final lightTheme = ThemeData(
-      brightness: Brightness.light,
-      appBarTheme: AppBarTheme(
-        color: AppColors.contentColorWhite,
-        foregroundColor: AppColors.contentColorBlack,
-        iconTheme: IconThemeData(color: AppColors.contentColorBlack),
-      ));
-  static final darkTheme = ThemeData(
-      brightness: Brightness.dark,
-      colorScheme: ColorScheme.dark(
-        background: AppColors.contentColorBlack,
-        primary: Colors.grey[900]!,
-        secondary: Colors.grey[900]!,
-      ),
-      appBarTheme: AppBarTheme(
-        backgroundColor: AppColors.contentColorBlack,
-        foregroundColor: AppColors.contentColorWhite,
-        iconTheme: IconThemeData(color: AppColors.contentColorBlack),
-      ));
 }
