@@ -62,7 +62,7 @@ class ProfileView extends GetView<ProfileController> {
         children: [
           CardProfile(),
           Disclaimer(),
-          InfoVersion(),
+          // InfoVersion(),
           Logout(),
           ],
         ),
