@@ -19,8 +19,6 @@ class PieChartSample2 extends StatefulWidget {
 }
 
 class PieChart2State extends State {
-  int touchedIndex = -1;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -38,8 +36,7 @@ class PieChart2State extends State {
             topLeft: Radius.circular(10),
             topRight: Radius.circular(10),
             bottomLeft: Radius.circular(10),
-            bottomRight: Radius.circular(10)
-        ),
+            bottomRight: Radius.circular(10)),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.15),
@@ -49,157 +46,183 @@ class PieChart2State extends State {
           ),
         ],
       ),
-        child: AspectRatio(
-      aspectRatio: 1.5,
-      child: Column(
-          children: [
-            const SizedBox(
-              height: 10,
-            ),
-            Text('Data Hutang 3 Bulan Terakhir', style: TextStyle(fontWeight: FontWeight.bold)),
-            const SizedBox(
-              height: 10,
-            ),
-      Expanded(
       child: AspectRatio(
-      aspectRatio: 1,
-        child: PieChart(
-          PieChartData(
-            pieTouchData: PieTouchData(
-              touchCallback: (FlTouchEvent event, pieTouchResponse) {
-                setState(() {
-                  if (!event.isInterestedForInteractions ||
-                      pieTouchResponse == null ||
-                      pieTouchResponse.touchedSection == null) {
-                    touchedIndex = -1;
-                    return;
-                  }
-                  touchedIndex = pieTouchResponse
-                      .touchedSection!.touchedSectionIndex;
-                });
-              },
-            ),
-            borderData: FlBorderData(
-              show: false,
-            ),
-            sectionsSpace: 5,
-            centerSpaceRadius: 40,
-            sections: showingSections(),
+        aspectRatio: 1.5,
+        child: Column(children: [
+          const SizedBox(
+            height: 10,
           ),
-        ),
-      ),
-        ),
-            const SizedBox(
-              height: 18,
+          Text(
+            'Data Hutang 3 Bulan Terakhir',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
             ),
-        Container(
-          decoration: BoxDecoration(
-            color:  Colors.white,
-            borderRadius: BorderRadius.circular(10),
           ),
-            child: Column(
-              children: [
-        const Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Indicator(
-              color: AppColors.contentColorBlue,
-              text: 'Jumlah Hutang',
-              isSquare: true,
+          const SizedBox(
+            height: 10,
+          ),
+          Expanded(
+            child: AspectRatio(
+              aspectRatio: 1,
+              child: Chartz(),
             ),
-            SizedBox(
-              width: 20,
-            ),
-            Indicator(
-              color: AppColors.contentColorYellow,
-              text: 'Jumlah Sudah Dibayar',
-              isSquare: true,
-            ),
-            SizedBox(
-              height: 40,
+          ),
+          const SizedBox(
+            height: 18,
+          ),
+          Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Column(children: [
+                const Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Indicator(
+                      color: AppColors.contentColorBlue,
+                      text: 'Jumlah Hutang',
+                      isSquare: true,
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Indicator(
+                      color: AppColors.contentColorYellow,
+                      text: 'Jumlah Sudah Dibayar',
+                      isSquare: true,
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            FutureBuilder<data_hutang_chart>(
-              future: API.data_chart,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child:
-                        Container(
-                          margin : EdgeInsets.only(left: 10),
-                          padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: AppColors.shammerColor,
+                FutureBuilder<data_hutang_chart>(
+                  future: API.data_chart,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              margin: EdgeInsets.only(left: 10),
+                              padding: EdgeInsets.only(
+                                  left: 20, right: 20, top: 5, bottom: 5),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: AppColors.shammerColor,
+                              ),
+                              child: Center(
+                                child: Text('',
+                                    style: TextStyle(color: Colors.white)),
+                              ),
+                            ),
                           ),
-                          child: Center(
-                            child:
-                            Text('', style: TextStyle(color: Colors.white)),
+                          const SizedBox(
+                            width: 40,
                           ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 40,
-                      ),
-                      Expanded(
-                        child:
-                        Container(
-                          margin : EdgeInsets.only(right: 10),
-                          padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: AppColors.shammerColor,
+                          Expanded(
+                            child: Container(
+                              margin: EdgeInsets.only(right: 10),
+                              padding: EdgeInsets.only(
+                                  left: 20, right: 20, top: 5, bottom: 5),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: AppColors.shammerColor,
+                              ),
+                              child: Center(
+                                child: Text('',
+                                    style: TextStyle(color: Colors.white)),
+                              ),
+                            ),
                           ),
-                          child: Center(
-                            child:
-                            Text('', style: TextStyle(color: Colors.white)),
-                          ),
-                        ),
-                      ),
-                    ],
-                  );
-                } else if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
-                } else {
-                  if (snapshot.data != null) {
-                    final hutang = snapshot.data!.hutang; // Ambil data hutang dari objek respons.
-                    final bayar = snapshot.data!.bayar; // Ambil data bayar dari objek respons.
-                    return Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Rp. $hutang'+',00', style: TextStyle(color: Colors.green),),
-                        const SizedBox(
-                          width: 40,
-                        ),
-                        Text('Rp. $bayar'+',00', style: TextStyle(color: Colors.green),),
-                      ],
-                    );
-                  } else {
-                    return Text('Tidak ada data');
-                       }
-                     }
-                    },
-                  ),
+                        ],
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    } else {
+                      if (snapshot.data != null) {
+                        final hutang = snapshot.data!
+                            .hutang; // Ambil data hutang dari objek respons.
+                        final bayar = snapshot.data!
+                            .bayar; // Ambil data bayar dari objek respons.
+                        return Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Rp. $hutang' + ',00',
+                              style: TextStyle(color: Colors.green),
+                            ),
+                            const SizedBox(
+                              width: 40,
+                            ),
+                            Text(
+                              'Rp. $bayar' + ',00',
+                              style: TextStyle(color: Colors.green),
+                            ),
+                          ],
+                        );
+                      } else {
+                        return Text('Tidak ada data');
+                      }
+                    }
+                  },
+                ),
                 const SizedBox(
                   height: 10,
                 ),
-                ]
-              )
-            ),
-          ]
-        ),
+              ])),
+        ]),
       ),
     );
   }
+}
 
-  List<PieChartSectionData> showingSections() {
+class Chartz extends StatefulWidget {
+  const Chartz({super.key});
+
+  @override
+  State<Chartz> createState() => _ChartzState();
+}
+
+class _ChartzState extends State<Chartz> {
+  int touchedIndex = -1;
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: API.data_chart,
+        builder: (context, snapshot) {
+          if (snapshot.hasData &&
+              snapshot.connectionState != ConnectionState.waiting &&
+              snapshot.data != null) {
+            final data = snapshot.data!;
+            return PieChart(
+              PieChartData(
+                pieTouchData: PieTouchData(),
+                borderData: FlBorderData(
+                  show: false,
+                ),
+                sectionsSpace: 5,
+                centerSpaceRadius: 40,
+                sections: showingSections(data),
+              ),
+            );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        });
+  }
+
+  List<PieChartSectionData> showingSections(data_hutang_chart data) {
+    final bayar = double.parse((data.bayar ?? '').split('.').join());
+    final hutang = double.parse((data.hutang ?? '').split('.').join());
     return List.generate(2, (i) {
       final isTouched = i == touchedIndex;
       final fontSize = isTouched ? 25.0 : 16.0;
@@ -209,8 +232,8 @@ class PieChart2State extends State {
         case 0:
           return PieChartSectionData(
             color: AppColors.contentColorBlue,
-            value: 40,
-            title: '40%',
+            value: hutang,
+            title: ((hutang / (hutang + bayar)) * 100).toStringAsFixed(2) + "%",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -222,8 +245,8 @@ class PieChart2State extends State {
         case 1:
           return PieChartSectionData(
             color: AppColors.contentColorYellow,
-            value: 30,
-            title: '30%',
+            value: bayar,
+            title: ((bayar / (hutang + bayar)) * 100).toStringAsFixed(2) + "%",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
