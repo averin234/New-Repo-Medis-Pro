@@ -1,5 +1,5 @@
 name: medispro
-version: 1.0.4+1
+version: 1.0.5+1
 publish_to: none
 description: A new Flutter project.
 environment:
@@ -20,6 +20,7 @@ dependencies:
   package_info: ^2.0.2
   in_app_update: ^4.2.1
   device_info_plus: ^8.0.0
+  search_page: ^2.3.0
   intl: ^0.17.0
   flutter:
     sdk: flutter

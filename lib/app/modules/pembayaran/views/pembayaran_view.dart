@@ -15,6 +15,7 @@ import '../../../widgets/widgets_konfirmasi/card_konfirmasi.dart';
 import '../../../widgets/widgets_konfirmasi/card_list_view_konfirmasi.dart';
 import '../../../widgets/widgets_pembayaran/card_list_view_pembayaran.dart';
 import '../../../widgets/widgets_pembayaran/card_pembayaran.dart';
+import '../../../widgets/widgets_pembayaran/card_search_pembayaran.dart';
 import '../../../widgets/widgets_pembayaran/list_shammer_pembayaran.dart';
 import '../controllers/pembayaran_controller.dart';
 
@@ -127,7 +128,7 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                     children: <Widget>[
-                    SearchCardKonfirmasi(),
+                      SearchCardPembayaran(),
                       Obx(() {
                         return FutureBuilder(
                           future: API.pembayaran(),

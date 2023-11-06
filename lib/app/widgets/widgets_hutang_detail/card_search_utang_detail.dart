@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:search_page/search_page.dart';
 
+import '../../endpoint/data/data_respons/acc_detail.dart';
+import '../../endpoint/data/fetch_data.dart';
 import '../../modules/hutang_detail/controllers/hutang_detail_controller.dart';
 import '../../modules/konfirmasi/controllers/konfirmasi_controller.dart';
 import '../color/appcolor.dart';
+import 'card_list_view_hutang_detail.dart';
 
 class SearchCardUtangDetail extends GetView<HutangDetailController> {
   const SearchCardUtangDetail({Key? key}) : super(key: key);
@@ -34,27 +38,82 @@ class SearchCardUtangDetail extends GetView<HutangDetailController> {
         height: 60,
         child: Column(
           children: [
-            TextField(
-              cursorColor: Colors.grey,
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(8),
-                fillColor: Colors.white,
-                filled: true,
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide.none
-                ),
-                hintText: 'Search',
-                hintStyle: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 18
-                ),
-                prefixIcon: Container(
-                  padding: EdgeInsets.all(15),
-                  child: Icon(Icons.search_rounded),
-                  width: 18,
-                )
-              ),
+            FutureBuilder(
+                future: API.accdetail(kode_perusahaan_pbf: controller.pbf),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (snapshot.hasData && snapshot.data != null) {
+                    final data = snapshot.data!.dataAccDetail;
+
+                    if (data != null && data.isNotEmpty) {
+                      return
+                        TextField(
+                          readOnly: true,
+                          cursorColor: Colors.grey,
+                          decoration: InputDecoration(
+                              contentPadding: EdgeInsets.all(8),
+                              fillColor: Colors.white,
+                              filled: true,
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide.none
+                              ),
+                              hintText: 'Search',
+                              hintStyle: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 18
+                              ),
+                              prefixIcon: Container(
+                                padding: EdgeInsets.all(15),
+                                child: Icon(Icons.search_rounded),
+                                width: 18,
+                              )
+                          ),
+                          onTap: () =>
+                              showSearch(
+                                context: context,
+                                delegate: SearchPage<DataAccDetail>(
+                                    items: data,
+                                    searchLabel: 'Cari No. Invoice',
+                                    showItemsOnEmpty: true,
+                                    failure: Center(
+                                      child: Text(
+                                        'Tidak ada pembayaran :(',
+                                      ),
+                                    ),
+                                    filter: (kasir) =>
+                                    [
+                                      kasir.noInvoice,
+                                    ],
+                                    builder: (items) =>
+                                        Column(
+                                          children: [
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            ListUtangDetail(),
+                                          ],
+                                        )),
+                              ),
+                        );
+                    } else {
+                      return Center(
+                        child: Text(
+                            'Pencarian'
+                        ),
+                      );
+                    }
+                  } else {
+                    return Center(
+                      child: Text(
+                        'Terjadi kesalahan saat mengambil data.',
+                      ),
+                    );
+                  }
+                }
             ),
           ],
         ),

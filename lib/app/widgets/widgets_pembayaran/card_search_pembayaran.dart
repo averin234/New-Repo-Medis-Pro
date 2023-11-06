@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:search_page/search_page.dart';
-import '../../endpoint/data/data_respons/acc_detail.dart';
+import '../../endpoint/data/data_respons/data_pembayaran.dart';
 import '../../endpoint/data/fetch_data.dart';
-import '../../modules/konfirmasi_detail/controllers/konfirmasi_detail_controller.dart';
-import 'card_list_view_konfirmasi_detail.dart';
+import '../../modules/pembayaran/controllers/pembayaran_controller.dart';
+import 'card_list_view_pembayaran.dart';
 
-class SearchCardKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
-  const SearchCardKonfirmasiDetail({Key? key}) : super(key: key);
+class SearchCardPembayaran extends GetView<PembayaranController> {
+  const SearchCardPembayaran({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,14 +36,14 @@ class SearchCardKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
         child: Column(
           children: [
             FutureBuilder(
-                future: API.accdetail(kode_perusahaan_pbf: controller.pbf),
+                future: API.pembayaran(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Center(
                       child: CircularProgressIndicator(),
                     );
                   } else if (snapshot.hasData && snapshot.data != null) {
-                    final data = snapshot.data!.dataAccDetail;
+                    final data = snapshot.data!.dataPembayaran;
 
                     if (data != null && data.isNotEmpty) {
                       return
@@ -72,9 +72,9 @@ class SearchCardKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
                           onTap: () =>
                               showSearch(
                                 context: context,
-                                delegate: SearchPage<DataAccDetail>(
+                                delegate: SearchPage<DataPembayaran>(
                                     items: data,
-                                    searchLabel: 'Cari No. Invoice',
+                                    searchLabel: 'Cari nama perusahaan',
                                     showItemsOnEmpty: true,
                                     failure: Center(
                                       child: Text(
@@ -83,7 +83,7 @@ class SearchCardKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
                                     ),
                                     filter: (kasir) =>
                                     [
-                                      kasir.noInvoice,
+                                      kasir.namaPerusahaan,
                                     ],
                                     builder: (items) =>
                                         Column(
@@ -91,7 +91,7 @@ class SearchCardKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
                                             SizedBox(
                                               height: 10,
                                             ),
-                                            ListKonfirmasiDetail(),
+                                            PembayaranList(items: items,),
                                           ],
                                         )),
                               ),

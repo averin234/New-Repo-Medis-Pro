@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:search_page/search_page.dart';
 
+import '../../endpoint/data/data_respons/data_acc.dart';
+import '../../endpoint/data/fetch_data.dart';
 import '../../modules/hutang/controllers/hutang_controller.dart';
 import '../../modules/konfirmasi/controllers/konfirmasi_controller.dart';
 import '../color/appcolor.dart';
+import 'card_list_view_konfirmasi.dart';
 
 class SearchCardKonfirmasi extends GetView<HutangController> {
   const SearchCardKonfirmasi({Key? key}) : super(key: key);
@@ -34,27 +38,82 @@ class SearchCardKonfirmasi extends GetView<HutangController> {
         height: 60,
         child: Column(
           children: [
-            TextField(
-              cursorColor: Colors.grey,
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(8),
-                fillColor: Colors.white,
-                filled: true,
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide.none
-                ),
-                hintText: 'Search',
-                hintStyle: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 18
-                ),
-                prefixIcon: Container(
-                  padding: EdgeInsets.all(15),
-                  child: Icon(Icons.search_rounded),
-                  width: 18,
-                )
-              ),
+            FutureBuilder(
+                future: API.acc(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (snapshot.hasData && snapshot.data != null) {
+                    final data = snapshot.data!.dataAcc;
+
+                    if (data != null && data.isNotEmpty) {
+                      return
+                        TextField(
+                          readOnly: true,
+                          cursorColor: Colors.grey,
+                          decoration: InputDecoration(
+                              contentPadding: EdgeInsets.all(8),
+                              fillColor: Colors.white,
+                              filled: true,
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide.none
+                              ),
+                              hintText: 'Search',
+                              hintStyle: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 18
+                              ),
+                              prefixIcon: Container(
+                                padding: EdgeInsets.all(15),
+                                child: Icon(Icons.search_rounded),
+                                width: 18,
+                              )
+                          ),
+                          onTap: () =>
+                              showSearch(
+                                context: context,
+                                delegate: SearchPage<DataAcc>(
+                                    items: data,
+                                    searchLabel: 'Cari nama perusahaan',
+                                    showItemsOnEmpty: true,
+                                    failure: Center(
+                                      child: Text(
+                                        'Tidak ada pembayaran :(',
+                                      ),
+                                    ),
+                                    filter: (kasir) =>
+                                    [
+                                      kasir.namaPerusahaan,
+                                    ],
+                                    builder: (items) =>
+                                        Column(
+                                          children: [
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            ListKonfirmasi(items: items),
+                                          ],
+                                        )),
+                              ),
+                        );
+                    } else {
+                      return Center(
+                        child: Text(
+                            'Pencarian'
+                        ),
+                      );
+                    }
+                  } else {
+                    return Center(
+                      child: Text(
+                        'Terjadi kesalahan saat mengambil data.',
+                      ),
+                    );
+                  }
+                }
             ),
           ],
         ),
