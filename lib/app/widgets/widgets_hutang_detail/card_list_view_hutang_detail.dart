@@ -8,7 +8,7 @@ import '../../modules/hutang_detail/controllers/hutang_detail_controller.dart';
 import 'list_shammer_hutang_detail.dart';
 
 class ListUtangDetail extends GetView<HutangDetailController> {
-  const ListUtangDetail({Key? key}) : super(key: key);
+  const ListUtangDetail({super.key});
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<acc_detail>(

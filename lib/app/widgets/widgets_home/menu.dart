@@ -7,7 +7,7 @@ import '../../endpoint/data/fetch_data.dart';
 import '../../modules/home/controllers/home_controller.dart';
 
 class Menu extends GetView<HomeController> {
-  const Menu({Key? key}) : super(key: key);
+  const Menu({super.key});
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<statusProfile>(

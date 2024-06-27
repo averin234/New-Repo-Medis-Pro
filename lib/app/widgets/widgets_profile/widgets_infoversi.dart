@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../modules/profile/controllers/profile_controller.dart';
 
 class InfoVersion extends StatelessWidget {
-  const InfoVersion({Key? key}) : super(key: key);
+  const InfoVersion({super.key});
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProfileController());

@@ -6,8 +6,8 @@ import '../../modules/hutang_detail/controllers/hutang_detail_controller.dart';
 
 class CardHutangDetail extends GetView<HutangDetailController> {
   const CardHutangDetail({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   @override
   Widget build(BuildContext context) {
     final items = controller.items;

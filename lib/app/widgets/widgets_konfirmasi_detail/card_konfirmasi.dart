@@ -8,7 +8,7 @@ import '../../modules/konfirmasi_detail/controllers/konfirmasi_detail_controller
 import '../color/appcolor.dart';
 
 class CardKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
-  const CardKonfirmasiDetail({Key? key}) : super(key: key);
+  const CardKonfirmasiDetail({super.key});
 
   @override
   Widget build(BuildContext context) {

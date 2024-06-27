@@ -7,7 +7,7 @@ import '../../modules/konfirmasi_detail/controllers/konfirmasi_detail_controller
 import 'card_list_view_konfirmasi_detail.dart';
 
 class SearchCardKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
-  const SearchCardKonfirmasiDetail({Key? key}) : super(key: key);
+  const SearchCardKonfirmasiDetail({super.key});
   @override
   Widget build(BuildContext context) {
     return Container(

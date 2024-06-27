@@ -13,7 +13,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import '../../../widgets/color/appcolor.dart';
 
 class PembayaranDetailView extends StatefulWidget {
-  const PembayaranDetailView({Key? key}) : super(key: key);
+  const PembayaranDetailView({super.key});
 
   @override
   State<PembayaranDetailView> createState() => _PembayaranDetailViewState();
@@ -37,7 +37,7 @@ class _PembayaranDetailViewState extends State<PembayaranDetailView> {
 }
 
 class Pembayaran extends StatefulWidget {
-  const Pembayaran({Key? key}) : super(key: key);
+  const Pembayaran({super.key});
   @override
   State<Pembayaran> createState() => _PembayaranState();
 }

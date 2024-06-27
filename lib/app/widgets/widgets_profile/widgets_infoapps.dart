@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../modules/profile/controllers/profile_controller.dart';
 
 class Disclaimer extends GetView<ProfileController> {
-  const Disclaimer({Key? key}) : super(key: key);
+  const Disclaimer({super.key});
   @override
   Widget build(BuildContext context) {
     return Container(

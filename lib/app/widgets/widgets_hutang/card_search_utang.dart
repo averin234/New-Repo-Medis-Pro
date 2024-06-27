@@ -10,7 +10,7 @@ import 'card_list_view_utang.dart';
 
 class SearchCardUtang extends GetView<HutangController> {
 
-  const SearchCardUtang({Key? key}) : super(key: key);
+  const SearchCardUtang({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -8,7 +8,7 @@ import '../../modules/hutang/controllers/hutang_controller.dart';
 import 'card_list_view_konfirmasi.dart';
 
 class SearchCardKonfirmasi extends GetView<HutangController> {
-  const SearchCardKonfirmasi({Key? key}) : super(key: key);
+  const SearchCardKonfirmasi({super.key});
   @override
   Widget build(BuildContext context) {
     return Container(

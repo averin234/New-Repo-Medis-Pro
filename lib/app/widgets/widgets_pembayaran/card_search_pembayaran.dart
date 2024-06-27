@@ -7,7 +7,7 @@ import '../../modules/pembayaran/controllers/pembayaran_controller.dart';
 import 'card_list_view_pembayaran.dart';
 
 class SearchCardPembayaran extends GetView<PembayaranController> {
-  const SearchCardPembayaran({Key? key}) : super(key: key);
+  const SearchCardPembayaran({super.key});
   @override
   Widget build(BuildContext context) {
     return Container(

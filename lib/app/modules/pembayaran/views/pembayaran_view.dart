@@ -13,7 +13,7 @@ import '../../../widgets/widgets_pembayaran/card_search_pembayaran.dart';
 import '../../../widgets/widgets_pembayaran/list_shammer_pembayaran.dart';
 
 class PembayaranView extends StatefulWidget {
-  const PembayaranView({Key? key}) : super(key: key);
+  const PembayaranView({super.key});
 
   @override
   State<PembayaranView> createState() => _PembayaranViewState();
@@ -37,7 +37,7 @@ class _PembayaranViewState extends State<PembayaranView> {
 }
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  const Home({super.key});
   @override
   State<Home> createState() => _HomeState();
 }

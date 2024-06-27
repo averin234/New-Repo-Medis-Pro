@@ -8,7 +8,7 @@ import '../../modules/profile/controllers/profile_controller.dart';
 import 'list_shammer_profile.dart';
 
 class CardProfile extends GetView<ProfileController> {
-  const CardProfile({Key? key}) : super(key: key);
+  const CardProfile({super.key});
   @override
   Widget build(BuildContext context) {
     return Container(

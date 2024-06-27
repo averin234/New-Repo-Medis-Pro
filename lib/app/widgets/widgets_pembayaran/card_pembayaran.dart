@@ -8,7 +8,7 @@ import '../../modules/pembayaran/controllers/pembayaran_controller.dart';
 import '../color/appcolor.dart';
 
 class CardPembayaran extends GetView<PembayaranController> {
-  const CardPembayaran({Key? key}) : super(key: key);
+  const CardPembayaran({super.key});
 
   @override
   Widget build(BuildContext context) {

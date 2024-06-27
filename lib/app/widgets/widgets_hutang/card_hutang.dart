@@ -8,7 +8,7 @@ import '../../modules/hutang/views/hutang_view.dart';
 import '../color/appcolor.dart';
 
 class CardHutang extends GetView<HutangView> {
-  CardHutang({Key? key}) : super(key: key);
+  CardHutang({super.key});
   var now = DateTime.now();
   var formattedMonth = DateFormat.MMMM().format(DateTime.now());
   int currentYear = DateTime.now().year;

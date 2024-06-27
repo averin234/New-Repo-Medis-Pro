@@ -13,7 +13,7 @@ import '../../../widgets/widgets_hutang/card_search_utang.dart';
 import '../../../widgets/widgets_hutang/list_shammer_hutang.dart';
 
 class HutangView extends StatefulWidget {
-  const HutangView({Key? key}) : super(key: key);
+  const HutangView({super.key});
 
   @override
   State<HutangView> createState() => _HutangViewState();
@@ -37,7 +37,7 @@ class _HutangViewState extends State<HutangView> {
 }
 
 class Hutang extends StatefulWidget {
-  const Hutang({Key? key}) : super(key: key);
+  const Hutang({super.key});
   @override
   State<Hutang> createState() => _HutangState();
 }

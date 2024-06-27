@@ -6,7 +6,7 @@ import '../../../generated/assets.dart';
 import '../../modules/profile/controllers/profile_controller.dart';
 
 class Logout extends StatelessWidget {
-  const Logout({Key? key}) : super(key: key);
+  const Logout({super.key});
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProfileController());

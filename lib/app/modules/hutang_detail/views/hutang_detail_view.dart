@@ -9,7 +9,7 @@ import '../../../widgets/widgets_hutang_detail/card_search_utang_detail.dart';
 import '../../konfirmasi/views/konfirmasi_view.dart';
 
 class HutangDetailView extends StatefulWidget {
-  const HutangDetailView({Key? key}) : super(key: key);
+  const HutangDetailView({super.key});
 
   @override
   State<HutangDetailView> createState() => _HutangDetailViewState();
@@ -33,7 +33,7 @@ class _HutangDetailViewState extends State<HutangDetailView> {
 }
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  const Home({super.key});
   @override
   State<Home> createState() => _HomeState();
 }

@@ -13,7 +13,7 @@ import '../../../widgets/widgets_konfirmasi/card_list_view_konfirmasi.dart';
 import '../../../widgets/widgets_konfirmasi/list_shammer_konfirmasi.dart';
 
 class KonfirmasiView extends StatefulWidget {
-  const KonfirmasiView({Key? key}) : super(key: key);
+  const KonfirmasiView({super.key});
 
   @override
   State<KonfirmasiView> createState() => _KonfirmasiViewState();
@@ -37,7 +37,7 @@ class _KonfirmasiViewState extends State<KonfirmasiView> {
 }
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  const Home({super.key});
   @override
   State<Home> createState() => _HomeState();
 }

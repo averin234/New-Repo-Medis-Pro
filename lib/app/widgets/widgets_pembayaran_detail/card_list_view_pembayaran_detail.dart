@@ -8,7 +8,7 @@ import '../../modules/pembayaran_detail/controllers/pembayaran_detail_controller
 import 'list_shammer_pembayaran_detail.dart';
 
 class ListPembayaranDetail extends GetView<PembayaranDetailController> {
-  const ListPembayaranDetail({Key? key}) : super(key: key);
+  const ListPembayaranDetail({super.key});
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<bayar_detail>(
