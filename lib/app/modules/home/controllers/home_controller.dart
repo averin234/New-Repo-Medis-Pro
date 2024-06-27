@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:in_app_update/in_app_update.dart';
@@ -48,7 +46,7 @@ class HomeController extends GetxController {
             fit: BoxFit.fitHeight,
             height: 200,
           ),
-          Text(
+          const Text(
               'Versi baru aplikasi tersedia. Apakah Anda ingin mengunduh pembaruan sekarang?',
               textAlign: TextAlign.center),
         ],
@@ -61,11 +59,11 @@ class HomeController extends GetxController {
         },
         child: Container(
           width: double.infinity,
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: Colors.blue),
-          child: Center(
+          child: const Center(
             child: Text('Unduh Sekarang',
                 style: TextStyle(
                     color: Colors.white,
@@ -77,20 +75,8 @@ class HomeController extends GetxController {
     );
   }
   final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   void increment() => count.value++;
 }

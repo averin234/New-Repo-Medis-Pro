@@ -1,11 +1,9 @@
-
 import 'dart:convert';
 import 'dart:ui';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:medispro/app/endpoint/data/local_storage.dart';
 import 'package:medispro/app/endpoint/data/publics.dart';
 import '../../routes/app_pages.dart';
@@ -46,7 +44,9 @@ class API {
   static const _profile_pbf = '$_baseUrl/get_profile_pbf.php';
 
   static Future<act_login> login(
-      {required kodeUser, required String username, required String password}) async {
+      {required kodeUser,
+      required String username,
+      required String password}) async {
     final data = {
       "kode_user": kodeUser,
       "username": username,
@@ -72,7 +72,10 @@ class API {
         if (obj.response != 0) {
           if (obj.kodePerusahaan != null) {
             LocalStorages.setToken(obj.kodePerusahaan ?? '');
-            Get.snackbar('Selamat Datang', 'Di MedisPro',);
+            Get.snackbar(
+              'Selamat Datang',
+              'Di MedisPro',
+            );
             Get.offAllNamed(Routes.HOME);
           } else {
             Get.snackbar('Error', 'Kode Perusahaan tidak ditemukan',
@@ -88,9 +91,10 @@ class API {
     } catch (e) {
       // Tangani kesalahan yang mungkin terjadi selama permintaan HTTP.
       print(e);
-      throw e; // Anda bisa melempar kembali kesalahan ini jika diperlukan.
+      rethrow; // Anda bisa melempar kembali kesalahan ini jika diperlukan.
     }
   }
+
   //beda
   static Future<data_hutang_chart> get data_chart async {
     final kodeperusahaan = Publics.controller.getToken.value;
@@ -115,6 +119,7 @@ class API {
     }
     return obj;
   }
+
   //beda
   static Future<statusProfile> get status async {
     final kodeperusahaan = Publics.controller.getToken.value;
@@ -139,10 +144,13 @@ class API {
     }
     return obj;
   }
+
   //beda
   static Future<json_hutang> listviewutang() async {
     final kodeperusahaan = Publics.controller.getToken.value;
-    var data = {"kode_perusahaan": kodeperusahaan,};
+    var data = {
+      "kode_perusahaan": kodeperusahaan,
+    };
     var response = await Dio().get(
       _json_hutang,
       options: Options(
@@ -163,10 +171,13 @@ class API {
     }
     return obj;
   }
+
   //beda
-  static Future<data_acc>acc() async {
+  static Future<data_acc> acc() async {
     final kodeperusahaan = Publics.controller.getToken.value;
-    var data = {"kode_perusahaan": kodeperusahaan,};
+    var data = {
+      "kode_perusahaan": kodeperusahaan,
+    };
     var response = await Dio().get(
       _data_acc,
       options: Options(
@@ -187,10 +198,13 @@ class API {
     }
     return obj;
   }
+
   //beda
-  static Future<data_pembayaran>pembayaran() async {
+  static Future<data_pembayaran> pembayaran() async {
     final kodeperusahaan = Publics.controller.getToken.value;
-    var data = {"kode_perusahaan": kodeperusahaan,};
+    var data = {
+      "kode_perusahaan": kodeperusahaan,
+    };
     var response = await Dio().get(
       _data_pembayaran,
       options: Options(
@@ -211,6 +225,7 @@ class API {
     }
     return obj;
   }
+
   //beda
   static Future<act_profile> get profile async {
     final kodeperusahaan = Publics.controller.getToken.value;
@@ -235,8 +250,10 @@ class API {
     }
     return obj;
   }
+
 //beda
-  static Future<acc_detail> accdetail ({required String kode_perusahaan_pbf}) async {
+  static Future<acc_detail> accdetail(
+      {required String kode_perusahaan_pbf}) async {
     final kodeperusahaan = Publics.controller.getToken.value;
     var data = {
       "kode_perusahaan": kodeperusahaan,
@@ -262,8 +279,10 @@ class API {
     }
     return obj;
   }
+
   //beda
-  static Future<bayar_detail> bayardetail ({required String kode_perusahaan_pbf}) async {
+  static Future<bayar_detail> bayardetail(
+      {required String kode_perusahaan_pbf}) async {
     final kodeperusahaan = Publics.controller.getToken.value;
     var data = {
       "kode_perusahaan": kodeperusahaan,
@@ -289,9 +308,12 @@ class API {
     }
     return obj;
   }
+
 //beda
-  static Future<act_acc_detail>actaccdetail(String tchutangsupplier) async {
-    var data = {"id_tc_hutang_supplier_inv": tchutangsupplier,};
+  static Future<act_acc_detail> actaccdetail(String tchutangsupplier) async {
+    var data = {
+      "id_tc_hutang_supplier_inv": tchutangsupplier,
+    };
     var response = await Dio().get(
       _acc_detail,
       options: Options(
@@ -314,4 +336,3 @@ class API {
   }
 //beda
 }
-

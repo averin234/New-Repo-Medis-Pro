@@ -31,15 +31,7 @@ class ProfileController extends GetxController {
     _packageName.value = packageInfo.version;
   }
   final count = 0.obs;
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   void logout() async {await LocalStorages.deleteToken; Get.offAllNamed(Routes.LOGIN);}
 

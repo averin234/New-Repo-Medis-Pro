@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shimmer_animation/shimmer_animation.dart';
 
 import '../color/appcolor.dart';
 
@@ -11,7 +9,7 @@ class shimmerMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.only(left: 10, right: 10, top: 20),
+      margin: const EdgeInsets.only(left: 10, right: 10, top: 20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -22,9 +20,9 @@ class shimmerMenu extends StatelessWidget {
             children: [
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   height: 120,
-                  margin: EdgeInsets.only(top: 10),
+                  margin: const EdgeInsets.only(top: 10),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
@@ -33,7 +31,7 @@ class shimmerMenu extends StatelessWidget {
                         color: Colors.grey.withOpacity(0.15),
                         spreadRadius: 5,
                         blurRadius: 70,
-                        offset: Offset(0, 3),
+                        offset: const Offset(0, 3),
                       ),
                     ],
                   ),
@@ -46,12 +44,12 @@ class shimmerMenu extends StatelessWidget {
                           Expanded(
                             child:
                             Container(
-                              padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                              padding: const EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 color: AppColors.shammerColor,
                               ),
-                              child: Center(
+                              child: const Center(
                                 child:
                                 Text('', style: TextStyle(color: Colors.white)),
                               ),
@@ -59,17 +57,17 @@ class shimmerMenu extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Container(
                         width: 80,
-                        padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                        padding: const EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: AppColors.shammerColor,
                         ),
-                        child: Center(
+                        child: const Center(
                           child:
                           Text('\n', style: TextStyle(color: Colors.white)),
                         ),
@@ -78,14 +76,14 @@ class shimmerMenu extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   height: 120,
-                  margin: EdgeInsets.only(top: 10),
+                  margin: const EdgeInsets.only(top: 10),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
@@ -94,7 +92,7 @@ class shimmerMenu extends StatelessWidget {
                         color: Colors.grey.withOpacity(0.15),
                         spreadRadius: 5,
                         blurRadius: 70,
-                        offset: Offset(0, 3),
+                        offset: const Offset(0, 3),
                       ),
                     ],
                   ),
@@ -107,12 +105,12 @@ class shimmerMenu extends StatelessWidget {
                           Expanded(
                             child:
                             Container(
-                              padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                              padding: const EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 color: AppColors.shammerColor,
                               ),
-                              child: Center(
+                              child: const Center(
                                 child:
                                 Text('', style: TextStyle(color: Colors.white)),
                               ),
@@ -120,17 +118,17 @@ class shimmerMenu extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Container(
                         width: 80,
-                        padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                        padding: const EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: AppColors.shammerColor,
                         ),
-                        child: Center(
+                        child: const Center(
                           child:
                           Text('\n', style: TextStyle(color: Colors.white)),
                         ),
@@ -147,9 +145,9 @@ class shimmerMenu extends StatelessWidget {
             children: [
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   height: 120,
-                  margin: EdgeInsets.only(top: 10),
+                  margin: const EdgeInsets.only(top: 10),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
@@ -158,7 +156,7 @@ class shimmerMenu extends StatelessWidget {
                         color: Colors.grey.withOpacity(0.15),
                         spreadRadius: 5,
                         blurRadius: 70,
-                        offset: Offset(0, 3),
+                        offset: const Offset(0, 3),
                       ),
                     ],
                   ),
@@ -171,12 +169,12 @@ class shimmerMenu extends StatelessWidget {
                           Expanded(
                             child:
                             Container(
-                              padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                              padding: const EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 color: AppColors.shammerColor,
                               ),
-                              child: Center(
+                              child: const Center(
                                 child:
                                 Text('', style: TextStyle(color: Colors.white)),
                               ),
@@ -184,17 +182,17 @@ class shimmerMenu extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Container(
                         width: 80,
-                        padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                        padding: const EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: AppColors.shammerColor,
                         ),
-                        child: Center(
+                        child: const Center(
                           child:
                           Text('\n', style: TextStyle(color: Colors.white)),
                         ),
@@ -203,14 +201,14 @@ class shimmerMenu extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   height: 120,
-                  margin: EdgeInsets.only(top: 10),
+                  margin: const EdgeInsets.only(top: 10),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
@@ -219,7 +217,7 @@ class shimmerMenu extends StatelessWidget {
                         color: Colors.grey.withOpacity(0.15),
                         spreadRadius: 5,
                         blurRadius: 70,
-                        offset: Offset(0, 3),
+                        offset: const Offset(0, 3),
                       ),
                     ],
                   ),
@@ -232,12 +230,12 @@ class shimmerMenu extends StatelessWidget {
                           Expanded(
                             child:
                             Container(
-                              padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                              padding: const EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 color: AppColors.shammerColor,
                               ),
-                              child: Center(
+                              child: const Center(
                                 child:
                                 Text('', style: TextStyle(color: Colors.white)),
                               ),
@@ -245,17 +243,17 @@ class shimmerMenu extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Container(
                         width: 80,
-                        padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                        padding: const EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: AppColors.shammerColor,
                         ),
-                        child: Center(
+                        child: const Center(
                           child:
                           Text('\n', style: TextStyle(color: Colors.white)),
                         ),
@@ -272,9 +270,9 @@ class shimmerMenu extends StatelessWidget {
             children: [
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   height: 120,
-                  margin: EdgeInsets.only(top: 10),
+                  margin: const EdgeInsets.only(top: 10),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
@@ -283,7 +281,7 @@ class shimmerMenu extends StatelessWidget {
                         color: Colors.grey.withOpacity(0.15),
                         spreadRadius: 5,
                         blurRadius: 70,
-                        offset: Offset(0, 3),
+                        offset: const Offset(0, 3),
                       ),
                     ],
                   ),
@@ -296,12 +294,12 @@ class shimmerMenu extends StatelessWidget {
                           Expanded(
                             child:
                             Container(
-                              padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                              padding: const EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 color: AppColors.shammerColor,
                               ),
-                              child: Center(
+                              child: const Center(
                                 child:
                                 Text('', style: TextStyle(color: Colors.white)),
                               ),
@@ -309,17 +307,17 @@ class shimmerMenu extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Container(
                         width: 80,
-                        padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                        padding: const EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: AppColors.shammerColor,
                         ),
-                        child: Center(
+                        child: const Center(
                           child:
                           Text('\n', style: TextStyle(color: Colors.white)),
                         ),
@@ -328,14 +326,14 @@ class shimmerMenu extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   height: 120,
-                  margin: EdgeInsets.only(top: 10),
+                  margin: const EdgeInsets.only(top: 10),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
@@ -344,7 +342,7 @@ class shimmerMenu extends StatelessWidget {
                         color: Colors.grey.withOpacity(0.15),
                         spreadRadius: 5,
                         blurRadius: 70,
-                        offset: Offset(0, 3),
+                        offset: const Offset(0, 3),
                       ),
                     ],
                   ),
@@ -357,12 +355,12 @@ class shimmerMenu extends StatelessWidget {
                           Expanded(
                             child:
                             Container(
-                              padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                              padding: const EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 color: AppColors.shammerColor,
                               ),
-                              child: Center(
+                              child: const Center(
                                 child:
                                 Text('', style: TextStyle(color: Colors.white)),
                               ),
@@ -370,17 +368,17 @@ class shimmerMenu extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Container(
                         width: 80,
-                        padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                        padding: const EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: AppColors.shammerColor,
                         ),
-                        child: Center(
+                        child: const Center(
                           child:
                           Text('\n', style: TextStyle(color: Colors.white)),
                         ),
@@ -391,7 +389,7 @@ class shimmerMenu extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
         ],

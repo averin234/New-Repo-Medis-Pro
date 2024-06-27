@@ -29,14 +29,14 @@ class statusProfile {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['data_obat_apotik'] = this.dataObatApotik;
-    data['obat_didistrex'] = this.obatDidistrex;
-    data['data_minumum'] = this.dataMinumum;
-    data['so_belum_konfirm'] = this.soBelumKonfirm;
-    data['blm_terkirim'] = this.blmTerkirim;
-    data['ba_bulan_ini'] = this.baBulanIni;
-    data['Response'] = this.response;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['data_obat_apotik'] = dataObatApotik;
+    data['obat_didistrex'] = obatDidistrex;
+    data['data_minumum'] = dataMinumum;
+    data['so_belum_konfirm'] = soBelumKonfirm;
+    data['blm_terkirim'] = blmTerkirim;
+    data['ba_bulan_ini'] = baBulanIni;
+    data['Response'] = response;
     return data;
   }
 }

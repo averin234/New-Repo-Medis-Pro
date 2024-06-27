@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
 
-import '../../../generated/assets.dart';
 import '../../endpoint/data/data_respons/acc_detail.dart';
 import '../../endpoint/data/fetch_data.dart';
-import '../../modules/konfirmasi/controllers/konfirmasi_controller.dart';
 import '../../modules/konfirmasi_detail/controllers/konfirmasi_detail_controller.dart';
-import '../color/appcolor.dart';
 import 'list_shammer_konfirmasi_detail.dart';
 
 
   class ListKonfirmasiDetail extends StatefulWidget {
+  const ListKonfirmasiDetail({super.key});
+
   @override
   _ListKonfirmasiDetailState createState() => _ListKonfirmasiDetailState();
   }
@@ -26,7 +23,7 @@ import 'list_shammer_konfirmasi_detail.dart';
       future: API.accdetail(kode_perusahaan_pbf: controller.pbf),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return SingleChildScrollView(
+          return const SingleChildScrollView(
             child: Column(children: [
               ListshimmerKonfirmasiDetail(),
               ListshimmerKonfirmasiDetail(),
@@ -41,18 +38,18 @@ import 'list_shammer_konfirmasi_detail.dart';
           if (snapshot.data != null) {
             final namaPerusahaan = snapshot.data!..dataAccDetail; // Ambil data hutang dari objek respons.
             return Column(children: snapshot.data!.dataAccDetail!.map((e) {
-              final totalHarga = e!.totalHarga; // Ambil data hutang dari objek respons.
-              final totalBayar = e!.totalBayar; // Ambil data bayar dari objek respons.
-              final noInvoice = e!.noInvoice; // Ambil data bayar dari objek respons.
-              final tglInvoice = e!.tglInvoice; // Ambil data bayar dari objek respons.
-              final tglJt = e!.tglJt; // Ambil data bayar dari objek respons.
-              final status = e!.status; // Ambil data bayar dari objek respons.
+              final totalHarga = e.totalHarga; // Ambil data hutang dari objek respons.
+              final totalBayar = e.totalBayar; // Ambil data bayar dari objek respons.
+              final noInvoice = e.noInvoice; // Ambil data bayar dari objek respons.
+              final tglInvoice = e.tglInvoice; // Ambil data bayar dari objek respons.
+              final tglJt = e.tglJt; // Ambil data bayar dari objek respons.
+              final status = e.status; // Ambil data bayar dari objek respons.
               return  Container(
-                padding: EdgeInsets.all(10),
-                margin: EdgeInsets.only(right: 10, left: 10, top: 10),
+                padding: const EdgeInsets.all(10),
+                margin: const EdgeInsets.only(right: 10, left: 10, top: 10),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(10),
                       topRight: Radius.circular(10),
                       bottomLeft: Radius.circular(10),
@@ -63,7 +60,7 @@ import 'list_shammer_konfirmasi_detail.dart';
                       color: Colors.grey.withOpacity(0.15),
                       spreadRadius: 5,
                       blurRadius: 70,
-                      offset: Offset(0, 3), // changes position of shadow
+                      offset: const Offset(0, 3), // changes position of shadow
                     ),
                   ],
                 ),
@@ -72,7 +69,7 @@ import 'list_shammer_konfirmasi_detail.dart';
                   children: [
                     Row(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           width: 10,),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,58 +78,58 @@ import 'list_shammer_konfirmasi_detail.dart';
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text('No. Invoice', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
-                                Text(' : ', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
-                                Text('$noInvoice ', style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
+                                const Text('No. Invoice', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                                const Text(' : ', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                                Text('$noInvoice ', style: const TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                     width: 110,
                                     child : Text('Tanggal Invoice')
                                 ),
-                                Text(': '),
+                                const Text(': '),
                                 Text('$tglInvoice')
                               ],),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Row(children: [
-                              SizedBox(
+                              const SizedBox(
                                   width: 110,
                                   child : Text('Jatuh Tempo ')
                               ),
-                              Text(': '),
+                              const Text(': '),
                               Text('$tglJt')
                             ],),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Row(children: [
-                              SizedBox(
+                              const SizedBox(
                                   width: 110,
                                   child : Text('Jumlah Hutang')
                               ),
-                              Text(': Rp.'),
-                              Text('$totalBayar'+',00')
+                              const Text(': Rp.'),
+                              Text('$totalBayar'',00')
                             ],),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Row(children: [
-                              SizedBox(
+                              const SizedBox(
                                   width: 110,
                                   child : Text('Jumalah Bayar')
                               ),
-                              Text(': Rp.'),
-                              Text('$totalHarga'+',00')
+                              const Text(': Rp.'),
+                              Text('$totalHarga'',00')
                             ],),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
 
@@ -158,7 +155,7 @@ import 'list_shammer_konfirmasi_detail.dart';
                       },
                       child: Container(
                         width: double.infinity,
-                        padding: EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color: (status == "1") ? Colors.green.shade500 : Colors.blue.shade500,
                           borderRadius: BorderRadius.circular(10),
@@ -167,7 +164,7 @@ import 'list_shammer_konfirmasi_detail.dart';
                           children: [
                             Text(
                               (status == "1") ? 'Sudah Terkonfirmasi' : 'Konfirmasi',
-                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                              style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
@@ -178,7 +175,7 @@ import 'list_shammer_konfirmasi_detail.dart';
             ).toList(),);
 
           } else {
-            return Text('Tidak ada data');
+            return const Text('Tidak ada data');
           }
         }
       },

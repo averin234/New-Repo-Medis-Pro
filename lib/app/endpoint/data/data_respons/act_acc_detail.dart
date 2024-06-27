@@ -10,8 +10,8 @@ class act_acc_detail {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Response'] = this.response;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['Response'] = response;
     return data;
   }
 }

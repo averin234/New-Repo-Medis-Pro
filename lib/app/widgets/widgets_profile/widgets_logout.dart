@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 
 import '../../../generated/assets.dart';
 import '../../modules/profile/controllers/profile_controller.dart';
-import '../../routes/app_pages.dart';
 
 class Logout extends StatelessWidget {
   const Logout({Key? key}) : super(key: key);
@@ -23,7 +22,7 @@ class Logout extends StatelessWidget {
                 fit: BoxFit.fitHeight,
                 height: 100,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
             ],
@@ -32,12 +31,12 @@ class Logout extends StatelessWidget {
             onTap:controller.logout,
             child: Container(
               width: double.infinity,
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.blue
               ),
-              child : Center(
+              child : const Center(
                 child : Text('Keluar', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
               ),
             ),
@@ -47,11 +46,11 @@ class Logout extends StatelessWidget {
       // controller.logout,
       child : Container(
         width: double.infinity,
-        margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-        padding: EdgeInsets.all(10),
+        margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: Colors.red.shade400,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(10),
               topRight: Radius.circular(10),
               bottomLeft: Radius.circular(10),
@@ -62,11 +61,11 @@ class Logout extends StatelessWidget {
               color: Colors.grey.withOpacity(0.15),
               spreadRadius: 5,
               blurRadius: 70,
-              offset: Offset(0, 3), // changes position of shadow
+              offset: const Offset(0, 3), // changes position of shadow
             ),
           ],
         ),
-        child: Column(
+        child: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [

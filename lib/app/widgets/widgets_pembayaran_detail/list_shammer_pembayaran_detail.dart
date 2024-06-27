@@ -8,11 +8,11 @@ class ListshimmerPembayaranDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
-      margin: EdgeInsets.only(right: 10, left: 10, top: 10),
+      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.only(right: 10, left: 10, top: 10),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(10),
             topRight: Radius.circular(10),
             bottomLeft: Radius.circular(10),
@@ -23,7 +23,7 @@ class ListshimmerPembayaranDetail extends StatelessWidget {
             color: Colors.grey.withOpacity(0.15),
             spreadRadius: 5,
             blurRadius: 70,
-            offset: Offset(0, 3), // changes position of shadow
+            offset: const Offset(0, 3), // changes position of shadow
           ),
         ],
       ),
@@ -32,12 +32,12 @@ class ListshimmerPembayaranDetail extends StatelessWidget {
         children: [
           Container(
             width: double.infinity,
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: AppColors.shammerColor,
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Column(
+            child: const Column(
               children: [
                 Row(children: [
                   // Icon(Icons.warning_rounded, color: Colors.white),
@@ -53,27 +53,27 @@ class ListshimmerPembayaranDetail extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Row(
             children: [
-              Text('No. Invoice', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
-              Text(' : ', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+              const Text('No. Invoice', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+              const Text(' : ', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
               Container(
                 width: 90,
                 height: 20,
-                padding: EdgeInsets.only(left: 20, right: 20, top: 0, bottom: 5),
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 0, bottom: 5),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: AppColors.shammerColor,
                 ),
-                child: Center(
+                child: const Center(
                 ),
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Row(
@@ -82,45 +82,45 @@ class ListshimmerPembayaranDetail extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(children: [
-                    SizedBox(
+                    const SizedBox(
                         width: 110,
                         child : Text('Tanggal Bayar')
                     ),
-                    Text(': '),
+                    const Text(': '),
                     Container(
                       width: 90,
                       height: 20,
-                      padding: EdgeInsets.only(left: 20, right: 20, top: 0, bottom: 5),
+                      padding: const EdgeInsets.only(left: 20, right: 20, top: 0, bottom: 5),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: AppColors.shammerColor,
                       ),
-                      child: Center(
+                      child: const Center(
                       ),
                     ),
                   ],),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(children: [
-                    SizedBox(
+                    const SizedBox(
                         width: 110,
                         child : Text('Jumlah')
                     ),
-                    Text(': Rp.'),
+                    const Text(': Rp.'),
                     Container(
                       width: 90,
                       height: 20,
-                      padding: EdgeInsets.only(left: 20, right: 20, top: 0, bottom: 5),
+                      padding: const EdgeInsets.only(left: 20, right: 20, top: 0, bottom: 5),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: AppColors.shammerColor,
                       ),
-                      child: Center(
+                      child: const Center(
                       ),
                     ),
                   ],),

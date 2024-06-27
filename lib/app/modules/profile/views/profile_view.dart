@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 
 import '../../../../generated/assets.dart';
 import '../../../widgets/widgets_profile/widgets_infoapps.dart';
-import '../../../widgets/widgets_profile/widgets_infoversi.dart';
 import '../../../widgets/widgets_profile/widgets_logout.dart';
 import '../../../widgets/widgets_profile/widgets_profile.dart';
 import '../controllers/profile_controller.dart';
@@ -26,7 +25,7 @@ class ProfileView extends GetView<ProfileController> {
               fit: BoxFit.fitHeight,
               height: 100,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
           ],
@@ -37,12 +36,12 @@ class ProfileView extends GetView<ProfileController> {
           },
           child: Container(
             width: double.infinity,
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.blue
             ),
-            child : Center(
+            child : const Center(
               child : Text('Keluar', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
             ),
           ),
@@ -56,7 +55,7 @@ class ProfileView extends GetView<ProfileController> {
         centerTitle: false,
         elevation: 0,
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child:
       Column(
         children: [

@@ -27,14 +27,14 @@ class profile_pbf {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['data_cabang'] = this.dataCabang;
-    data['sql_berlangganan'] = this.sqlBerlangganan;
-    data['obat_yg_dimilik'] = this.obatYgDimilik;
-    data['sudah_so'] = this.sudahSo;
-    data['obat_invoce'] = this.obatInvoce;
-    data['penjualan_bln_ini'] = this.penjualanBlnIni;
-    data['Response'] = this.response;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['data_cabang'] = dataCabang;
+    data['sql_berlangganan'] = sqlBerlangganan;
+    data['obat_yg_dimilik'] = obatYgDimilik;
+    data['sudah_so'] = sudahSo;
+    data['obat_invoce'] = obatInvoce;
+    data['penjualan_bln_ini'] = penjualanBlnIni;
+    data['Response'] = response;
     return data;
   }
 }

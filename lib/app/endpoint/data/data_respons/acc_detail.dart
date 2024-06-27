@@ -10,19 +10,19 @@ class acc_detail {
     if (json['data_acc_detail'] != null) {
       dataAccDetail = <DataAccDetail>[];
       json['data_acc_detail'].forEach((v) {
-        dataAccDetail!.add(new DataAccDetail.fromJson(v));
+        dataAccDetail!.add(DataAccDetail.fromJson(v));
       });
     }
     response = json['Response'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.dataAccDetail != null) {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (dataAccDetail != null) {
       data['data_acc_detail'] =
-          this.dataAccDetail!.map((v) => v.toJson()).toList();
+          dataAccDetail!.map((v) => v.toJson()).toList();
     }
-    data['Response'] = this.response;
+    data['Response'] = response;
     return data;
   }
 
@@ -61,15 +61,15 @@ class DataAccDetail {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id_tc_hutang_supplier_inv'] = this.idTcHutangSupplierInv;
-    data['tgl_invoice'] = this.tglInvoice;
-    data['no_invoice'] = this.noInvoice;
-    data['status'] = this.status;
-    data['total_harga'] = this.totalHarga;
-    data['tgl_jt'] = this.tglJt;
-    data['tgl_acc_direksi'] = this.tglAccDireksi;
-    data['total_bayar'] = this.totalBayar;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id_tc_hutang_supplier_inv'] = idTcHutangSupplierInv;
+    data['tgl_invoice'] = tglInvoice;
+    data['no_invoice'] = noInvoice;
+    data['status'] = status;
+    data['total_harga'] = totalHarga;
+    data['tgl_jt'] = tglJt;
+    data['tgl_acc_direksi'] = tglAccDireksi;
+    data['total_bayar'] = totalBayar;
     return data;
   }
 }

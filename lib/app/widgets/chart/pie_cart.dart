@@ -1,13 +1,9 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:medispro/app/endpoint/data/publics.dart';
 
 import '../../../generated/assets.dart';
 import '../../endpoint/data/data_respons/data_hutang_chart.dart';
 import '../../endpoint/data/fetch_data.dart';
-import '../../modules/home/controllers/home_controller.dart';
 import '../color/appcolor.dart';
 import 'indikator.dart';
 
@@ -23,8 +19,8 @@ class PieChart2State extends State {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-      padding: EdgeInsets.all(10),
+      margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
+      padding: const EdgeInsets.all(10),
       height: 320,
       decoration: BoxDecoration(
         image: const DecorationImage(
@@ -42,7 +38,7 @@ class PieChart2State extends State {
             color: Colors.grey.withOpacity(0.15),
             spreadRadius: 5,
             blurRadius: 70,
-            offset: Offset(0, 3), // changes position of shadow
+            offset: const Offset(0, 3), // changes position of shadow
           ),
         ],
       ),
@@ -52,7 +48,7 @@ class PieChart2State extends State {
           const SizedBox(
             height: 10,
           ),
-          Text(
+          const Text(
             'Data Hutang 3 Bulan Terakhir',
             style: TextStyle(
               fontWeight: FontWeight.bold,
@@ -61,7 +57,7 @@ class PieChart2State extends State {
           const SizedBox(
             height: 10,
           ),
-          Expanded(
+          const Expanded(
             child: AspectRatio(
               aspectRatio: 1,
               child: Chartz(),
@@ -108,14 +104,14 @@ class PieChart2State extends State {
                         children: [
                           Expanded(
                             child: Container(
-                              margin: EdgeInsets.only(left: 10),
-                              padding: EdgeInsets.only(
+                              margin: const EdgeInsets.only(left: 10),
+                              padding: const EdgeInsets.only(
                                   left: 20, right: 20, top: 5, bottom: 5),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 color: AppColors.shammerColor,
                               ),
-                              child: Center(
+                              child: const Center(
                                 child: Text('',
                                     style: TextStyle(color: Colors.white)),
                               ),
@@ -126,14 +122,14 @@ class PieChart2State extends State {
                           ),
                           Expanded(
                             child: Container(
-                              margin: EdgeInsets.only(right: 10),
-                              padding: EdgeInsets.only(
+                              margin: const EdgeInsets.only(right: 10),
+                              padding: const EdgeInsets.only(
                                   left: 20, right: 20, top: 5, bottom: 5),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 color: AppColors.shammerColor,
                               ),
-                              child: Center(
+                              child: const Center(
                                 child: Text('',
                                     style: TextStyle(color: Colors.white)),
                               ),
@@ -154,20 +150,20 @@ class PieChart2State extends State {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'Rp. $hutang' + ',00',
-                              style: TextStyle(color: Colors.green),
+                              'Rp. $hutang' ',00',
+                              style: const TextStyle(color: Colors.green),
                             ),
                             const SizedBox(
                               width: 40,
                             ),
                             Text(
-                              'Rp. $bayar' + ',00',
-                              style: TextStyle(color: Colors.green),
+                              'Rp. $bayar' ',00',
+                              style: const TextStyle(color: Colors.green),
                             ),
                           ],
                         );
                       } else {
-                        return Text('Tidak ada data');
+                        return const Text('Tidak ada data');
                       }
                     }
                   },
@@ -213,7 +209,7 @@ class _ChartzState extends State<Chartz> {
               ),
             );
           } else {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }
@@ -233,7 +229,7 @@ class _ChartzState extends State<Chartz> {
           return PieChartSectionData(
             color: AppColors.contentColorBlue,
             value: hutang,
-            title: ((hutang / (hutang + bayar)) * 100).toStringAsFixed(2) + "%",
+            title: "${((hutang / (hutang + bayar)) * 100).toStringAsFixed(2)}%",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -246,7 +242,7 @@ class _ChartzState extends State<Chartz> {
           return PieChartSectionData(
             color: AppColors.contentColorYellow,
             value: bayar,
-            title: ((bayar / (hutang + bayar)) * 100).toStringAsFixed(2) + "%",
+            title: "${((bayar / (hutang + bayar)) * 100).toStringAsFixed(2)}%",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,

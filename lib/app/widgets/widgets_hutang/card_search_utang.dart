@@ -1,6 +1,4 @@
-import 'dart:ffi';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:search_page/search_page.dart';
@@ -8,8 +6,6 @@ import 'package:search_page/search_page.dart';
 import '../../endpoint/data/data_respons/data_acc.dart';
 import '../../endpoint/data/fetch_data.dart';
 import '../../modules/hutang/controllers/hutang_controller.dart';
-import '../../modules/konfirmasi/controllers/konfirmasi_controller.dart';
-import '../color/appcolor.dart';
 import 'card_list_view_utang.dart';
 
 class SearchCardUtang extends GetView<HutangController> {
@@ -20,7 +16,7 @@ class SearchCardUtang extends GetView<HutangController> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(10),
             topRight: Radius.circular(10),
             bottomLeft: Radius.circular(10),
@@ -31,14 +27,14 @@ class SearchCardUtang extends GetView<HutangController> {
             color: Colors.grey.withOpacity(0.15),
             spreadRadius: 5,
             blurRadius: 70,
-            offset: Offset(0, 3), // changes position of shadow
+            offset: const Offset(0, 3), // changes position of shadow
           ),
         ],
       ),
       child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
         ),
-        margin: EdgeInsets.only(top: 10, left: 25, right: 25, bottom: 10),
+        margin: const EdgeInsets.only(top: 10, left: 25, right: 25, bottom: 10),
         height: 60,
         child: Column(
           children: [
@@ -46,7 +42,7 @@ class SearchCardUtang extends GetView<HutangController> {
                 future: API.acc(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   } else if (snapshot.hasData && snapshot.data != null) {
@@ -58,7 +54,7 @@ class SearchCardUtang extends GetView<HutangController> {
                           readOnly: true,
                           cursorColor: Colors.grey,
                           decoration: InputDecoration(
-                              contentPadding: EdgeInsets.all(8),
+                              contentPadding: const EdgeInsets.all(8),
                               fillColor: Colors.white,
                               filled: true,
                               border: OutlineInputBorder(
@@ -66,14 +62,14 @@ class SearchCardUtang extends GetView<HutangController> {
                                   borderSide: BorderSide.none
                               ),
                               hintText: 'Search',
-                              hintStyle: TextStyle(
+                              hintStyle: const TextStyle(
                                   color: Colors.grey,
                                   fontSize: 18
                               ),
                               prefixIcon: Container(
-                                padding: EdgeInsets.all(15),
-                                child: Icon(Icons.search_rounded),
+                                padding: const EdgeInsets.all(15),
                                 width: 18,
+                                child: const Icon(Icons.search_rounded),
                               )
                           ),
                           onTap: () =>
@@ -83,7 +79,7 @@ class SearchCardUtang extends GetView<HutangController> {
                                     items: data,
                                     searchLabel: 'Cari nama perusahaan',
                                     showItemsOnEmpty: true,
-                                    failure: Center(
+                                    failure: const Center(
                                       child: Text(
                                         'Tidak ada pembayaran :(',
                                       ),
@@ -95,7 +91,7 @@ class SearchCardUtang extends GetView<HutangController> {
                                     builder: (items) =>
                                         Column(
                                           children: [
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 10,
                                             ),
                                             CardListViewUtang(items: items),
@@ -104,14 +100,14 @@ class SearchCardUtang extends GetView<HutangController> {
                               ),
                         );
                     } else {
-                      return Center(
+                      return const Center(
                         child: Text(
                           'Pencarian'
                         ),
                       );
                     }
                   } else {
-                    return Center(
+                    return const Center(
                       child: Text(
                         'Terjadi kesalahan saat mengambil data.',
                       ),

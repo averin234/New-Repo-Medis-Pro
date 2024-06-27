@@ -12,9 +12,9 @@ class act_login {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['kode_perusahaan'] = this.kodePerusahaan;
-    data['Response'] = this.response;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['kode_perusahaan'] = kodePerusahaan;
+    data['Response'] = response;
     return data;
   }
 }

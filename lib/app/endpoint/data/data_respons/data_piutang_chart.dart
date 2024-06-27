@@ -12,10 +12,10 @@ class data_piutang_chart {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['terbayar'] = this.terbayar;
-    data['piutang'] = this.piutang;
-    data['Response'] = this.response;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['terbayar'] = terbayar;
+    data['piutang'] = piutang;
+    data['Response'] = response;
     return data;
   }
 }

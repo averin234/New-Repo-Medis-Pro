@@ -14,10 +14,10 @@ class data_hutang_chart {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['bayar'] = this.bayar;
-    data['hutang'] = this.hutang;
-    data['Response'] = this.response;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['bayar'] = bayar;
+    data['hutang'] = hutang;
+    data['Response'] = response;
     return data;
   }
 }

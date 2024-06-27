@@ -18,7 +18,7 @@ class json_hutang {
     if (json['data_hutang'] != null) {
       dataHutang = <DataHutang>[];
       json['data_hutang'].forEach((v) {
-        dataHutang!.add(new DataHutang.fromJson(v));
+        dataHutang!.add(DataHutang.fromJson(v));
       });
     }
     totalHutang = json['total_hutang'];
@@ -28,14 +28,14 @@ class json_hutang {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.dataHutang != null) {
-      data['data_hutang'] = this.dataHutang!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (dataHutang != null) {
+      data['data_hutang'] = dataHutang!.map((v) => v.toJson()).toList();
     }
-    data['total_hutang'] = this.totalHutang;
-    data['total_tagihan'] = this.totalTagihan;
-    data['total_terbayar'] = this.totalTerbayar;
-    data['Response'] = this.response;
+    data['total_hutang'] = totalHutang;
+    data['total_tagihan'] = totalTagihan;
+    data['total_terbayar'] = totalTerbayar;
+    data['Response'] = response;
     return data;
   }
 }
@@ -66,13 +66,13 @@ class DataHutang {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['foto'] = this.foto;
-    data['nama_perusahaan'] = this.namaPerusahaan;
-    data['total_harga'] = this.totalHarga;
-    data['total_bayar'] = this.totalBayar;
-    data['jum_pesan'] = this.jumPesan;
-    data['kode_perusahaan_pbf'] = this.kodePerusahaanPbf;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['foto'] = foto;
+    data['nama_perusahaan'] = namaPerusahaan;
+    data['total_harga'] = totalHarga;
+    data['total_bayar'] = totalBayar;
+    data['jum_pesan'] = jumPesan;
+    data['kode_perusahaan_pbf'] = kodePerusahaanPbf;
     return data;
   }
 }

@@ -3,10 +3,7 @@ import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:intl/intl.dart';
 
 import '../../endpoint/data/data_respons/acc_detail.dart';
-import '../../endpoint/data/data_respons/data_acc.dart';
-import '../../endpoint/data/data_respons/json_hutang.dart';
 import '../../endpoint/data/fetch_data.dart';
-import '../../modules/konfirmasi/controllers/konfirmasi_controller.dart';
 import '../../modules/konfirmasi_detail/controllers/konfirmasi_detail_controller.dart';
 import '../color/appcolor.dart';
 
@@ -21,10 +18,10 @@ class CardKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
     var now = DateTime.now();
     var formattedMonth = DateFormat.MMMM().format(DateTime.now());
     int currentYear = DateTime.now().year;
-    return  Container(
-      padding: EdgeInsets.all(10),
+    return Container(
+      padding: const EdgeInsets.all(10),
       width: double.infinity,
-      margin: EdgeInsets.only(top: 30, left: 10, right: 10),
+      margin: const EdgeInsets.only(top: 30, left: 10, right: 10),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
@@ -33,49 +30,60 @@ class CardKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
             color: Colors.grey.withOpacity(0.15),
             spreadRadius: 5,
             blurRadius: 70,
-            offset: Offset(0, 3),
+            offset: const Offset(0, 3),
           ),
         ],
       ),
       child: Column(
         children: [
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Periode', style: TextStyle(fontWeight: FontWeight.bold),),
-              Text('PBF', style: TextStyle(fontWeight: FontWeight.bold),),
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('$formattedMonth' + ' $currentYear'),
-              Row(children: [
-                Text('', textAlign: TextAlign.center),
-                Text(items.namaPerusahaan!, textAlign: TextAlign.center, style: TextStyle(color: Colors.green),),
-              ],
+              Text(
+                'Periode',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(
+                'PBF',
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ],
           ),
-          Divider(
-          ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("$formattedMonth $currentYear"),
+              Row(
+                children: [
+                  const Text('', textAlign: TextAlign.center),
+                  Text(
+                    items.namaPerusahaan!,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(color: Colors.green),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const Divider(),
+          const SizedBox(
+            height: 10,
+          ),
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('Menunggu Konfirmasi',
                   style: TextStyle(fontWeight: FontWeight.bold)),
-              Text('Sudah Konfirmasi',
-                style: TextStyle(fontWeight: FontWeight
-                    .bold),),
+              Text(
+                'Sudah Konfirmasi',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           FutureBuilder<acc_detail>(
@@ -83,35 +91,34 @@ class CardKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Container(
-                  margin: EdgeInsets.only(right: 10, left: 10),
-                  child:
-                  Row(
+                  margin: const EdgeInsets.only(right: 10, left: 10),
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
                         width: 90,
                         height: 20,
-                        padding: EdgeInsets.only(left: 10, right: 20, top: 0, bottom: 5),
+                        padding: const EdgeInsets.only(
+                            left: 10, right: 20, top: 0, bottom: 5),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: AppColors.shammerColor,
                         ),
-                        child: Center(
-                        ),
+                        child: const Center(),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 30,
                       ),
                       Container(
                         width: 90,
                         height: 20,
-                        padding: EdgeInsets.only(left: 20, right: 10, top: 0, bottom: 5),
+                        padding: const EdgeInsets.only(
+                            left: 20, right: 10, top: 0, bottom: 5),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: AppColors.shammerColor,
                         ),
-                        child: Center(
-                        ),
+                        child: const Center(),
                       ),
                     ],
                   ),
@@ -132,23 +139,28 @@ class CardKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
                     }
                   });
                   return Container(
-                    margin: EdgeInsets.only(right: 30, left: 30),
+                    margin: const EdgeInsets.only(right: 30, left: 30),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('$countNull', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold)),
-                        Text('$countOne', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold)),
+                        Text('$countNull',
+                            style: const TextStyle(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold)),
+                        Text('$countOne',
+                            style: const TextStyle(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold)),
                       ],
                     ),
                   );
                 } else {
-                  return Text('Tidak ada data');
+                  return const Text('Tidak ada data');
                 }
               }
             },
           ),
-          Divider(
-          ),
+          const Divider(),
         ],
       ),
     );

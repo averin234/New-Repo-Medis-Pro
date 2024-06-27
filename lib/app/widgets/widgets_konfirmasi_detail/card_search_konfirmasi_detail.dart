@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:search_page/search_page.dart';
@@ -13,7 +12,7 @@ class SearchCardKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(10),
             topRight: Radius.circular(10),
             bottomLeft: Radius.circular(10),
@@ -24,14 +23,14 @@ class SearchCardKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
             color: Colors.grey.withOpacity(0.15),
             spreadRadius: 5,
             blurRadius: 70,
-            offset: Offset(0, 3), // changes position of shadow
+            offset: const Offset(0, 3), // changes position of shadow
           ),
         ],
       ),
       child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
         ),
-        margin: EdgeInsets.only(top: 10, left: 25, right: 25, bottom: 10),
+        margin: const EdgeInsets.only(top: 10, left: 25, right: 25, bottom: 10),
         height: 60,
         child: Column(
           children: [
@@ -39,7 +38,7 @@ class SearchCardKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
                 future: API.accdetail(kode_perusahaan_pbf: controller.pbf),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   } else if (snapshot.hasData && snapshot.data != null) {
@@ -51,7 +50,7 @@ class SearchCardKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
                           readOnly: true,
                           cursorColor: Colors.grey,
                           decoration: InputDecoration(
-                              contentPadding: EdgeInsets.all(8),
+                              contentPadding: const EdgeInsets.all(8),
                               fillColor: Colors.white,
                               filled: true,
                               border: OutlineInputBorder(
@@ -59,14 +58,14 @@ class SearchCardKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
                                   borderSide: BorderSide.none
                               ),
                               hintText: 'Search',
-                              hintStyle: TextStyle(
+                              hintStyle: const TextStyle(
                                   color: Colors.grey,
                                   fontSize: 18
                               ),
                               prefixIcon: Container(
-                                padding: EdgeInsets.all(15),
-                                child: Icon(Icons.search_rounded),
+                                padding: const EdgeInsets.all(15),
                                 width: 18,
+                                child: const Icon(Icons.search_rounded),
                               )
                           ),
                           onTap: () =>
@@ -76,7 +75,7 @@ class SearchCardKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
                                     items: data,
                                     searchLabel: 'Cari No. Invoice',
                                     showItemsOnEmpty: true,
-                                    failure: Center(
+                                    failure: const Center(
                                       child: Text(
                                         'Tidak ada pembayaran :(',
                                       ),
@@ -86,7 +85,7 @@ class SearchCardKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
                                       kasir.noInvoice,
                                     ],
                                     builder: (items) =>
-                                        Column(
+                                        const Column(
                                           children: [
                                             SizedBox(
                                               height: 10,
@@ -97,14 +96,14 @@ class SearchCardKonfirmasiDetail extends GetView<KonfirmasiDetailController> {
                               ),
                         );
                     } else {
-                      return Center(
+                      return const Center(
                         child: Text(
                             'Pencarian'
                         ),
                       );
                     }
                   } else {
-                    return Center(
+                    return const Center(
                       child: Text(
                         'Terjadi kesalahan saat mengambil data.',
                       ),

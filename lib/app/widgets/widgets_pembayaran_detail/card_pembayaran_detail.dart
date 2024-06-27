@@ -3,16 +3,14 @@ import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:intl/intl.dart';
 
 import '../../endpoint/data/data_respons/bayar_detail.dart';
-import '../../endpoint/data/data_respons/data_acc.dart';
-import '../../endpoint/data/data_respons/data_pembayaran.dart';
-import '../../endpoint/data/data_respons/json_hutang.dart';
 import '../../endpoint/data/fetch_data.dart';
-import '../../modules/hutang_detail/controllers/hutang_detail_controller.dart';
 import '../../modules/pembayaran_detail/controllers/pembayaran_detail_controller.dart';
 import '../color/appcolor.dart';
 
 class CardPembayaranDetail extends GetView<PembayaranDetailController> {
-  const CardPembayaranDetail({Key? key,}) : super(key: key);
+  const CardPembayaranDetail({
+    Key? key,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final items = controller.items;
@@ -24,9 +22,9 @@ class CardPembayaranDetail extends GetView<PembayaranDetailController> {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Container(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             width: double.infinity,
-            margin: EdgeInsets.only(top: 30, left: 10, right: 10),
+            margin: const EdgeInsets.only(top: 30, left: 10, right: 10),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
@@ -35,20 +33,26 @@ class CardPembayaranDetail extends GetView<PembayaranDetailController> {
                   color: Colors.grey.withOpacity(0.15),
                   spreadRadius: 5,
                   blurRadius: 70,
-                  offset: Offset(0, 3),
+                  offset: const Offset(0, 3),
                 ),
               ],
             ),
             child: Column(
               children: [
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Periode', style: TextStyle(fontWeight: FontWeight.bold),),
-                    Text('PBF', style: TextStyle(fontWeight: FontWeight.bold),),
+                    Text(
+                      'Periode',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      'PBF',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
@@ -57,44 +61,48 @@ class CardPembayaranDetail extends GetView<PembayaranDetailController> {
                     Container(
                       width: 90,
                       height: 20,
-                      padding: EdgeInsets.only(left: 20, right: 20, top: 0, bottom: 5),
+                      padding: const EdgeInsets.only(
+                          left: 20, right: 20, top: 0, bottom: 5),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: AppColors.shammerColor,
                       ),
-                      child: Center(
-                      ),
+                      child: const Center(),
                     ),
-                    Row(children: [
-                      Text('Rp. ', textAlign: TextAlign.center),
-                      Container(
-                        width: 90,
-                        height: 20,
-                        padding: EdgeInsets.only(left: 20, right: 20, top: 0, bottom: 5),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: AppColors.shammerColor,
+                    Row(
+                      children: [
+                        const Text('Rp. ', textAlign: TextAlign.center),
+                        Container(
+                          width: 90,
+                          height: 20,
+                          padding: const EdgeInsets.only(
+                              left: 20, right: 20, top: 0, bottom: 5),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: AppColors.shammerColor,
+                          ),
+                          child: const Center(),
                         ),
-                        child: Center(
-                        ),
-                      ),
-                    ],
+                      ],
                     ),
                   ],
                 ),
-                Divider(
-                ),
-                SizedBox(
+                const Divider(),
+                const SizedBox(
                   height: 10,
                 ),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Tagihan Terbayar', style: TextStyle(fontWeight: FontWeight.bold)),
-                    Text('Jumlah Tagihan', style: TextStyle(fontWeight: FontWeight.bold),),
+                    Text('Tagihan Terbayar',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text(
+                      'Jumlah Tagihan',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Container(
@@ -104,34 +112,34 @@ class CardPembayaranDetail extends GetView<PembayaranDetailController> {
                       Container(
                         width: 90,
                         height: 20,
-                        padding: EdgeInsets.only(left: 20, right: 20, top: 0, bottom: 5),
+                        padding: const EdgeInsets.only(
+                            left: 20, right: 20, top: 0, bottom: 5),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: AppColors.shammerColor,
                         ),
-                        child: Center(
-                        ),
+                        child: const Center(),
                       ),
-                      Row(children: [
-                        Text('Rp. ', textAlign: TextAlign.center),
-                        Container(
-                          width: 90,
-                          height: 20,
-                          padding: EdgeInsets.only(left: 20, right: 20, top: 0, bottom: 5),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: AppColors.shammerColor,
+                      Row(
+                        children: [
+                          const Text('Rp. ', textAlign: TextAlign.center),
+                          Container(
+                            width: 90,
+                            height: 20,
+                            padding: const EdgeInsets.only(
+                                left: 20, right: 20, top: 0, bottom: 5),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: AppColors.shammerColor,
+                            ),
+                            child: const Center(),
                           ),
-                          child: Center(
-                          ),
-                        ),
-                      ],
+                        ],
                       ),
                     ],
                   ),
                 ),
-                Divider(
-                ),
+                const Divider(),
               ],
             ),
           );
@@ -139,12 +147,14 @@ class CardPembayaranDetail extends GetView<PembayaranDetailController> {
           return Text('Error: ${snapshot.error}');
         } else {
           if (snapshot.data != null) {
-            final jumlahParsial = snapshot.data!.jumlahParsial; // Ambil data hutang dari objek respons.
-            final jumlahLunas = snapshot.data!.jumlahLunas; // Ambil data bayar dari objek respons.
-            return  Container(
-              padding: EdgeInsets.all(10),
+            final jumlahParsial = snapshot
+                .data!.jumlahParsial; // Ambil data hutang dari objek respons.
+            final jumlahLunas = snapshot
+                .data!.jumlahLunas; // Ambil data bayar dari objek respons.
+            return Container(
+              padding: const EdgeInsets.all(10),
               width: double.infinity,
-              margin: EdgeInsets.only(top: 30, left: 10, right: 10),
+              margin: const EdgeInsets.only(top: 30, left: 10, right: 10),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
@@ -153,67 +163,86 @@ class CardPembayaranDetail extends GetView<PembayaranDetailController> {
                     color: Colors.grey.withOpacity(0.15),
                     spreadRadius: 5,
                     blurRadius: 70,
-                    offset: Offset(0, 3),
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
               child: Column(
                 children: [
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Periode', style: TextStyle(fontWeight: FontWeight.bold),),
-                      Text('PBF', style: TextStyle(fontWeight: FontWeight.bold),),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('$formattedMonth' + ' $currentYear'),
-                      Row(children: [
-                        Text('', textAlign: TextAlign.center),
-                        Text(items.namaPerusahaan!, textAlign: TextAlign.center, style: TextStyle(color: Colors.green),),
-                      ],
+                      Text(
+                        'Periode',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        'PBF',
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
-                  Divider(
-                  ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Tagihan Terbayar', style: TextStyle(fontWeight: FontWeight.bold)),
-                      Text('Jumlah Tagihan', style: TextStyle(fontWeight: FontWeight.bold),),
+                      Text("$formattedMonth $currentYear"),
+                      Row(
+                        children: [
+                          const Text('', textAlign: TextAlign.center),
+                          Text(
+                            items.namaPerusahaan!,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(color: Colors.green),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
-                  SizedBox(
+                  const Divider(),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Tagihan Terbayar',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      Text(
+                        'Jumlah Tagihan',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
                     height: 10,
                   ),
                   Container(
-                    margin: EdgeInsets.only(right: 30, left: 30),
-                    child:
-                    Row(
+                    margin: const EdgeInsets.only(right: 30, left: 30),
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('$jumlahParsial', textAlign: TextAlign.center, style: TextStyle(color: Colors.green),),
-                        Text('$jumlahLunas', textAlign: TextAlign.center, style: TextStyle(color: Colors.green),),
+                        Text(
+                          '$jumlahParsial',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(color: Colors.green),
+                        ),
+                        Text(
+                          '$jumlahLunas',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(color: Colors.green),
+                        ),
                       ],
                     ),
                   ),
-
-                  Divider(
-                  ),
+                  const Divider(),
                 ],
               ),
             );
           } else {
-            return Text('Tidak ada data');
+            return const Text('Tidak ada data');
           }
         }
       },

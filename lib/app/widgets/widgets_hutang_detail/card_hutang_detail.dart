@@ -2,23 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:intl/intl.dart';
 
-import '../../endpoint/data/data_respons/data_acc.dart';
-import '../../endpoint/data/data_respons/json_hutang.dart';
-import '../../endpoint/data/fetch_data.dart';
 import '../../modules/hutang_detail/controllers/hutang_detail_controller.dart';
 
 class CardHutangDetail extends GetView<HutangDetailController> {
-  const CardHutangDetail({Key? key,}) : super(key: key);
+  const CardHutangDetail({
+    Key? key,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final items = controller.items;
     var now = DateTime.now();
     var formattedMonth = DateFormat.MMMM().format(DateTime.now());
     int currentYear = DateTime.now().year;
-    return  Container(
-      padding: EdgeInsets.all(10),
+    return Container(
+      padding: const EdgeInsets.all(10),
       width: double.infinity,
-      margin: EdgeInsets.only(top: 30, left: 10, right: 10),
+      margin: const EdgeInsets.only(top: 30, left: 10, right: 10),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
@@ -27,67 +26,91 @@ class CardHutangDetail extends GetView<HutangDetailController> {
             color: Colors.grey.withOpacity(0.15),
             spreadRadius: 5,
             blurRadius: 70,
-            offset: Offset(0, 3),
+            offset: const Offset(0, 3),
           ),
         ],
       ),
       child: Column(
         children: [
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Periode', style: TextStyle(fontWeight: FontWeight.bold),),
-              Text('PBF', style: TextStyle(fontWeight: FontWeight.bold),),
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('$formattedMonth' + ' $currentYear'),
-              Row(children: [
-                Text('', textAlign: TextAlign.center),
-                Text(items.namaPerusahaan!, textAlign: TextAlign.center, style: TextStyle(color: Colors.green),),
-              ],
+              Text(
+                'Periode',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(
+                'PBF',
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ],
           ),
-          Divider(
-          ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Tagihan Terbayar', style: TextStyle(fontWeight: FontWeight.bold)),
-              Text('Jumlah Tagihan', style: TextStyle(fontWeight: FontWeight.bold),),
+              Text("$formattedMonth $currentYear"),
+              Row(
+                children: [
+                  const Text('', textAlign: TextAlign.center),
+                  Text(
+                    items.namaPerusahaan!,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(color: Colors.green),
+                  ),
+                ],
+              ),
             ],
           ),
-          SizedBox(
+          const Divider(),
+          const SizedBox(
+            height: 10,
+          ),
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('Tagihan Terbayar',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              Text(
+                'Jumlah Tagihan',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          const SizedBox(
             height: 10,
           ),
           Container(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(children: [
-                  Text('Rp. ',),
-                  Text(items.totalBayar!+',00', style: TextStyle(color: Colors.green),),
+                Row(
+                  children: [
+                    const Text(
+                      'Rp. ',
+                    ),
+                    Text(
+                      '${items.totalBayar!},00',
+                      style: const TextStyle(color: Colors.green),
+                    ),
                   ],
                 ),
-                Row(children: [
-                  Text('Rp. ', textAlign: TextAlign.center),
-                  Text(items.totalHarga!+',00', textAlign: TextAlign.center, style: TextStyle(color: Colors.green),),
-                ],
+                Row(
+                  children: [
+                    const Text('Rp. ', textAlign: TextAlign.center),
+                    Text(
+                      '${items.totalHarga!},00',
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(color: Colors.green),
+                    ),
+                  ],
                 ),
               ],
             ),
           ),
-          Divider(
-          ),
+          const Divider(),
         ],
       ),
     );

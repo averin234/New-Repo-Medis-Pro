@@ -15,7 +15,7 @@ class LoginView extends GetView<LoginController> {
         centerTitle: true,
         elevation: 0,
       ),
-      body: SingleChildScrollView( child:
+      body: const SingleChildScrollView( child:
       Column(
         children: [
           LoginForm(),

@@ -12,7 +12,7 @@ class data_acc {
     if (json['data_acc'] != null) {
       dataAcc = <DataAcc>[];
       json['data_acc'].forEach((v) {
-        dataAcc!.add(new DataAcc.fromJson(v));
+        dataAcc!.add(DataAcc.fromJson(v));
       });
     }
     totalBayar = json['total_bayar'];
@@ -22,13 +22,13 @@ class data_acc {
 
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.dataAcc != null) {
-      data['data_acc'] = this.dataAcc!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (dataAcc != null) {
+      data['data_acc'] = dataAcc!.map((v) => v.toJson()).toList();
     }
-    data['total_bayar'] = this.totalBayar;
-    data['total_hutang'] = this.totalHutang;
-    data['Response'] = this.response;
+    data['total_bayar'] = totalBayar;
+    data['total_hutang'] = totalHutang;
+    data['Response'] = response;
     return data;
   }
 
@@ -63,13 +63,13 @@ class DataAcc {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['foto'] = this.foto;
-    data['nama_perusahaan'] = this.namaPerusahaan;
-    data['total_harga'] = this.totalHarga;
-    data['total_bayar'] = this.totalBayar;
-    data['jum_pesan'] = this.jumPesan;
-    data['kode_perusahaan_pbf'] = this.kodePerusahaanPbf;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['foto'] = foto;
+    data['nama_perusahaan'] = namaPerusahaan;
+    data['total_harga'] = totalHarga;
+    data['total_bayar'] = totalBayar;
+    data['jum_pesan'] = jumPesan;
+    data['kode_perusahaan_pbf'] = kodePerusahaanPbf;
     return data;
   }
 }

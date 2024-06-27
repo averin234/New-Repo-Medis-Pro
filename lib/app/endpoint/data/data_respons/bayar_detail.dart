@@ -16,7 +16,7 @@ class bayar_detail {
     if (json['data_bayar_detail'] != null) {
       dataBayarDetail = <DataBayarDetail>[];
       json['data_bayar_detail'].forEach((v) {
-        dataBayarDetail!.add(new DataBayarDetail.fromJson(v));
+        dataBayarDetail!.add(DataBayarDetail.fromJson(v));
       });
     }
     jumlahParsial = json['jumlahParsial'];
@@ -25,14 +25,14 @@ class bayar_detail {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.dataBayarDetail != null) {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (dataBayarDetail != null) {
       data['data_bayar_detail'] =
-          this.dataBayarDetail!.map((v) => v.toJson()).toList();
+          dataBayarDetail!.map((v) => v.toJson()).toList();
     }
-    data['jumlahParsial'] = this.jumlahParsial;
-    data['jumlahLunas'] = this.jumlahLunas;
-    data['Response'] = this.response;
+    data['jumlahParsial'] = jumlahParsial;
+    data['jumlahLunas'] = jumlahLunas;
+    data['Response'] = response;
     return data;
   }
 }
@@ -56,11 +56,11 @@ class DataBayarDetail {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['tgl_invoice'] = this.tglInvoice;
-    data['no_invoice'] = this.noInvoice;
-    data['total_harga'] = this.totalHarga;
-    data['status'] = this.status;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['tgl_invoice'] = tglInvoice;
+    data['no_invoice'] = noInvoice;
+    data['total_harga'] = totalHarga;
+    data['status'] = status;
     return data;
   }
 }

@@ -1,29 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 
-import '../../../generated/assets.dart';
-import '../../endpoint/data/data_respons/acc_detail.dart';
 import '../../endpoint/data/data_respons/bayar_detail.dart';
 import '../../endpoint/data/fetch_data.dart';
-import '../../modules/hutang/controllers/hutang_controller.dart';
-import '../../modules/hutang_detail/controllers/hutang_detail_controller.dart';
-import '../../modules/konfirmasi/controllers/konfirmasi_controller.dart';
 import '../../modules/pembayaran_detail/controllers/pembayaran_detail_controller.dart';
-import '../color/appcolor.dart';
 import 'list_shammer_pembayaran_detail.dart';
 
 class ListPembayaranDetail extends GetView<PembayaranDetailController> {
-  ListPembayaranDetail({Key? key}) : super(key: key);
+  const ListPembayaranDetail({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<bayar_detail>(
       future: API.bayardetail(kode_perusahaan_pbf: controller.pbf),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return SingleChildScrollView(
+          return const SingleChildScrollView(
             child: Column(children: [
               ListshimmerPembayaranDetail(),
               ListshimmerPembayaranDetail(),
@@ -38,16 +30,16 @@ class ListPembayaranDetail extends GetView<PembayaranDetailController> {
           if (snapshot.data != null) {
             final namaPerusahaan = snapshot.data!..dataBayarDetail; // Ambil data hutang dari objek respons.
             return Column(children: snapshot.data!.dataBayarDetail!.map((e) {
-              final totalHarga = e!.totalHarga; // Ambil data hutang dari objek respons.
-              final noInvoice = e!.noInvoice; // Ambil data bayar dari objek respons.
-              final tglInvoice = e!.tglInvoice; // Ambil data bayar dari objek respons.
-              final status = e!.status; // Ambil data bayar dari objek respons.
+              final totalHarga = e.totalHarga; // Ambil data hutang dari objek respons.
+              final noInvoice = e.noInvoice; // Ambil data bayar dari objek respons.
+              final tglInvoice = e.tglInvoice; // Ambil data bayar dari objek respons.
+              final status = e.status; // Ambil data bayar dari objek respons.
               return  Container(
-                padding: EdgeInsets.all(10),
-                margin: EdgeInsets.only(right: 10, left: 10, top: 10),
+                padding: const EdgeInsets.all(10),
+                margin: const EdgeInsets.only(right: 10, left: 10, top: 10),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(10),
                       topRight: Radius.circular(10),
                       bottomLeft: Radius.circular(10),
@@ -58,7 +50,7 @@ class ListPembayaranDetail extends GetView<PembayaranDetailController> {
                       color: Colors.grey.withOpacity(0.15),
                       spreadRadius: 5,
                       blurRadius: 70,
-                      offset: Offset(0, 3), // changes position of shadow
+                      offset: const Offset(0, 3), // changes position of shadow
                     ),
                   ],
                 ),
@@ -67,12 +59,12 @@ class ListPembayaranDetail extends GetView<PembayaranDetailController> {
                   children: [
                     Container(
                       width: double.infinity,
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                         color: Colors.green.shade500,
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: Column(
+                      child: const Column(
                         children: [
                           Row(children: [
                             Icon(Icons.check_circle_rounded, color: Colors.white),
@@ -87,17 +79,17 @@ class ListPembayaranDetail extends GetView<PembayaranDetailController> {
                       ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Row(
                       children: [
-                        Text('No. Invoice', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 12)),
-                        Text(' : ', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                        const Text('No. Invoice', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 12)),
+                        const Text(' : ', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
                         SizedBox(
                           width: 260,
                           child :
-                        Text('$noInvoice ', style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
+                        Text('$noInvoice ', style: const TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
                         ),
                       ],
                     ),
@@ -107,29 +99,29 @@ class ListPembayaranDetail extends GetView<PembayaranDetailController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Row(children: [
-                              SizedBox(
+                              const SizedBox(
                                   width: 90,
                                   child : Text('Tanggal Bayar')
                               ),
-                              Text(': '),
+                              const Text(': '),
                               Text('$tglInvoice')
                             ],),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Row(children: [
-                              SizedBox(
+                              const SizedBox(
                                   width: 90,
                                   child : Text('Jumlah')
                               ),
-                              Text(': Rp.'),
+                              const Text(': Rp.'),
                               Text('$totalHarga')
                             ],),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                           ],),
@@ -139,7 +131,7 @@ class ListPembayaranDetail extends GetView<PembayaranDetailController> {
             ).toList(),);
 
           } else {
-            return Text('Tidak ada data');
+            return const Text('Tidak ada data');
           }
         }
       },

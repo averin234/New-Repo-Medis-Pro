@@ -3,12 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../generated/assets.dart';
-import '../../../widgets/chart/fl_chart.dart';
 import '../../../widgets/chart/pie_cart.dart';
 import '../../../widgets/color/appcolor.dart';
 import '../../../widgets/widgets_home/menu.dart';
@@ -27,7 +24,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   int current_index = 0;
-  final List<Widget> pages = [Home(), HutangView(), KonfirmasiView(), PembayaranView(), ProfileView(),];
+  final List<Widget> pages = [const Home(), const HutangView(), const KonfirmasiView(), const PembayaranView(), const ProfileView(),];
 
   void OnTapped(int index) {
     setState(() {
@@ -40,7 +37,7 @@ class _HomeViewState extends State<HomeView> {
       body: pages[current_index],
       bottomNavigationBar: Container(
         height: 80,
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(50),
           child: CurvedNavigationBar(
@@ -49,7 +46,7 @@ class _HomeViewState extends State<HomeView> {
               color: AppColors.contentColorWhite,
               buttonBackgroundColor: Colors.grey.shade300,
               onTap: OnTapped,
-              items: <Widget>[
+              items: const <Widget>[
                 Icon(Icons.home),
                 Icon(Icons.credit_card),
                 Icon(Icons.add_chart_outlined),
@@ -92,7 +89,7 @@ class _HomeState extends State<Home> {
                 fit: BoxFit.fitHeight,
                 height: 100,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
             ],
@@ -103,12 +100,12 @@ class _HomeState extends State<Home> {
             },
             child: Container(
               width: double.infinity,
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.blue
               ),
-              child : Center(
+              child : const Center(
                 child : Text('Keluar', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
               ),
             ),
@@ -118,14 +115,14 @@ class _HomeState extends State<Home> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Home'),
+          title: const Text('Home'),
           centerTitle: false,
           elevation: 0,
         ),
         body: SmartRefresher(
           controller: _refreshController,
           enablePullDown: true,
-          header: WaterDropHeader(),
+          header: const WaterDropHeader(),
           onLoading: _onLoading,
           onRefresh: _onRefresh,
           child: SingleChildScrollView(
@@ -133,15 +130,15 @@ class _HomeState extends State<Home> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: AnimationConfiguration.toStaggeredList(
-                duration: Duration(milliseconds: 295),
+                duration: const Duration(milliseconds: 295),
                 childAnimationBuilder: (widget) => ScaleAnimation(
                   child: FadeInAnimation(
                     child: widget,
                   ),
                 ),
                 children: <Widget>[
-                  PieChartSample2(),
-                  Menu(),
+                  const PieChartSample2(),
+                  const Menu(),
                 ],
               ),
             ),
@@ -159,7 +156,7 @@ class _HomeState extends State<Home> {
   _onRefresh() {
     setState(() {
 // so whatever you want to refresh it must be inside the setState
-      Home(); // if you only want to refresh the list you can place this, so the two can be inside setState
+      const Home(); // if you only want to refresh the list you can place this, so the two can be inside setState
       _refreshController
           .refreshCompleted(); // request complete,the header will enter complete state,
 // resetFooterState : it will set the footer state from noData to idle

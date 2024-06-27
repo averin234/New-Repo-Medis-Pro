@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../generated/assets.dart';
 import '../../endpoint/data/data_respons/act_profile.dart';
 import '../../endpoint/data/fetch_data.dart';
 import '../../modules/profile/controllers/profile_controller.dart';
@@ -14,11 +13,11 @@ class CardProfile extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     return Container(
         width: double.infinity,
-        margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-        padding: EdgeInsets.all(10),
+        margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(10),
               topRight: Radius.circular(10),
               bottomLeft: Radius.circular(10),
@@ -29,7 +28,7 @@ class CardProfile extends GetView<ProfileController> {
               color: Colors.grey.withOpacity(0.15),
               spreadRadius: 5,
               blurRadius: 70,
-              offset: Offset(0, 3), // changes position of shadow
+              offset: const Offset(0, 3), // changes position of shadow
             ),
           ],
         ),
@@ -39,7 +38,7 @@ class CardProfile extends GetView<ProfileController> {
             future: API.profile,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return ListshimmerProfile();
+                return const ListshimmerProfile();
               } else if (snapshot.hasError) {
                 return Text('Error: ${snapshot.error}');
               } else {
@@ -64,19 +63,19 @@ class CardProfile extends GetView<ProfileController> {
                         ),
                         radius: 40,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
-                      Text('$namaPerusahaan', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                      SizedBox(
+                      Text('$namaPerusahaan', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                      const SizedBox(
                         height: 10,
                       ),
                       Text('$email'),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Text('$alamat', textAlign: TextAlign.center),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
@@ -84,67 +83,67 @@ class CardProfile extends GetView<ProfileController> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                         Text('$kelurahan'),
-                        SizedBox(
+                        const SizedBox(
                           width: 20,
                         ),
                         Text('$kecamatan'),
                       ],),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
-                      Text('$kota, ' + '$propinsi, ' + '$kodepos'),
-                      SizedBox(
+                      Text('$kota, $propinsi, $kodepos'),
+                      const SizedBox(
                         height: 10,
                       ),
-                      Divider(
+                      const Divider(
                         height: 5,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                         Text('No. Telp :'),
-                          SizedBox(
+                         const Text('No. Telp :'),
+                          const SizedBox(
                             width: 10,
                           ),
                           Text('$telpon1'),
                         ],),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text('No. Telp :'),
-                          SizedBox(
+                          const Text('No. Telp :'),
+                          const SizedBox(
                             width: 10,
                           ),
                           Text('$telpon2'),
                         ],),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text('No. Telp :'),
-                          SizedBox(
+                          const Text('No. Telp :'),
+                          const SizedBox(
                             width: 10,
                           ),
                           Text('$fax'),
                         ],),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                     ],
                   );
                 } else {
-                  return Text('Tidak ada data');
+                  return const Text('Tidak ada data');
                 }
               }
             },

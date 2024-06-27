@@ -1,24 +1,16 @@
 import 'package:flutter/material.dart';
 
-import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../widgets/widgets_pembayaran_detail/card_list_view_pembayaran_detail.dart';
 import '../../../widgets/widgets_pembayaran_detail/card_pembayaran_detail.dart';
 import '../../../widgets/widgets_pembayaran_detail/card_search_pembayaran_detail.dart';
-import '../../../widgets/widgets_pembayaran_detail/list_shammer_pembayaran_detail.dart';
-import '../controllers/pembayaran_detail_controller.dart';
 
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
-import 'package:get/get.dart';
 
 import '../../../widgets/color/appcolor.dart';
-import '../../../widgets/widgets_konfirmasi_detail/card_konfirmasi.dart';
-import '../../../widgets/widgets_konfirmasi_detail/card_list_view_konfirmasi_detail.dart';
-import '../../../widgets/widgets_konfirmasi_detail/card_search_konfirmasi_detail.dart';
 
 class PembayaranDetailView extends StatefulWidget {
   const PembayaranDetailView({Key? key}) : super(key: key);
@@ -29,7 +21,7 @@ class PembayaranDetailView extends StatefulWidget {
 
 class _PembayaranDetailViewState extends State<PembayaranDetailView> {
   int current_index = 0;
-  final List<Widget> pages = [Pembayaran(), ];
+  final List<Widget> pages = [const Pembayaran(), ];
 
   void OnTapped(int index) {
     setState(() {
@@ -67,7 +59,7 @@ class _PembayaranState extends State<Pembayaran> {
       child: SmartRefresher(
         controller: _refreshController,
         enablePullDown: true,
-        header: WaterDropHeader(),
+        header: const WaterDropHeader(),
     onLoading: _onLoading,
     onRefresh: _onRefresh,
     child: CustomScrollView(
@@ -86,16 +78,16 @@ class _PembayaranState extends State<Pembayaran> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: AnimationConfiguration.toStaggeredList(
-                    duration: Duration(milliseconds: 295),
+                    duration: const Duration(milliseconds: 295),
                     childAnimationBuilder: (widget) => ScaleAnimation(
                       child: FadeInAnimation(
                         child: widget,
                       ),
                     ),
                     children: <Widget>[
-                      SearchCardPembayaranDetail(),
-                      ListPembayaranDetail(),
-                      SizedBox(
+                      const SearchCardPembayaranDetail(),
+                      const ListPembayaranDetail(),
+                      const SizedBox(
                         height: 10,
                       ),
                     ]
@@ -116,7 +108,7 @@ class _PembayaranState extends State<Pembayaran> {
   _onRefresh() {
     setState(() {
 // so whatever you want to refresh it must be inside the setState
-      Pembayaran(); // if you only want to refresh the list you can place this, so the two can be inside setState
+      const Pembayaran(); // if you only want to refresh the list you can place this, so the two can be inside setState
       _refreshController
           .refreshCompleted(); // request complete,the header will enter complete state,
 // resetFooterState : it will set the footer state from noData to idle
@@ -149,14 +141,14 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
             height: appBarSize < kToolbarHeight ? kToolbarHeight : appBarSize,
             child: AppBar(
               elevation: 0.0,
-              title: Text('Pembayaran', style: TextStyle(color: Colors.black)),
+              title: const Text('Pembayaran', style: TextStyle(color: Colors.black)),
               centerTitle: false,
               actions: [
                 Container(
-                  margin: EdgeInsets.only(right: 20, left: 10, top: 10, bottom: 7),
+                  margin: const EdgeInsets.only(right: 20, left: 10, top: 10, bottom: 7),
                   child: Opacity(
                     opacity: hideTitleWhenExpanded ? 1.0 - percent : 1.0,
-                    child: Row(
+                    child: const Row(
                       children: [
                         Icon(Icons.search_rounded, color: Colors.grey,),
                         SizedBox(
@@ -179,7 +171,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
               opacity: percent,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 0 * percent),
-                child: CardPembayaranDetail(),
+                child: const CardPembayaranDetail(),
               ),
             ),
           ),
